@@ -22,12 +22,12 @@ namespace XIVSlothCombo.Attributes
         /// <param name="memeDescription"> Meme description. </param>
         internal CustomComboInfoAttribute(string fancyName, string description, byte jobID, [CallerLineNumber] int order = 0, string memeName = "", string memeDescription = "")
         {
-            var Ô­Ê¼fancyName = fancyName;
-            var Ô­Ê¼description = description;
-            var Ôö¼ÓËÑË÷ = true;
-            var fancyName¼¼ÄÜ·­Òë = true;
-            var description¼¼ÄÜ·­Òë = true;
-            var saveWord = "µÈ´ı·­Òë";
+            var åŸå§‹fancyName = fancyName;
+            var åŸå§‹description = description;
+            var å¢åŠ æœç´¢ = true;
+            var fancyNameæŠ€èƒ½ç¿»è¯‘ = true;
+            var descriptionæŠ€èƒ½ç¿»è¯‘ = true;
+            var saveWord = "ç­‰å¾…ç¿»è¯‘";
 
 
             // if (Service.Configuration != null)
@@ -37,52 +37,52 @@ namespace XIVSlothCombo.Attributes
                     Dictionary<string, string> db = Translatezh_CN.db;
                     Dictionary<string, string> dbActionName = Translatezh_CN_DBActionName.dbActionName;
 
-                    if (db.ContainsKey(Ô­Ê¼fancyName))
+                    if (db.ContainsKey(åŸå§‹fancyName))
                     {
-                        if (db[Ô­Ê¼fancyName] != saveWord)
+                        if (db[åŸå§‹fancyName] != saveWord)
                         {
-                            fancyName = db[Ô­Ê¼fancyName];
-                            Ôö¼ÓËÑË÷ = false;
-                            fancyName¼¼ÄÜ·­Òë = false;
+                            fancyName = db[åŸå§‹fancyName];
+                            å¢åŠ æœç´¢ = false;
+                            fancyNameæŠ€èƒ½ç¿»è¯‘ = false;
                         }
                     }
 
-                    if (fancyName¼¼ÄÜ·­Òë)
+                    if (fancyNameæŠ€èƒ½ç¿»è¯‘)
                     {
-                        ProcessingActionName(Ô­Ê¼fancyName, dbActionName, out fancyName);
-                        if (fancyName != Ô­Ê¼fancyName)
+                        ProcessingActionName(åŸå§‹fancyName, dbActionName, out fancyName);
+                        if (fancyName != åŸå§‹fancyName)
                         {
-                            db[Ô­Ê¼fancyName] = fancyName;
-                            Ôö¼ÓËÑË÷ = false;
+                            db[åŸå§‹fancyName] = fancyName;
+                            å¢åŠ æœç´¢ = false;
                         }
                     }
 
                     
 
-                    if (db.ContainsKey(Ô­Ê¼description))
+                    if (db.ContainsKey(åŸå§‹description))
                     {
-                        if (db[Ô­Ê¼description]!= saveWord)
+                        if (db[åŸå§‹description]!= saveWord)
                         {
-                            description = db[Ô­Ê¼description];
-                            description¼¼ÄÜ·­Òë = false;
-                            Ôö¼ÓËÑË÷ = false;
+                            description = db[åŸå§‹description];
+                            descriptionæŠ€èƒ½ç¿»è¯‘ = false;
+                            å¢åŠ æœç´¢ = false;
                         }
                     }
 
-                    if (description¼¼ÄÜ·­Òë)
+                    if (descriptionæŠ€èƒ½ç¿»è¯‘)
                     {
-                        ProcessingActionName(Ô­Ê¼description, dbActionName, out description);
+                        ProcessingActionName(åŸå§‹description, dbActionName, out description);
 
-                        if (description != Ô­Ê¼description)
+                        if (description != åŸå§‹description)
                         {
-                            db[Ô­Ê¼description] = description;
-                            Ôö¼ÓËÑË÷ = false;
+                            db[åŸå§‹description] = description;
+                            å¢åŠ æœç´¢ = false;
                             
                         }
                     }
 
 
-                    if (Ôö¼ÓËÑË÷)
+                    if (å¢åŠ æœç´¢)
                     {
                         try
                         {
@@ -113,16 +113,16 @@ namespace XIVSlothCombo.Attributes
             // {
             //     fancyName = "adsadas";
             // }
-            if (Ôö¼ÓËÑË÷)
+            if (å¢åŠ æœç´¢)
             {
                 if (fancyName == saveWord)
                 {
-                    fancyName = Ô­Ê¼fancyName;
+                    fancyName = åŸå§‹fancyName;
                 }
 
                 if (description == saveWord)
                 {
-                    description = Ô­Ê¼description;
+                    description = åŸå§‹description;
                 }
             }
 
@@ -201,7 +201,7 @@ namespace XIVSlothCombo.Attributes
         public static string JobIDToName(byte key) =>
             key switch
             {
-                0 => "Ã°ÏÕÕß(Í¨ÓÃÉèÖÃ)",
+                0 => "å†’é™©è€…(é€šç”¨è®¾ç½®)",
                 1 => "Gladiator",
                 2 => "Pugilist",
                 3 => "Marauder",
@@ -219,32 +219,32 @@ namespace XIVSlothCombo.Attributes
                 15 => "Culinarian",
                 16 => "Miner",
                 17 => "Botanist",
-                18 => "²¶ÓãÈË",
-                19 => "ÆïÊ¿",
-                20 => "ÎäÉ®",
-                21 => "Õ½Ê¿",
-                22 => "ÁúÆïÊ¿",
-                23 => "Ê«ÈË",
-                24 => "°×Ä§·¨Ê¦",
-                25 => "ºÚÄ§·¨Ê¦",
-                26 => "ÃØÊõÊ¦",
-                27 => "ÕÙ»½Ê¦",
-                28 => "Ñ§Õß",
-                29 => "Ë«½£Ê¦",
-                30 => "ÈÌÕß",
-                31 => "»ú¹¤Ê¿",
-                32 => "°µºÚÆïÊ¿",
-                33 => "Õ¼ĞÇÊõÊ¿",
-                34 => "ÎäÊ¿",
-                35 => "³àÄ§·¨Ê¦",
-                36 => "ÇàÄ§·¨Ê¦",
-                37 => "¾øÇ¹Õ½Ê¿",
-                38 => "ÎèÕß",
-                39 => "îÌÁ­¿Í",
-                40 => "ÏÍÕß",
+                18 => "æ•é±¼äºº",
+                19 => "éª‘å£«",
+                20 => "æ­¦åƒ§",
+                21 => "æˆ˜å£«",
+                22 => "é¾™éª‘å£«",
+                23 => "è¯—äºº",
+                24 => "ç™½é­”æ³•å¸ˆ",
+                25 => "é»‘é­”æ³•å¸ˆ",
+                26 => "ç§˜æœ¯å¸ˆ",
+                27 => "å¬å”¤å¸ˆ",
+                28 => "å­¦è€…",
+                29 => "åŒå‰‘å¸ˆ",
+                30 => "å¿è€…",
+                31 => "æœºå·¥å£«",
+                32 => "æš—é»‘éª‘å£«",
+                33 => "å æ˜Ÿæœ¯å£«",
+                34 => "æ­¦å£«",
+                35 => "èµ¤é­”æ³•å¸ˆ",
+                36 => "é’é­”æ³•å¸ˆ",
+                37 => "ç»æªæˆ˜å£«",
+                38 => "èˆè€…",
+                39 => "é’é•°å®¢",
+                40 => "è´¤è€…",
                 99 => "Global",
                 DOH.JobID => "Disciples of the Hand",
-                DOL.JobID => "´óµØÊ¹Õß",
+                DOL.JobID => "å¤§åœ°ä½¿è€…",
                 _ => "Unknown",
             };
 
@@ -269,32 +269,32 @@ namespace XIVSlothCombo.Attributes
                 15 => "Culinarian",
                 16 => "Miner",
                 17 => "Botanist",
-                18 => "²¶ÓãÈË",
-                19 => "ÆïÊ¿",
-                20 => "ÎäÉ®",
-                21 => "Õ½Ê¿",
-                22 => "ÁúÆïÊ¿",
-                23 => "Ê«ÈË",
-                24 => "°×Ä§·¨Ê¦",
-                25 => "ºÚÄ§·¨Ê¦",
-                26 => "ÃØÊõÊ¦",
-                27 => "ÕÙ»½Ê¦",
-                28 => "Ñ§Õß",
-                29 => "Ë«½£Ê¦",
-                30 => "ÈÌÕß",
-                31 => "»ú¹¤Ê¿",
-                32 => "°µºÚÆïÊ¿",
-                33 => "Õ¼ĞÇÊõÊ¿",
-                34 => "ÎäÊ¿",
-                35 => "³àÄ§·¨Ê¦",
-                36 => "ÇàÄ§·¨Ê¦",
-                37 => "¾øÇ¹Õ½Ê¿",
-                38 => "ÎèÕß",
-                39 => "îÌÁ­¿Í",
-                40 => "ÏÍÕß",
+                18 => "æ•é±¼äºº",
+                19 => "éª‘å£«",
+                20 => "æ­¦åƒ§",
+                21 => "æˆ˜å£«",
+                22 => "é¾™éª‘å£«",
+                23 => "è¯—äºº",
+                24 => "ç™½é­”æ³•å¸ˆ",
+                25 => "é»‘é­”æ³•å¸ˆ",
+                26 => "ç§˜æœ¯å¸ˆ",
+                27 => "å¬å”¤å¸ˆ",
+                28 => "å­¦è€…",
+                29 => "åŒå‰‘å¸ˆ",
+                30 => "å¿è€…",
+                31 => "æœºå·¥å£«",
+                32 => "æš—é»‘éª‘å£«",
+                33 => "å æ˜Ÿæœ¯å£«",
+                34 => "æ­¦å£«",
+                35 => "èµ¤é­”æ³•å¸ˆ",
+                36 => "é’é­”æ³•å¸ˆ",
+                37 => "ç»æªæˆ˜å£«",
+                38 => "èˆè€…",
+                39 => "é’é•°å®¢",
+                40 => "è´¤è€…",
                 99 => "Global",
                 DOH.JobID => "Disciples of the Hand",
-                DOL.JobID => "´óµØÊ¹Õß",
+                DOL.JobID => "å¤§åœ°ä½¿è€…",
                 _ => "Unknown",
             };
     }
