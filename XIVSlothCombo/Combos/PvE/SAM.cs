@@ -520,7 +520,7 @@ namespace XIVSlothCombo.Combos.PvE
 
                                     if (!IsMoving)
                                     {
-                                        if (((oneSeal || (oneSeal && meikyostacks == 2)) && GetDebuffRemainingTime(Debuffs.Higanbana) <= 10 && enemyHP > HiganbanaThreshold) ||
+                                        if (((oneSeal || (oneSeal && meikyostacks == 2)) && GetDebuffRemainingTime(Debuffs.Higanbana) <= 10 && enemyHP > HiganbanaThreshold && !IsEnabled(CustomComboPreset.SAM_ST_GekkoCombo_CDs_Iaijutsu_NO_Higanbana)) ||
                                             (twoSeal && !Setsugekka.LevelChecked()) ||
                                             (threeSeal && Setsugekka.LevelChecked()))
                                             return OriginalHook(Iaijutsu);

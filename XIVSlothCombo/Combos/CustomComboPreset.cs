@@ -2796,6 +2796,10 @@ namespace XIVSlothCombo.Combos
                 [CustomComboInfo("Iaijutsu on Main Combo", "Adds Midare: Setsugekka, Higanbana, and Kaeshi: Setsugekka when ready and when you're not moving to main combo.", SAM.JobID, 0, "", "")]
                 SAM_ST_GekkoCombo_CDs_Iaijutsu = 15010,
 
+                [ParentCombo(SAM_ST_GekkoCombo_CDs_Iaijutsu)]
+                [CustomComboInfo("Disable Higanbana", "No Higanbana in Combon", SAM.JobID, 0, "", "")]
+                SAM_ST_GekkoCombo_CDs_Iaijutsu_NO_Higanbana = 15100,
+
                 #region Ogi Namikiri on Main Combo
                 [ParentCombo(SAM_ST_GekkoCombo_CDs)]
                 [CustomComboInfo("Ogi Namikiri on Main Combo", "Ogi Namikiri and Kaeshi: Namikiri when ready and when you're not moving to main combo.", SAM.JobID, 0, "", "")]
