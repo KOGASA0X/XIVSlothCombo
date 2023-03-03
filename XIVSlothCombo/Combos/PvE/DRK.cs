@@ -18,11 +18,11 @@ namespace XIVSlothCombo.Combos.PvE
             SaltedEarth = 3639,
             AbyssalDrain = 3641,
             CarveAndSpit = 3643,
-            //ÑªÂÒ
+            //è¡€ä¹±
             Delirium = 7390,
             Quietus = 7391,
-            //Ñª½¦
-            Ñª½¦ = 7392,
+            //è¡€æº…
+            è¡€æº… = 7392,
             FloodOfDarkness = 16466,
             EdgeOfDarkness = 16467,
             StalwartSoul = 16468,
@@ -33,18 +33,18 @@ namespace XIVSlothCombo.Combos.PvE
             Oblation = 25754,
             Shadowbringer = 25757,
             Plunge = 3640,
-            //ÊÈÑª
+            //å—œè¡€
             BloodWeapon = 3625,
             Unmend = 3624;
 
         public static class Buffs
         {
             public const ushort
-                //ÊÈÑª
+                //å—œè¡€
                 BloodWeapon = 742,
                 Darkside = 751,
                 BlackestNight = 1178,
-                //ÑªÂÒ
+                //è¡€ä¹±
                 Delirium = 1972,
                 SaltedEarth = 749;
         }
@@ -167,39 +167,39 @@ namespace XIVSlothCombo.Combos.PvE
                         if (LevelChecked(Delirium) && IsEnabled(CustomComboPreset.DRK_Bloodspiller) && IsEnabled(CustomComboPreset.DRK_MainComboCDs_Group))
                         {
 
-                            //·ÀÖ¹°µÑªÒç³ö
+                            //é˜²æ­¢æš—è¡€æº¢å‡º
                             if (gauge.Blood >= 70 && GetBuffStacks(Buffs.BloodWeapon) > 0)
                             {
-                                return Ñª½¦;
+                                return è¡€æº…;
                             } 
                             
                             if (gauge.Blood >= 70 && GetCooldownRemainingTime(BloodWeapon) is > 0 and < 5)
                             {
-                                return Ñª½¦;
+                                return è¡€æº…;
                             } 
                             
                             if (gauge.Blood >= 70 && IsOffCooldown(BloodWeapon))
                             {
-                                return Ñª½¦;
+                                return è¡€æº…;
                             } 
                             
                             
-                            //·ÀÖ¹Ñª½¦Ã»ÓĞ´òÍê
+                            //é˜²æ­¢è¡€æº…æ²¡æœ‰æ‰“å®Œ
                             if (GetBuffStacks(Buffs.Delirium) > 0 && GetBuffRemainingTime(Buffs.Delirium) is > 0 and < 7.5f)
-                                return Ñª½¦;
+                                return è¡€æº…;
                             
                             //Regular Delirium  
                              if (GetBuffStacks(Buffs.Delirium) > 0 && IsNotEnabled(CustomComboPreset.DRK_DelayedBloodspiller))
-                                 return Ñª½¦;
+                                 return è¡€æº…;
 
-                            //Delayed Delirium ÑÓ³ÙÑªÂÒ
+                            //Delayed Delirium å»¶è¿Ÿè¡€ä¹±
                              if (IsEnabled(CustomComboPreset.DRK_DelayedBloodspiller) && GetBuffStacks(Buffs.Delirium) > 0 && IsOnCooldown(BloodWeapon) && GetBuffStacks(Buffs.BloodWeapon) is > 0 and < 3)
-                                 return Ñª½¦;
+                                 return è¡€æº…;
 
                            // Blood management before Delirium
                              if (IsEnabled(CustomComboPreset.DRK_Delirium) && ((gauge.Blood >= 60 && GetCooldownRemainingTime(BloodWeapon) is > 0 and < 4.9f) ))
                              // if (IsEnabled(CustomComboPreset.DRK_Delirium) && ((gauge.Blood >= 60 && GetCooldownRemainingTime(BloodWeapon) is > 0 and < 3) || (gauge.Blood >= 50 && GetCooldownRemainingTime(Delirium) > 37 && !HasEffect(Buffs.Delirium))))
-                                 return Ñª½¦;
+                                 return è¡€æº…;
                         }
 
                         // 1-2-3 combo
@@ -209,8 +209,8 @@ namespace XIVSlothCombo.Combos.PvE
                                 return SyphonStrike;
                             if (lastComboMove == SyphonStrike && LevelChecked(Souleater))
                             {
-                                if (IsEnabled(CustomComboPreset.DRK_BloodGaugeOvercap) && LevelChecked(Ñª½¦) && gauge.Blood >= 80)
-                                    return Ñª½¦;
+                                if (IsEnabled(CustomComboPreset.DRK_BloodGaugeOvercap) && LevelChecked(è¡€æº…) && gauge.Blood >= 80)
+                                    return è¡€æº…;
                                 return Souleater;
                             }
                         }
