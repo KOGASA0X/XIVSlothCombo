@@ -2,6 +2,7 @@ using Dalamud.Game.ClientState.JobGauge.Types;
 using Dalamud.Game.ClientState.Statuses;
 using XIVSlothCombo.Core;
 using XIVSlothCombo.CustomComboNS;
+using XIVSlothCombo.Services;
 
 namespace XIVSlothCombo.Combos.PvE
 {
@@ -17,9 +18,11 @@ namespace XIVSlothCombo.Combos.PvE
             SaltedEarth = 3639,
             AbyssalDrain = 3641,
             CarveAndSpit = 3643,
+            //ÑªÂÒ
             Delirium = 7390,
             Quietus = 7391,
-            Bloodspiller = 7392,
+            //Ñª½¦
+            Ñª½¦ = 7392,
             FloodOfDarkness = 16466,
             EdgeOfDarkness = 16467,
             StalwartSoul = 16468,
@@ -30,15 +33,18 @@ namespace XIVSlothCombo.Combos.PvE
             Oblation = 25754,
             Shadowbringer = 25757,
             Plunge = 3640,
+            //ÊÈÑª
             BloodWeapon = 3625,
             Unmend = 3624;
 
         public static class Buffs
         {
             public const ushort
+                //ÊÈÑª
                 BloodWeapon = 742,
                 Darkside = 751,
                 BlackestNight = 1178,
+                //ÑªÂÒ
                 Delirium = 1972,
                 SaltedEarth = 749;
         }
@@ -117,7 +123,12 @@ namespace XIVSlothCombo.Combos.PvE
                                 {
                                     if (IsEnabled(CustomComboPreset.DRK_BloodWeapon) && IsOffCooldown(BloodWeapon) && LevelChecked(BloodWeapon))
                                         return BloodWeapon;
-                                    if (IsEnabled(CustomComboPreset.DRK_Delirium) && IsOffCooldown(Delirium) && LevelChecked(Delirium))
+                                    
+                                   
+                              
+
+                                    
+                                    if (IsEnabled(CustomComboPreset.DRK_Delirium) && IsOffCooldown(Delirium) && LevelChecked(Delirium)&& (gauge.Blood < 70 || GetBuffStacks(Buffs.BloodWeapon) < 0))
                                         return Delirium;
                                 }
 
@@ -155,18 +166,40 @@ namespace XIVSlothCombo.Combos.PvE
                         //Delirium Features
                         if (LevelChecked(Delirium) && IsEnabled(CustomComboPreset.DRK_Bloodspiller) && IsEnabled(CustomComboPreset.DRK_MainComboCDs_Group))
                         {
-                            //Regular Delirium
-                            if (GetBuffStacks(Buffs.Delirium) > 0 && IsNotEnabled(CustomComboPreset.DRK_DelayedBloodspiller))
-                                return Bloodspiller;
 
-                            //Delayed Delirium
-                            if (IsEnabled(CustomComboPreset.DRK_DelayedBloodspiller) && GetBuffStacks(Buffs.Delirium) > 0 && IsOnCooldown(BloodWeapon) && GetBuffStacks(Buffs.BloodWeapon) < 2)
-                                return Bloodspiller;
+                            //·ÀÖ¹°µÑªÒç³ö
+                            if (gauge.Blood >= 70 && GetBuffStacks(Buffs.BloodWeapon) > 0)
+                            {
+                                return Ñª½¦;
+                            } 
+                            
+                            if (gauge.Blood >= 70 && GetCooldownRemainingTime(BloodWeapon) is > 0 and < 5)
+                            {
+                                return Ñª½¦;
+                            } 
+                            
+                            if (gauge.Blood >= 70 && IsOffCooldown(BloodWeapon))
+                            {
+                                return Ñª½¦;
+                            } 
+                            
+                            
+                            //·ÀÖ¹Ñª½¦Ã»ÓÐ´òÍê
+                            if (GetBuffStacks(Buffs.Delirium) > 0 && GetBuffRemainingTime(Buffs.Delirium) is > 0 and < 7.5f)
+                                return Ñª½¦;
+                            
+                            //Regular Delirium  
+                             if (GetBuffStacks(Buffs.Delirium) > 0 && IsNotEnabled(CustomComboPreset.DRK_DelayedBloodspiller))
+                                 return Ñª½¦;
 
-                            //Blood management before Delirium
-                            if (IsEnabled(CustomComboPreset.DRK_Delirium) &&
-                                ((gauge.Blood >= 60 && GetCooldownRemainingTime(BloodWeapon) is > 0 and < 3) || (gauge.Blood >= 50 && GetCooldownRemainingTime(Delirium) > 37 && !HasEffect(Buffs.Delirium))))
-                                return Bloodspiller;
+                            //Delayed Delirium ÑÓ³ÙÑªÂÒ
+                             if (IsEnabled(CustomComboPreset.DRK_DelayedBloodspiller) && GetBuffStacks(Buffs.Delirium) > 0 && IsOnCooldown(BloodWeapon) && GetBuffStacks(Buffs.BloodWeapon) is > 0 and < 3)
+                                 return Ñª½¦;
+
+                           // Blood management before Delirium
+                             if (IsEnabled(CustomComboPreset.DRK_Delirium) && ((gauge.Blood >= 60 && GetCooldownRemainingTime(BloodWeapon) is > 0 and < 4.9f) ))
+                             // if (IsEnabled(CustomComboPreset.DRK_Delirium) && ((gauge.Blood >= 60 && GetCooldownRemainingTime(BloodWeapon) is > 0 and < 3) || (gauge.Blood >= 50 && GetCooldownRemainingTime(Delirium) > 37 && !HasEffect(Buffs.Delirium))))
+                                 return Ñª½¦;
                         }
 
                         // 1-2-3 combo
@@ -176,8 +209,8 @@ namespace XIVSlothCombo.Combos.PvE
                                 return SyphonStrike;
                             if (lastComboMove == SyphonStrike && LevelChecked(Souleater))
                             {
-                                if (IsEnabled(CustomComboPreset.DRK_BloodGaugeOvercap) && LevelChecked(Bloodspiller) && gauge.Blood >= 90)
-                                    return Bloodspiller;
+                                if (IsEnabled(CustomComboPreset.DRK_BloodGaugeOvercap) && LevelChecked(Ñª½¦) && gauge.Blood >= 80)
+                                    return Ñª½¦;
                                 return Souleater;
                             }
                         }

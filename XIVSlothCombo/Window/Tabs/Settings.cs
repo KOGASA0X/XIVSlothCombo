@@ -130,6 +130,21 @@ namespace XIVSlothCombo.Window.Tabs
             ImGui.NextColumn();
 
             #endregion
+            
+            
+            #region 输出到聊天框
+
+            
+            var setOutChat = Service.Configuration.SetOutChat;
+
+            //if (ImGui.Checkbox("Hide Message of the Day", ref motd))
+            if (ImGui.Checkbox("" + "Set输出到聊天" + "", ref setOutChat))
+            {
+                Service.Configuration.SetOutChat = setOutChat;
+                Service.Configuration.Save();
+            }
+
+            #endregion
 
             ImGui.EndChild();
         }

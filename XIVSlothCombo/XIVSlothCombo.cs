@@ -192,7 +192,7 @@ namespace XIVSlothCombo
         private void OnCommand(string command, string arguments)
         {
             string[]? argumentsParts = arguments.Split();
-
+            var setOutChat = Service.Configuration.SetOutChat;
             switch (argumentsParts[0].ToLower())
             {
                 case "unsetall": // unset all features
@@ -218,7 +218,10 @@ namespace XIVSlothCombo
                                     continue;
 
                                 Service.Configuration.EnabledActions.Add(preset);
-                                Service.ChatGui.Print($"{preset} SET");
+                                if (setOutChat)
+                                {
+                                    Service.ChatGui.Print($"{preset} SET");
+                                }
                             }
 
                             Service.Configuration.Save();
@@ -245,13 +248,20 @@ namespace XIVSlothCombo
                                 if (Service.Configuration.EnabledActions.Contains(preset))
                                 {
                                     Service.Configuration.EnabledActions.Remove(preset);
-                                    Service.ChatGui.Print($"{preset} UNSET");
+                                
+                                    if (setOutChat)
+                                    {
+                                        Service.ChatGui.Print($"{preset} UNSET");
+                                    }
                                 }
 
                                 else
                                 {
                                     Service.Configuration.EnabledActions.Add(preset);
-                                    Service.ChatGui.Print($"{preset} SET");
+                                    if (setOutChat)
+                                    {
+                                        Service.ChatGui.Print($"{preset} SET");
+                                    }
                                 }
                             }
 
@@ -277,7 +287,10 @@ namespace XIVSlothCombo
                                     continue;
 
                                 Service.Configuration.EnabledActions.Remove(preset);
-                                Service.ChatGui.Print($"{preset} UNSET");
+                                if (setOutChat)
+                                {
+                                    Service.ChatGui.Print($"{preset} UNSET");
+                                }
                             }
 
                             Service.Configuration.Save();
@@ -302,7 +315,10 @@ namespace XIVSlothCombo
                             foreach (bool preset in Enum.GetValues<CustomComboPreset>()
                                 .Select(preset => Service.Configuration.IsEnabled(preset)))
                             {
-                                Service.ChatGui.Print(preset.ToString());
+                                if (setOutChat)
+                                {
+                                    Service.ChatGui.Print(preset.ToString());
+                                }
                             }
                         }
 
@@ -311,7 +327,10 @@ namespace XIVSlothCombo
                             foreach (bool preset in Enum.GetValues<CustomComboPreset>()
                                 .Select(preset => !Service.Configuration.IsEnabled(preset)))
                             {
-                                Service.ChatGui.Print(preset.ToString());
+                                if (setOutChat)
+                                {
+                                    Service.ChatGui.Print(preset.ToString());
+                                }
                             }
                         }
 
@@ -319,7 +338,10 @@ namespace XIVSlothCombo
                         {
                             foreach (CustomComboPreset preset in Enum.GetValues<CustomComboPreset>())
                             {
-                                Service.ChatGui.Print(preset.ToString());
+                                if (setOutChat)
+                                {
+                                    Service.ChatGui.Print(preset.ToString());
+                                }
                             }
                         }
 
@@ -336,7 +358,10 @@ namespace XIVSlothCombo
                         foreach (CustomComboPreset preset in Service.Configuration.EnabledActions.OrderBy(x => x))
                         {
                             if (int.TryParse(preset.ToString(), out int pres)) continue;
-                            Service.ChatGui.Print($"{(int)preset} - {preset}");
+                            if (setOutChat)
+                            {
+                                Service.ChatGui.Print($"{(int)preset} - {preset}");
+                            }
                         }
 
                         break;
@@ -435,6 +460,22 @@ namespace XIVSlothCombo
                             break;
                         }
                     }
+                case "auto":
+                {
+                    autoActionId = 0;
+                    try
+                    {
+                        autoActionId = uint.Parse(argumentsParts[1]);
+                    }
+                    catch (Exception exception)
+                    {
+                        autoActionId = 0;
+                        Dalamud.Logging.PluginLog.Error(exception, "Debug Log");
+                    }
+
+
+                    break;
+                }
                 default:
                     configWindow.Visible = !configWindow.Visible;
                     break;

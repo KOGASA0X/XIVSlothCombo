@@ -1,6 +1,6 @@
 ### 群名称：XIVSlothCombo汉化
 ### 群   号：544685806
-### 来点好兄弟一起汉化(用爱发点全靠自觉)
+### 来点好兄弟一起汉化(用爱发电全靠自觉)
 翻译相关：
 https://github.com/44451516/XIVSlothCombo/blob/CN/XIVSlothCombo/Translatezh-CN.cs
 
@@ -12,7 +12,7 @@ https://github.com/44451516/XIVSlothCombo/blob/CN/XIVSlothCombo/Window/Functions
 ##  https://raw.githubusercontent.com/44451516/XIVSlothCombo/CN/release/pluginmaster.json
 ##  https://raw.fastgit.org/44451516/XIVSlothCombo/CN/release/pluginmaster.json
 ---
-## 快捷指令
+## 快捷指令 [参考](https://docs.qq.com/doc/DT0tjZm9JTFlqUGJY)
 ~~~
 //所有选项打钩
 /scombo setall
