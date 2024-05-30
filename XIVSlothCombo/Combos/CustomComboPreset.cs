@@ -2907,89 +2907,89 @@ namespace XIVSlothCombo.Combos
 
         #region Overcap Features
         [ReplaceSkill(SAM.Kasha, SAM.Gekko, SAM.Yukikaze)]
-        [CustomComboInfo("Samurai Overcap Feature", "Adds Shinten onto main combo when Kenki is at the selected amount or more", SAM.JobID)]
+        [CustomComboInfo("武士超额特性", "当剑气达到或超过选择的数量时，在主要连击中添加震天", SAM.JobID)]
         SAM_ST_Overcap = 15001,
 
         [ReplaceSkill(SAM.Mangetsu, SAM.Oka)]
-        [CustomComboInfo("Samurai AoE Overcap Feature", "Adds Kyuten onto main AoE combos when Kenki is at the selected amount or more", SAM.JobID)]
+        [CustomComboInfo("武士AoE超额特性", "当剑气达到或超过选择的数量时，在主要AoE连击中添加九天", SAM.JobID)]
         SAM_AoE_Overcap = 15002,
         #endregion
 
         #region Main Combo (Gekko) Features
         [ReplaceSkill(SAM.Gekko)]
-        [CustomComboInfo("Gekko Combo", "Replace Gekko with its combo chain.\nIf all sub options are selected will turn into a full one button rotation (Advanced Samurai)", SAM.JobID)]
+        [CustomComboInfo("月光连击", "用其连击链替换月光。如果选择了所有子选项，将变成完整的一键旋转（高级武士）", SAM.JobID)]
         SAM_ST_GekkoCombo = 15003,
 
         [ParentCombo(SAM_ST_GekkoCombo)]
-        [CustomComboInfo("Enpi Uptime Feature", "Replace main combo with Enpi when you are out of range.", SAM.JobID)]
+        [CustomComboInfo("燕飞持续时间特性", "当你不在范围内时，用燕飞替换主要连击", SAM.JobID)]
         SAM_ST_GekkoCombo_RangedUptime = 15004,
 
         [ParentCombo(SAM_ST_GekkoCombo)]
-        [CustomComboInfo("Yukikaze Combo on Main Combo", "Adds Yukikaze combo to main combo. Will add Yukikaze during Meikyo Shisui as well", SAM.JobID)]
+        [CustomComboInfo("在主要连击中添加雪风连击", "在主要连击中添加雪风连击。明镜止水期间也会添加雪风", SAM.JobID)]
         SAM_ST_GekkoCombo_Yukikaze = 15005,
 
         [ParentCombo(SAM_ST_GekkoCombo)]
-        [CustomComboInfo("Kasha Combo on Main Combo", "Adds Kasha combo to main combo. Will add Kasha during Meikyo Shisui as well.", SAM.JobID)]
+        [CustomComboInfo("在主要连击中添加花车连击", "在主要连击中添加花车连击。明镜止水期间也会添加花车", SAM.JobID)]
         SAM_ST_GekkoCombo_Kasha = 15006,
 
         [ConflictingCombos(SAM_GyotenYaten)]
         [ParentCombo(SAM_ST_GekkoCombo)]
-        [CustomComboInfo("Level 90 Samurai Opener", "Adds the Level 90 Opener to the main combo.\nOpener triggered by using Meikyo Shisui before combat. If you have any Sen, Hagakure will be used to clear them.\nWill work at any levels of Kenki, requires 2 charges of Meikyo Shisui and all CDs ready. If conditions aren't met it will skip into the regular rotation. \nIf the Opener is interrupted, it will exit the opener via a Goken and a Kaeshi: Goken at the end or via the last Yukikaze. If the latter, CDs will be used on cooldown regardless of burst options.", SAM.JobID)]
+        [CustomComboInfo("90级武士开场", "将90级开场添加到主要连击中。开场通过在战斗前使用明镜止水触发。如果你有任何闪，叶隐将被用来清除它们。适用于任何剑气等级，需要2次明镜止水充能和所有冷却时间准备就绪。如果条件不满足，它将跳到常规旋转。如果开场被打断，它将在最后一个雪风处通过五剑和回返五剑退出开场。无论如何，冷却时间将在冷却期间使用。", SAM.JobID)]
         SAM_ST_GekkoCombo_Opener = 15007,
 
         [ConflictingCombos(SAM_GyotenYaten)]
         [ParentCombo(SAM_ST_GekkoCombo)]
-        [CustomComboInfo("Filler Combo Feature", "Adds selected Filler combos to main combo at the appropriate time.\nChoose Skill Speed tier with Fuka buff below.\nWill disable if you die or if you don't activate the opener.", SAM.JobID)]
+        [CustomComboInfo("填充连击特性", "在适当时机将所选填充连击添加到主要连击中。选择下方带有风光增益的技能速度等级。如果你死了或未激活开场，它将禁用。", SAM.JobID)]
         SAM_ST_GekkoCombo_FillerCombos = 15008,
 
         #region CDs on Main Combo
         [ParentCombo(SAM_ST_GekkoCombo)]
-        [CustomComboInfo("CDs on Main Combo", "Collection of CD features on main combo.", SAM.JobID)]
+        [CustomComboInfo("主要连击上的冷却时间", "主要连击上的冷却时间特性的集合。", SAM.JobID)]
         SAM_ST_GekkoCombo_CDs = 15099,
 
         [ParentCombo(SAM_ST_GekkoCombo_CDs)]
-        [CustomComboInfo("Ikishoten on Main Combo", "Adds Ikishoten when at or below 50 Kenki.\nWill dump Kenki at 10 seconds left to allow Ikishoten to be used.", SAM.JobID)]
+        [CustomComboInfo("主要连击中的意气冲天", "当剑气≤50时在主要连击中添加意气冲天。剑气在剩余10秒时将被清除以允许使用意气冲天。", SAM.JobID)]
         SAM_ST_GekkoCombo_CDs_Ikishoten = 15009,
 
         [ParentCombo(SAM_ST_GekkoCombo_CDs)]
-        [CustomComboInfo("Iaijutsu on Main Combo", "Adds Midare: Setsugekka, Higanbana, and Kaeshi: Setsugekka when ready and when you're not moving to main combo.", SAM.JobID)]
+        [CustomComboInfo("主要连击中的居合术", "当准备就绪且你不移动时，在主要连击中添加纷乱雪月花、彼岸花和回返雪月花。", SAM.JobID)]
         SAM_ST_GekkoCombo_CDs_Iaijutsu = 15010,
 
         #region Ogi Namikiri on Main Combo
         [ParentCombo(SAM_ST_GekkoCombo_CDs)]
-        [CustomComboInfo("Ogi Namikiri on Main Combo", "Ogi Namikiri and Kaeshi: Namikiri when ready and when you're not moving to main combo.", SAM.JobID)]
+        [CustomComboInfo("主要连击中的奥义斩浪", "当准备就绪且你不移动时，在主要连击中添加奥义斩浪和回返斩浪。", SAM.JobID)]
         SAM_ST_GekkoCombo_CDs_OgiNamikiri = 15011,
 
         [ParentCombo(SAM_ST_GekkoCombo_CDs_OgiNamikiri)]
-        [CustomComboInfo("Ogi Namikiri Burst Feature", "Saves Ogi Namikiri for even minute burst windows.\nIf you don't activate the opener or die, Ogi Namikiri will instead be used on CD.", SAM.JobID)]
+        [CustomComboInfo("奥义斩浪爆发特性", "在偶数分钟爆发窗口中保存奥义斩浪。如果你没有激活开场或死亡，奥义斩浪将改为在冷却时间内使用。", SAM.JobID)]
         SAM_ST_GekkoCombo_CDs_OgiNamikiri_Burst = 15012,
         #endregion
 
         [ParentCombo(SAM_ST_GekkoCombo_CDs)]
-        [CustomComboInfo("Meikyo Shisui on Main Combo", "Adds Meikyo Shisui to main combo when off cooldown.", SAM.JobID)]
+        [CustomComboInfo("主要连击中的明镜止水", "当冷却时间到时在主要连击中添加明镜止水。", SAM.JobID)]
         SAM_ST_GekkoCombo_CDs_MeikyoShisui = 15013,
 
         #region Meikyo Shisui on Main Combo
         [ParentCombo(SAM_ST_GekkoCombo_CDs_MeikyoShisui)]
-        [CustomComboInfo("Meikyo Shisui Burst Feature", "Saves Meikyo Shisui for burst windows.\nIf you don't activate the opener or die, Meikyo Shisui will instead be used on CD.", SAM.JobID)]
+        [CustomComboInfo("明镜止水爆发特性", "在爆发窗口中保存明镜止水。如果你没有激活开场或死亡，明镜止水将改为在冷却时间内使用。", SAM.JobID)]
         SAM_ST_GekkoCombo_CDs_MeikyoShisui_Burst = 15014,
         #endregion
 
         [ParentCombo(SAM_ST_GekkoCombo_CDs)]
-        [CustomComboInfo("Shoha on Main Combo", "Adds Shoha to main combo when there are three meditation stacks.", SAM.JobID)]
+        [CustomComboInfo("主要连击中的照破", "当有三个默想层数时，在主要连击中添加照破。", SAM.JobID)]
         SAM_ST_GekkoCombo_CDs_Shoha = 15015,
 
         [ConflictingCombos(SAM_Shinten_Shoha_Senei)]
         [ParentCombo(SAM_ST_GekkoCombo_CDs)]
-        [CustomComboInfo("Senei on Main Combo", "Adds Senei to main combo when off cooldown and above 25 Kenki.", SAM.JobID)]
+        [CustomComboInfo("主要连击中的闪影", "当冷却时间到且剑气≥25时，在主要连击中添加闪影。", SAM.JobID)]
         SAM_ST_GekkoCombo_CDs_Senei = 15016,
 
         [ParentCombo(SAM_ST_GekkoCombo_CDs_Senei)]
-        [CustomComboInfo("Senei Burst Feature", "Saves Senei for even minute burst windows.\nIf you don't activate the opener or die, Senei will instead be used on CD.", SAM.JobID)]
+        [CustomComboInfo("闪影爆发特性", "在偶数分钟爆发窗口中保存闪影。如果你没有激活开场或死亡，闪影将改为在冷却时间内使用。", SAM.JobID)]
         SAM_ST_GekkoCombo_CDs_Senei_Burst = 15017,
 
         [ParentCombo(SAM_ST_Overcap)]
-        [CustomComboInfo("Execute Feature", "Adds Shinten to the main combo when Kenki > 25 and your current target is below the HP percentage threshold.", SAM.JobID)]
+        [CustomComboInfo("执行特性", "当剑气>25且当前目标HP低于阈值时，在主要连击中添加震天。", SAM.JobID)]
         SAM_ST_Execute = 15046,
         #endregion
 
@@ -2997,145 +2997,146 @@ namespace XIVSlothCombo.Combos
 
         #region Yukikaze/Kasha Combos
         [ReplaceSkill(SAM.Yukikaze)]
-        [CustomComboInfo("Yukikaze Combo", "Replace Yukikaze with its combo chain.", SAM.JobID)]
+        [CustomComboInfo("雪风连击", "用其连击链替换雪风。", SAM.JobID)]
         SAM_ST_YukikazeCombo = 15018,
 
         [ReplaceSkill(SAM.Kasha)]
-        [CustomComboInfo("Kasha Combo", "Replace Kasha with its combo chain.", SAM.JobID)]
+        [CustomComboInfo("花车连击", "用其连击链替换花车。", SAM.JobID)]
         SAM_ST_KashaCombo = 15019,
         #endregion
 
         #region AoE Combos
         [ReplaceSkill(SAM.Mangetsu)]
-        [CustomComboInfo("Mangetsu Combo", "Replace Mangetsu with its combo chain.\nIf all sub options are toggled will turn into a full one button AoE rotation.", SAM.JobID)]
+        [CustomComboInfo("满月连击", "用其连击链替换满月。如果选择了所有子选项，将变成完整的一键AoE旋转。", SAM.JobID)]
         SAM_AoE_MangetsuCombo = 15020,
 
         [ParentCombo(SAM_AoE_MangetsuCombo)]
         [ConflictingCombos(SAM_AoE_OkaCombo_TwoTarget)]
-        [CustomComboInfo("Oka to Mangetsu Combo", "Adds Oka combo after Mangetsu combo loop.\nWill add Oka if needed during Meikyo Shisui.", SAM.JobID)]
+        [CustomComboInfo("樱花至满月连击", "在满月连击循环后添加樱花连击。如果需要，明镜止水期间也会添加樱花。", SAM.JobID)]
         SAM_AoE_MangetsuCombo_Oka = 15021,
 
         [ParentCombo(SAM_AoE_MangetsuCombo)]
-        [CustomComboInfo("Iaijutsu on Mangetsu Combo", "Adds Tenka Goken, Midare: Setsugekka, and Kaeshi: Goken when ready and when you're not moving to Mangetsu combo.", SAM.JobID)]
+        [CustomComboInfo("满月连击中的居合术", "当准备就绪且你不移动时，在满月连击中添加天下五剑、纷乱雪月花和回返五剑。", SAM.JobID)]
         SAM_AoE_MangetsuCombo_TenkaGoken = 15022,
 
         [ParentCombo(SAM_AoE_MangetsuCombo)]
-        [CustomComboInfo("Ogi Namikiri on Mangetsu Combo", "Adds Ogi Namikiri and Kaeshi: Namikiri when ready and when you're not moving to Mangetsu combo.", SAM.JobID)]
+        [CustomComboInfo("满月连击中的奥义斩浪", "当准备就绪且你不移动时，在满月连击中添加奥义斩浪和回返斩浪。", SAM.JobID)]
         SAM_AoE_MangetsuCombo_OgiNamikiri = 15023,
 
         [ParentCombo(SAM_AoE_MangetsuCombo)]
-        [CustomComboInfo("Shoha 2 on Mangetsu Combo", "Adds Shoha 2 when you have 3 meditation stacks to Mangetsu combo.", SAM.JobID)]
+        [CustomComboInfo("满月连击中的无明照破", "当你有3个默想层数时，在满月连击中添加无明照破。", SAM.JobID)]
         SAM_AoE_MangetsuCombo_Shoha2 = 15024,
 
         [ConflictingCombos(SAM_Kyuten_Shoha2_Guren)]
         [ParentCombo(SAM_AoE_MangetsuCombo)]
-        [CustomComboInfo("Guren on Mangetsu Combo", "Adds Guren when it's off cooldown and you have 25 Kenki to Mangetsu combo.", SAM.JobID)]
+        [CustomComboInfo("满月连击中的红莲", "当红莲冷却完毕且剑气≥25时，在满月连击中添加红莲。", SAM.JobID)]
         SAM_AoE_MangetsuCombo_Guren = 15025,
 
         [ParentCombo(SAM_AoE_MangetsuCombo)]
-        [CustomComboInfo("Meikyo Shisui on Mangetsu Combo", "Adds Meikyo Shisui to Mangetsu combo.", SAM.JobID)]
+        [CustomComboInfo("满月连击中的明镜止水", "在满月连击中添加明镜止水。", SAM.JobID)]
         SAM_AoE_MangetsuCombo_MeikyoShisui = 15039,
 
         [ParentCombo(SAM_AoE_MangetsuCombo)]
-        [CustomComboInfo("Ikishoten on Mangetsu Combo", "Adds Ikishoten when at or below 50 Kenki.\nWill dump Kenki at 10 seconds left to allow Ikishoten to be used.", SAM.JobID)]
+        [CustomComboInfo("满月连击中的意气冲天", "当剑气≤50时，在满月连击中添加意气冲天。剑气在剩余10秒时将被清除以允许使用意气冲天。", SAM.JobID)]
         SAM_AOE_GekkoCombo_CDs_Ikishoten = 15040,
 
         [ParentCombo(SAM_AoE_MangetsuCombo)]
-        [CustomComboInfo("Hagakure on Mangetsu Combo", "Adds Hagakure to Mangetsu combo when there are three Sen.", SAM.JobID)]
+        [CustomComboInfo("满月连击中的叶隐", "当有三个闪时，在满月连击中添加叶隐。", SAM.JobID)]
         SAM_AoE_MangetsuCombo_Hagakure = 15041,
 
         [ReplaceSkill(SAM.Oka)]
-        [CustomComboInfo("Oka Combo", "Replace Oka with its combo chain.", SAM.JobID)]
+        [CustomComboInfo("樱花连击", "用其连击链替换樱花。", SAM.JobID)]
         SAM_AoE_OkaCombo = 15026,
 
         [ParentCombo(SAM_AoE_OkaCombo)]
         [ConflictingCombos(SAM_AoE_MangetsuCombo_Oka)]
-        [CustomComboInfo("Oka Two Target Rotation Feature", "Adds the Yukikaze combo, Mangetsu combo, Senei, Shinten, and Shoha to Oka combo.\nUsed for two targets only and when Lv86 and above.", SAM.JobID)]
+        [CustomComboInfo("樱花双目标旋转特性", "在樱花连击中添加雪风连击、满月连击、闪影、震天和照破。仅用于两个目标且等级≥86时使用。", SAM.JobID)]
         SAM_AoE_OkaCombo_TwoTarget = 150261,
         #endregion
 
         #region Cooldown Features
         [ReplaceSkill(SAM.MeikyoShisui)]
-        [CustomComboInfo("Jinpu/Shifu Feature", "Replace Meikyo Shisui with Jinpu, Shifu, and Yukikaze depending on what is needed.", SAM.JobID)]
+        [CustomComboInfo("阵风/士风特性", "用阵风、士风和雪风根据需要替换明镜止水。", SAM.JobID)]
         SAM_JinpuShifu = 15027,
         #endregion
 
         #region Iaijutsu Features
         [ReplaceSkill(SAM.Iaijutsu)]
-        [CustomComboInfo("Iaijutsu Features", "Collection of Iaijutsu Features.", SAM.JobID)]
+        [CustomComboInfo("居合术特性", "居合术特性集合。", SAM.JobID)]
         SAM_Iaijutsu = 15028,
 
         [ParentCombo(SAM_Iaijutsu)]
-        [CustomComboInfo("Iaijutsu to Tsubame-Gaeshi", "Replace Iaijutsu with  Tsubame-gaeshi when Sen is empty.", SAM.JobID)]
+        [CustomComboInfo("居合术至燕回返", "当闪为空时，用燕回返替换居合术。", SAM.JobID)]
         SAM_Iaijutsu_TsubameGaeshi = 15029,
 
         [ParentCombo(SAM_Iaijutsu)]
-        [CustomComboInfo("Iaijutsu to Shoha", "Replace Iaijutsu with Shoha when meditation is 3.", SAM.JobID)]
+        [CustomComboInfo("居合术至照破", "当默想层数为3时，用照破替换居合术。", SAM.JobID)]
         SAM_Iaijutsu_Shoha = 15030,
 
         [ParentCombo(SAM_Iaijutsu)]
-        [CustomComboInfo("Iaijutsu to Ogi Namikiri", "Replace Iaijutsu with Ogi Namikiri and Kaeshi: Namikiri when buffed with Ogi Namikiri Ready.", SAM.JobID)]
+        [CustomComboInfo("居合术至奥义斩浪", "当带有奥义斩浪准备状态时，用奥义斩浪和回返斩浪替换居合术。", SAM.JobID)]
         SAM_Iaijutsu_OgiNamikiri = 15031,
         #endregion
 
         #region Shinten Features
         [ReplaceSkill(SAM.Shinten)]
-        [CustomComboInfo("Shinten to Shoha", "Replace Hissatsu: Shinten with Shoha when Meditation is full.", SAM.JobID)]
+        [CustomComboInfo("震天至照破", "当默想满时，用照破替换必杀剑·震天。", SAM.JobID)]
         SAM_Shinten_Shoha = 15032,
 
         [ConflictingCombos(SAM_ST_GekkoCombo_CDs_Senei)]
         [ParentCombo(SAM_Shinten_Shoha)]
-        [CustomComboInfo("Shinten to Senei", "Replace Hissatsu: Shinten with Senei when its cooldown is up.", SAM.JobID)]
+        [CustomComboInfo("震天至闪影", "当其冷却完毕时，用闪影替换必杀剑·震天。", SAM.JobID)]
         SAM_Shinten_Shoha_Senei = 15033,
         #endregion
 
         #region Kyuten Features
         [ReplaceSkill(SAM.Kyuten)]
-        [CustomComboInfo("Kyuten to Shoha II", "Replace Hissatsu: Kyuten with Shoha II when Meditation is full.", SAM.JobID)]
+        [CustomComboInfo("九天至无明照破", "当默想满时，用无明照破替换必杀剑·九天。", SAM.JobID)]
         SAM_Kyuten_Shoha2 = 15034,
 
         [ConflictingCombos(SAM_AoE_MangetsuCombo_Guren)]
         [ParentCombo(SAM_Kyuten_Shoha2)]
-        [CustomComboInfo("Kyuten to Guren", "Replace Hissatsu: Kyuten with Guren when its cooldown is up.", SAM.JobID)]
+        [CustomComboInfo("九天至红莲", "当其冷却完毕时，用红莲替换必杀剑·九天。", SAM.JobID)]
         SAM_Kyuten_Shoha2_Guren = 15035,
         #endregion
 
         #region Other
         [ConflictingCombos(SAM_ST_GekkoCombo_Opener, SAM_ST_GekkoCombo_FillerCombos)]
         [ReplaceSkill(SAM.Gyoten)]
-        [CustomComboInfo("Gyoten Feature", "Hissatsu: Gyoten becomes Yaten/Gyoten depending on the distance from your target.", SAM.JobID)]
+        [CustomComboInfo("晓天特性", "根据与目标的距离，必杀剑·晓天变为夜天/晓天。", SAM.JobID)]
         SAM_GyotenYaten = 15036,
 
         [ReplaceSkill(SAM.Ikishoten)]
-        [CustomComboInfo("Ikishoten Namikiri Feature", "Replace Ikishoten with Ogi Namikiri and then Kaeshi Namikiri when available.\nIf you have full Meditation stacks, Ikishoten becomes Shoha while you have Ogi Namikiri ready.", SAM.JobID)]
+        [CustomComboInfo("意气冲天奥义斩浪特性", "当奥义斩浪准备就绪时，用奥义斩浪替换意气冲天，然后用回返斩浪。如果你有满的默想层数，意气冲天在你有奥义斩浪准备时变为照破。", SAM.JobID)]
         SAM_Ikishoten_OgiNamikiri = 15037,
 
         [ReplaceSkill(SAM.Gekko, SAM.Yukikaze, SAM.Kasha)]
-        [CustomComboInfo("True North Feature", "Adds True North on all single target combos if Meikyo Shisui's buff is on you.", SAM.JobID)]
+        [CustomComboInfo("真北特性", "如果你有明镜止水的增益，在所有单目标连击上添加真北。", SAM.JobID)]
         SAM_TrueNorth = 15038,
 
         [ParentCombo(SAM_ST_GekkoCombo)]
-        [CustomComboInfo("Combo Heals Option", "Adds Bloodbath and Second Wind to the combo, using them when below the HP Percentage threshold.", SAM.JobID)]
+        [CustomComboInfo("连击治疗选项", "当HP低于阈值时，在连击中添加浴血和二速药。", SAM.JobID)]
         SAM_ST_ComboHeals = 15043,
 
         [ParentCombo(SAM_AoE_MangetsuCombo)]
-        [CustomComboInfo("Combo Heals Option", "Adds Bloodbath and Second Wind to the combo, using them when below the HP Percentage threshold.", SAM.JobID)]
+        [CustomComboInfo("连击治疗选项", "当HP低于阈值时，在连击中添加浴血和二速药。", SAM.JobID)]
         SAM_AoE_ComboHeals = 15045,
 
         [Variant]
         [VariantParent(SAM_ST_GekkoCombo, SAM_AoE_MangetsuCombo)]
-        [CustomComboInfo("Cure Option", "Use Variant Cure when HP is below set threshold.", SAM.JobID)]
+        [CustomComboInfo("治疗选项", "当HP低于设定阈值时使用变种治疗。", SAM.JobID)]
         SAM_Variant_Cure = 15047,
 
         [Variant]
         [VariantParent(SAM_ST_GekkoCombo, SAM_AoE_MangetsuCombo)]
-        [CustomComboInfo("Rampart Option", "Use Variant Rampart on cooldown.", SAM.JobID)]
+        [CustomComboInfo("铁壁选项", "在冷却时间内使用变种铁壁。", SAM.JobID)]
         SAM_Variant_Rampart = 15048,
         #endregion
 
-        // Last value = 15048
+        // 最后值 = 15048
 
         #endregion
+
 
         #region SCHOLAR
 
