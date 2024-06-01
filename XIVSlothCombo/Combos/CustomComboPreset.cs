@@ -2955,6 +2955,11 @@ namespace XIVSlothCombo.Combos
         [CustomComboInfo("主要连击中的居合术", "当准备就绪且你不移动时，在主要连击中添加纷乱雪月花、彼岸花和回返雪月花。", SAM.JobID)]
         SAM_ST_GekkoCombo_CDs_Iaijutsu = 15010,
 
+        [ParentCombo(SAM_ST_GekkoCombo_CDs_Iaijutsu)]
+        [CustomComboInfo("使用彼岸花", "选择此项将彼岸花加入连击", SAM.JobID)]
+        SAM_ST_GekkoCombo_CDs_Iaijutsu_Higanbana = 15100,
+
+
         #region Ogi Namikiri on Main Combo
         [ParentCombo(SAM_ST_GekkoCombo_CDs)]
         [CustomComboInfo("主要连击中的奥义斩浪", "当准备就绪且你不移动时，在主要连击中添加奥义斩浪和回返斩浪。", SAM.JobID)]

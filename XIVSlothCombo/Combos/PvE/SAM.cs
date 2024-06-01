@@ -244,7 +244,7 @@ namespace XIVSlothCombo.Combos.PvE
                             //GCDs
                             if ((twoSeal && lastComboMove == Yukikaze) ||
                                 (threeSeal && (GetRemainingCharges(MeikyoShisui) == 1 || !HasEffect(Buffs.OgiNamikiriReady))) ||
-                                (oneSeal && !TargetHasEffect(Debuffs.Higanbana) && GetRemainingCharges(TsubameGaeshi) == 1) && enemyHP > HiganbanaThreshold)
+                                (oneSeal && !TargetHasEffect(Debuffs.Higanbana) && GetRemainingCharges(TsubameGaeshi) == 1) && enemyHP > HiganbanaThreshold && IsEnabled(CustomComboPreset.SAM_ST_GekkoCombo_CDs_Iaijutsu_Higanbana))
                                 return OriginalHook(Iaijutsu);
 
                             if ((gauge.Kaeshi == Kaeshi.NAMIKIRI) ||
@@ -521,7 +521,7 @@ namespace XIVSlothCombo.Combos.PvE
 
                                     if (!IsMoving)
                                     {
-                                        if (((oneSeal || (oneSeal && meikyostacks == 2)) && GetDebuffRemainingTime(Debuffs.Higanbana) <= 10 && enemyHP > HiganbanaThreshold) ||
+                                        if (((oneSeal || (oneSeal && meikyostacks == 2)) && GetDebuffRemainingTime(Debuffs.Higanbana) <= 10 && enemyHP > HiganbanaThreshold && IsEnabled(CustomComboPreset.SAM_ST_GekkoCombo_CDs_Iaijutsu_Higanbana)) ||
                                             (twoSeal && !Setsugekka.LevelChecked()) ||
                                             (threeSeal && Setsugekka.LevelChecked()))
                                             return OriginalHook(Iaijutsu);
