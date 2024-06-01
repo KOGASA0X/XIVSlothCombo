@@ -35,7 +35,7 @@ namespace XIVSlothCombo
 
         private readonly ConfigWindow configWindow;
         private readonly HttpClient httpClient = new();
-        
+
         private readonly TextPayload starterMotd = new("[Sloth Message of the Day] ");
         private static uint? jobID;
 
@@ -119,7 +119,7 @@ namespace XIVSlothCombo
         private static void OnFrameworkUpdate(IFramework framework)
         {
             if (Service.ClientState.LocalPlayer is not null)
-            JobID = Service.ClientState.LocalPlayer?.ClassJob?.Id;
+                JobID = Service.ClientState.LocalPlayer?.ClassJob?.Id;
 
             BlueMageService.PopulateBLUSpells();
         }
@@ -262,34 +262,54 @@ namespace XIVSlothCombo
 
                 case "toggle": // toggle a feature
                     {
-                        if (!Service.Condition[Dalamud.Game.ClientState.Conditions.ConditionFlag.InCombat])
+                        // if (!Service.Condition[Dalamud.Game.ClientState.Conditions.ConditionFlag.InCombat])
+                        // {
+                        //     string? targetPreset = argumentsParts[1].ToLowerInvariant();
+                        //     foreach (CustomComboPreset preset in Enum.GetValues<CustomComboPreset>())
+                        //     {
+                        //         if (preset.ToString().ToLowerInvariant() != targetPreset)
+                        //             continue;
+
+                        //         if (Service.Configuration.EnabledActions.Contains(preset))
+                        //         {
+                        //             Service.Configuration.EnabledActions.Remove(preset);
+                        //             Service.ChatGui.Print($"{preset} UNSET");
+                        //         }
+
+                        //         else
+                        //         {
+                        //             Service.Configuration.EnabledActions.Add(preset);
+                        //             Service.ChatGui.Print($"{preset} SET");
+                        //         }
+                        //     }
+
+                        //     Service.Configuration.Save();
+                        // }
+
+                        // else
+                        // {
+                        //     Service.ChatGui.PrintError("Features cannot be toggled in combat.");
+                        // }
+                        string? targetPreset = argumentsParts[1].ToLowerInvariant();
+                        foreach (CustomComboPreset preset in Enum.GetValues<CustomComboPreset>())
                         {
-                            string? targetPreset = argumentsParts[1].ToLowerInvariant();
-                            foreach (CustomComboPreset preset in Enum.GetValues<CustomComboPreset>())
+                            if (preset.ToString().ToLowerInvariant() != targetPreset)
+                                continue;
+
+                            if (Service.Configuration.EnabledActions.Contains(preset))
                             {
-                                if (preset.ToString().ToLowerInvariant() != targetPreset)
-                                    continue;
-
-                                if (Service.Configuration.EnabledActions.Contains(preset))
-                                {
-                                    Service.Configuration.EnabledActions.Remove(preset);
-                                    Service.ChatGui.Print($"{preset} UNSET");
-                                }
-
-                                else
-                                {
-                                    Service.Configuration.EnabledActions.Add(preset);
-                                    Service.ChatGui.Print($"{preset} SET");
-                                }
+                                Service.Configuration.EnabledActions.Remove(preset);
+                                Service.ChatGui.Print($"{preset} UNSET");
                             }
 
-                            Service.Configuration.Save();
+                            else
+                            {
+                                Service.Configuration.EnabledActions.Add(preset);
+                                Service.ChatGui.Print($"{preset} SET");
+                            }
                         }
 
-                        else
-                        {
-                            Service.ChatGui.PrintError("Features cannot be toggled in combat.");
-                        }
+                        Service.Configuration.Save();
 
                         break;
                     }
