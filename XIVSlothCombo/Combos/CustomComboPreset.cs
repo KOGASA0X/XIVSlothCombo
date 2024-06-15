@@ -1023,137 +1023,137 @@ namespace XIVSlothCombo.Combos
         #region DARK KNIGHT
 
         [ParentCombo(DRK_SouleaterCombo)]
-        [CustomComboInfo("Buffs on Main Combo", "Collection of buffs to add to the main combo", DRK.JobID)]
+        [CustomComboInfo("主连击上的增益", "主连击上增益的集合", DRK.JobID)]
         DRK_MainComboBuffs_Group = 5098,
 
         [ConflictingCombos(DRK_oGCD)]
         [ParentCombo(DRK_SouleaterCombo)]
-        [CustomComboInfo("Cooldowns on Main Combo", "Collection of cooldowns to add to the main combo", DRK.JobID)]
+        [CustomComboInfo("主连击上的冷却", "主连击上添加冷却技能的集合", DRK.JobID)]
         DRK_MainComboCDs_Group = 5099,
 
         [ReplaceSkill(DRK.Souleater)]
-        [CustomComboInfo("Souleater Combo", "Replace Souleater with its combo chain. \nIf all sub options are selected will turn into a full one button rotation (Advanced Dark Knight)", DRK.JobID)]
+        [CustomComboInfo("噬魂斩连击", "用噬魂斩的连击链替换噬魂斩。\n如果所有子选项都被选中，将变为一键全连击（高级暗黑骑士）", DRK.JobID)]
         DRK_SouleaterCombo = 5000,
 
         [ReplaceSkill(DRK.StalwartSoul)]
-        [CustomComboInfo("Stalwart Soul Combo", "Replace Stalwart Soul with its combo chain.", DRK.JobID)]
+        [CustomComboInfo("刚魂连击", "用刚魂的连击链替换刚魂。", DRK.JobID)]
         DRK_StalwartSoulCombo = 5001,
 
         [ParentCombo(DRK_MainComboCDs_Group)]
-        [CustomComboInfo("Bloodspiller Feature", "Adds Bloodspiller when Delirium is active.", DRK.JobID)]
+        [CustomComboInfo("血溅特性", "当狂乱状态激活时，在主连击中添加血溅。", DRK.JobID)]
         DRK_Bloodspiller = 5002,
 
         [ReplaceSkill(DRK.StalwartSoul)]
         [ParentCombo(DRK_StalwartSoulCombo)]
-        [CustomComboInfo("Dark Knight Gauge Overcap Feature", "Replace AoE combo with gauge spender if you are about to overcap.", DRK.JobID)]
+        [CustomComboInfo("暗黑骑士量谱超量特性", "如果即将超量，用量值消耗技能替换范围连击。", DRK.JobID)]
         DRK_Overcap = 5003,
 
         [ParentCombo(DRK_MainComboCDs_Group)]
-        [CustomComboInfo("Living Shadow Feature", "Living Shadow will now be on main combo if its not on cooldown and you have gauge for it.", DRK.JobID)]
+        [CustomComboInfo("活体阴影特性", "如果活体阴影没有在冷却并且你有足够的量谱，现在将其加入主连击。", DRK.JobID)]
         DRK_LivingShadow = 5004,
 
         [ParentCombo(DRK_SouleaterCombo)]
-        [CustomComboInfo("Edge of Shadow Overcap Feature", "Uses Edge of Shadow if you are above 8,500 mana or Darkside is about to expire (10sec or less)", DRK.JobID)]
+        [CustomComboInfo("暗影锋超量特性", "如果你的魔力超过8500或者暗黑状态即将到期（少于10秒），使用暗影锋。", DRK.JobID)]
         DRK_ManaOvercap = 5005,
 
         [ReplaceSkill(DRK.CarveAndSpit, DRK.AbyssalDrain)]
         [ConflictingCombos(DRK_MainComboCDs_Group)]
-        [CustomComboInfo("oGCD Feature", "Adds Living Shadow > Salted Earth > Carve And Spit > Salt And Darkness to Carve And Spit and Abysal Drain", DRK.JobID)]
+        [CustomComboInfo("非GCD特性", "在Carve And Spit和Abyssal Drain上添加活体阴影 > 腐秽大地 > Carve And Spit > 腐秽黑暗", DRK.JobID)]
         DRK_oGCD = 5006,
 
         [ParentCombo(DRK_oGCD)]
-        [CustomComboInfo("Shadowbringer oGCD Feature", "Adds Shadowbringer to oGCD Feature ", DRK.JobID)]
+        [CustomComboInfo("暗影使者非GCD特性", "在非GCD特性中添加暗影使者", DRK.JobID)]
         DRK_Shadowbringer_oGCD = 5007,
 
         [ParentCombo(DRK_MainComboCDs_Group)]
-        [CustomComboInfo("Plunge Feature", "Adds Plunge onto main combo whenever its available and Darkside is up.", DRK.JobID)]
+        [CustomComboInfo("跳斩特性", "如果跳斩可用并且暗黑状态激活，将其加入主连击。", DRK.JobID)]
         DRK_Plunge = 5008,
 
         [ParentCombo(DRK_Bloodspiller)]
-        [CustomComboInfo("Delayed Bloodspiller Feature", "Delays Bloodspiller by 2 GCDs when Delirium is used during even windows, uses it regularly during odd windows. Useful for feeding into raid buffs at level 90.", DRK.JobID)]
+        [CustomComboInfo("延迟血溅特性", "当狂乱在偶数窗口使用时，延迟血溅2个GCD；在奇数窗口正常使用。在90级时用于提高团队增益。", DRK.JobID)]
         DRK_DelayedBloodspiller = 5010,
 
         [ParentCombo(DRK_SouleaterCombo)]
-        [CustomComboInfo("Unmend Uptime Feature", "Replace Souleater Combo Feature with Unmend when you are out of range.", DRK.JobID)]
+        [CustomComboInfo("伤残维持特性", "当你超出范围时，用伤残替换噬魂斩连击特性。", DRK.JobID)]
         DRK_RangedUptime = 5011,
 
         [ParentCombo(DRK_StalwartSoulCombo)]
-        [CustomComboInfo("Abyssal Drain Feature", "Adds abyssal drain to the AoE combo when you fall below 60 percent hp.", DRK.JobID)]
+        [CustomComboInfo("吸血深渊特性", "当你的生命值低于60%时，将吸血深渊加入到范围连击中。", DRK.JobID)]
         DRK_AoE_AbyssalDrain = 5013,
 
         [ParentCombo(DRK_StalwartSoulCombo)]
-        [CustomComboInfo("AoE Shadowbringer Feature", "Adds Shadowbringer to the AoE combo.", DRK.JobID)]
+        [CustomComboInfo("范围暗影使者特性", "在范围连击中添加暗影使者。", DRK.JobID)]
         DRK_AoE_Shadowbringer = 5014,
 
         [ParentCombo(DRK_StalwartSoulCombo)]
-        [CustomComboInfo("Flood of Shadow Overcap Feature", "Uses Flood of Shadow if you are above 8.5k mana or Darkside is about to expire (10sec or less)", DRK.JobID)]
+        [CustomComboInfo("暗影波动超量特性", "如果你的魔力超过8.5k或者暗黑状态即将到期（少于10秒），使用暗影波动。", DRK.JobID)]
         DRK_AoE_ManaOvercap = 5015,
 
         [ParentCombo(DRK_SouleaterCombo)]
-        [CustomComboInfo("Blood Gauge Overcap Feature", "Adds Bloodspiller onto main combo when at 80 blood gauge or higher", DRK.JobID)]
+        [CustomComboInfo("血量谱超量特性", "当血量谱达到80或以上时，在主连击中添加血溅。", DRK.JobID)]
         DRK_BloodGaugeOvercap = 5016,
 
         [ParentCombo(DRK_MainComboCDs_Group)]
-        [CustomComboInfo("Shadowbringer Feature", "Adds Shadowbringer on main combo while Darkside is up. Will use all stacks on cooldown.", DRK.JobID)]
+        [CustomComboInfo("暗影使者特性", "当暗黑状态激活时，在主连击中添加暗影使者。将在冷却时使用所有堆叠。", DRK.JobID)]
         DRK_Shadowbringer = 5019,
 
         [ParentCombo(DRK_ManaOvercap)]
-        [CustomComboInfo("Edge of Shadow Burst Option", "Uses Edge of Shadow until chosen MP limit is reached during minute window bursts.", DRK.JobID)]
+        [CustomComboInfo("暗影锋爆发选项", "在分钟窗口爆发期间，使用暗影锋直到达到选定的魔力限制。", DRK.JobID)]
         DRK_EoSPooling = 5020,
 
         [ParentCombo(DRK_Shadowbringer)]
-        [CustomComboInfo("Shadowbringer Burst Option", "Pools Shadowbringer to use during even minute window bursts.", DRK.JobID)]
+        [CustomComboInfo("暗影使者爆发选项", "在偶数分钟窗口爆发期间汇集暗影使者。", DRK.JobID)]
         DRK_ShadowbringerBurst = 5021,
 
         [ParentCombo(DRK_MainComboCDs_Group)]
-        [CustomComboInfo("Carve and Spit Feature", "Adds Carve and Spit on main combo while Darkside is up.", DRK.JobID)]
+        [CustomComboInfo("精雕怒斩特性", "当暗黑状态激活时，在主连击中添加精雕怒斩。", DRK.JobID)]
         DRK_CarveAndSpit = 5022,
 
         [ParentCombo(DRK_Plunge)]
-        [CustomComboInfo("Melee Plunge Option", "Uses Plunge when under Darkside and in the target ring (1 yalm).\nWill use as many stacks as selected in the above slider.", DRK.JobID)]
+        [CustomComboInfo("近战跳斩选项", "在暗黑状态下且在目标环内（1码）时使用跳斩。\n将使用在上方滑块中选择的堆叠次数。", DRK.JobID)]
         DRK_MeleePlunge = 5023,
 
         [ParentCombo(DRK_MainComboCDs_Group)]
-        [CustomComboInfo("Salted Earth Feature", "Adds Salted Earth on main combo while Darkside is up, will use Salt and Darkness if unlocked.", DRK.JobID)]
+        [CustomComboInfo("腐秽大地特性", "当暗黑状态激活时，在主连击中添加腐秽大地，如果解锁了腐秽黑暗将使用它。", DRK.JobID)]
         DRK_SaltedEarth = 5024,
 
         [ParentCombo(DRK_MainComboBuffs_Group)]
-        [CustomComboInfo("Delirium on Cooldown", "Adds Delirium to main combo on cooldown and when Darkside is up. Will also spend 50 blood gauge if Delirium is nearly ready to protect from overcap.", DRK.JobID)]
+        [CustomComboInfo("狂乱在冷却中", "当狂乱在冷却时，在主连击中添加狂乱，同时如果狂乱几乎准备好时将消耗50血量谱以防止超量。", DRK.JobID)]
         DRK_Delirium = 5025,
 
         [ParentCombo(DRK_MainComboBuffs_Group)]
-        [CustomComboInfo("Blood Weapon on Cooldown", "Adds Blood Weapon to main combo on cooldown and when Darkside is up.", DRK.JobID)]
+        [CustomComboInfo("嗜血在冷却中", "当嗜血在冷却时，在主连击中添加嗜血。", DRK.JobID)]
         DRK_BloodWeapon = 5026,
 
         [ParentCombo(DRK_StalwartSoulCombo)]
-        [CustomComboInfo("Blood Weapon Option", "Adds Blood Weapon to AoE combo on cooldown and when Darkside is up.", DRK.JobID)]
+        [CustomComboInfo("嗜血选项", "在冷却时，在范围连击中添加嗜血。", DRK.JobID)]
         DRK_AoE_BloodWeapon = 5027,
 
         [ParentCombo(DRK_StalwartSoulCombo)]
-        [CustomComboInfo("Delirium Option", "Adds Deliriun to AoE combo on cooldown and when Darkside is up.", DRK.JobID)]
+        [CustomComboInfo("狂乱选项", "在冷却时，在范围连击中添加狂乱。", DRK.JobID)]
         DRK_AoE_Delirium = 5028,
 
         [ParentCombo(DRK_StalwartSoulCombo)]
-        [CustomComboInfo("Salted Earth Option", "Adds Salted Earth and Salt and Darkness to AoE on cooldown and when Darkside is up.", DRK.JobID)]
+        [CustomComboInfo("腐秽大地选项", "在冷却时，并在暗黑状态激活时，在范围连击中添加腐秽大地和腐秽黑暗。", DRK.JobID)]
         DRK_AoE_SaltedEarth = 5029,
 
         [ParentCombo(DRK_StalwartSoulCombo)]
-        [CustomComboInfo("Living Shadow Option", "Adds Living Shadow to AoE on cooldown and when Darkside is up.", DRK.JobID)]
+        [CustomComboInfo("活体阴影选项", "在冷却时，并在暗黑状态激活时，在范围连击中添加活体阴影。", DRK.JobID)]
         DRK_AoE_LivingShadow = 5030,
 
         [Variant]
         [VariantParent(DRK_SouleaterCombo, DRK_StalwartSoulCombo)]
-        [CustomComboInfo("Spirit Dart Option", "Use Variant Spirit Dart whenever the debuff is not present or less than 3s.", DRK.JobID)]
+        [CustomComboInfo("灵魂飞镖选项", "当减益效果不存在或少于3秒时，使用变体灵魂飞镖。", DRK.JobID)]
         DRK_Variant_SpiritDart = 5031,
 
         [Variant]
         [VariantParent(DRK_SouleaterCombo, DRK_StalwartSoulCombo)]
-        [CustomComboInfo("Cure Option", "Use Variant Cure when HP is below set threshold.", DRK.JobID)]
+        [CustomComboInfo("治疗选项", "当生命值低于设定阈值时，使用变体治疗。", DRK.JobID)]
         DRK_Variant_Cure = 5032,
 
         [Variant]
         [VariantParent(DRK_SouleaterCombo, DRK_StalwartSoulCombo)]
-        [CustomComboInfo("Ultimatum Option", "Use Variant Ultimatum on cooldown.", DRK.JobID)]
+        [CustomComboInfo("终极挑战选项", "在冷却时使用变体终极挑战。", DRK.JobID)]
         DRK_Variant_Ultimatum = 5033,
 
         // Last value = 5033
