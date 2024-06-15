@@ -1023,16 +1023,16 @@ namespace XIVSlothCombo.Combos
         #region DARK KNIGHT
 
         [ParentCombo(DRK_SouleaterCombo)]
-        [CustomComboInfo("主连击上的增益", "主连击上增益的集合", DRK.JobID)]
+        [CustomComboInfo("主连击上的增益", "主连击中添加的增益效果集合", DRK.JobID)]
         DRK_MainComboBuffs_Group = 5098,
 
         [ConflictingCombos(DRK_oGCD)]
         [ParentCombo(DRK_SouleaterCombo)]
-        [CustomComboInfo("主连击上的冷却", "主连击上添加冷却技能的集合", DRK.JobID)]
+        [CustomComboInfo("主连击上的冷却", "主连击中添加的冷却效果集合", DRK.JobID)]
         DRK_MainComboCDs_Group = 5099,
 
         [ReplaceSkill(DRK.Souleater)]
-        [CustomComboInfo("噬魂斩连击", "用噬魂斩的连击链替换噬魂斩。\n如果所有子选项都被选中，将变为一键全连击（高级暗黑骑士）", DRK.JobID)]
+        [CustomComboInfo("噬魂斩连击", "用噬魂斩的连击链替换噬魂斩。\n如果选择了所有子选项，将变为一键全连击（高级暗黑骑士）", DRK.JobID)]
         DRK_SouleaterCombo = 5000,
 
         [ReplaceSkill(DRK.StalwartSoul)]
@@ -1040,105 +1040,105 @@ namespace XIVSlothCombo.Combos
         DRK_StalwartSoulCombo = 5001,
 
         [ParentCombo(DRK_MainComboCDs_Group)]
-        [CustomComboInfo("血溅特性", "当狂乱状态激活时，在主连击中添加血溅。", DRK.JobID)]
+        [CustomComboInfo("血溅特性", "在狂乱状态激活时添加血溅。", DRK.JobID)]
         DRK_Bloodspiller = 5002,
 
         [ReplaceSkill(DRK.StalwartSoul)]
         [ParentCombo(DRK_StalwartSoulCombo)]
-        [CustomComboInfo("暗黑骑士量谱超量特性", "如果即将超量，用量值消耗技能替换范围连击。", DRK.JobID)]
+        [CustomComboInfo("暗黑骑士量谱超量特性", "如果即将超量，替换AoE连击为消耗量谱的技能。", DRK.JobID)]
         DRK_Overcap = 5003,
 
         [ParentCombo(DRK_MainComboCDs_Group)]
-        [CustomComboInfo("活体阴影特性", "如果活体阴影没有在冷却并且你有足够的量谱，现在将其加入主连击。", DRK.JobID)]
+        [CustomComboInfo("掠影示现特性", "如果掠影示现没有在冷却且你有足够的量谱，现在将在主连击中显示。", DRK.JobID)]
         DRK_LivingShadow = 5004,
 
         [ParentCombo(DRK_SouleaterCombo)]
-        [CustomComboInfo("暗影锋超量特性", "如果你的魔力超过8500或者暗黑状态即将到期（少于10秒），使用暗影锋。", DRK.JobID)]
+        [CustomComboInfo("暗影锋超量特性", "如果你的魔力超过8,500或暗黑状态即将过期（少于10秒），使用暗影锋。", DRK.JobID)]
         DRK_ManaOvercap = 5005,
 
         [ReplaceSkill(DRK.CarveAndSpit, DRK.AbyssalDrain)]
         [ConflictingCombos(DRK_MainComboCDs_Group)]
-        [CustomComboInfo("非GCD特性", "在Carve And Spit和Abyssal Drain上添加活体阴影 > 腐秽大地 > Carve And Spit > 腐秽黑暗", DRK.JobID)]
+        [CustomComboInfo("oGCD 特性", "在刻蚀斩和深渊吸血中添加掠影示现 > 腐秽大地 > 刻蚀斩 > 腐秽黑暗", DRK.JobID)]
         DRK_oGCD = 5006,
 
         [ParentCombo(DRK_oGCD)]
-        [CustomComboInfo("暗影使者非GCD特性", "在非GCD特性中添加暗影使者", DRK.JobID)]
+        [CustomComboInfo("暗影使者 oGCD 特性", "在 oGCD 特性中添加暗影使者", DRK.JobID)]
         DRK_Shadowbringer_oGCD = 5007,
 
         [ParentCombo(DRK_MainComboCDs_Group)]
-        [CustomComboInfo("跳斩特性", "如果跳斩可用并且暗黑状态激活，将其加入主连击。", DRK.JobID)]
+        [CustomComboInfo("跳斩特性", "在跳斩可用且暗黑状态激活时，将跳斩添加到主连击。", DRK.JobID)]
         DRK_Plunge = 5008,
 
         [ParentCombo(DRK_Bloodspiller)]
-        [CustomComboInfo("延迟血溅特性", "当狂乱在偶数窗口使用时，延迟血溅2个GCD；在奇数窗口正常使用。在90级时用于提高团队增益。", DRK.JobID)]
+        [CustomComboInfo("延迟血溅特性", "在偶数窗口期使用狂乱时，将血溅延迟2个GCD；在奇数窗口期正常使用。在90级时，用于匹配团队增益。", DRK.JobID)]
         DRK_DelayedBloodspiller = 5010,
 
         [ParentCombo(DRK_SouleaterCombo)]
-        [CustomComboInfo("伤残维持特性", "当你超出范围时，用伤残替换噬魂斩连击特性。", DRK.JobID)]
+        [CustomComboInfo("伤残保持特性", "当你超出范围时，用伤残替换噬魂斩连击特性。", DRK.JobID)]
         DRK_RangedUptime = 5011,
 
         [ParentCombo(DRK_StalwartSoulCombo)]
-        [CustomComboInfo("吸血深渊特性", "当你的生命值低于60%时，将吸血深渊加入到范围连击中。", DRK.JobID)]
+        [CustomComboInfo("深渊吸血特性", "当你的生命值低于60%时，将深渊吸血添加到AoE连击。", DRK.JobID)]
         DRK_AoE_AbyssalDrain = 5013,
 
         [ParentCombo(DRK_StalwartSoulCombo)]
-        [CustomComboInfo("范围暗影使者特性", "在范围连击中添加暗影使者。", DRK.JobID)]
+        [CustomComboInfo("AoE 暗影使者特性", "在AoE连击中添加暗影使者。", DRK.JobID)]
         DRK_AoE_Shadowbringer = 5014,
 
         [ParentCombo(DRK_StalwartSoulCombo)]
-        [CustomComboInfo("暗影波动超量特性", "如果你的魔力超过8.5k或者暗黑状态即将到期（少于10秒），使用暗影波动。", DRK.JobID)]
+        [CustomComboInfo("暗影波动超量特性", "如果你的魔力超过8.5k或暗黑状态即将过期（少于10秒），使用暗影波动。", DRK.JobID)]
         DRK_AoE_ManaOvercap = 5015,
 
         [ParentCombo(DRK_SouleaterCombo)]
-        [CustomComboInfo("血量谱超量特性", "当血量谱达到80或以上时，在主连击中添加血溅。", DRK.JobID)]
+        [CustomComboInfo("暗血量谱超量特性", "当暗血量值达到80或更高时，在主连击中添加血溅。", DRK.JobID)]
         DRK_BloodGaugeOvercap = 5016,
 
         [ParentCombo(DRK_MainComboCDs_Group)]
-        [CustomComboInfo("暗影使者特性", "当暗黑状态激活时，在主连击中添加暗影使者。将在冷却时使用所有堆叠。", DRK.JobID)]
+        [CustomComboInfo("暗影使者特性", "在暗黑状态激活时将暗影使者添加到主连击。将在冷却时使用所有堆叠。", DRK.JobID)]
         DRK_Shadowbringer = 5019,
 
         [ParentCombo(DRK_ManaOvercap)]
-        [CustomComboInfo("暗影锋爆发选项", "在分钟窗口爆发期间，使用暗影锋直到达到选定的魔力限制。", DRK.JobID)]
+        [CustomComboInfo("暗影锋爆发选项", "在分钟窗口爆发期间，使用暗影锋直到达到选择的魔力限制。", DRK.JobID)]
         DRK_EoSPooling = 5020,
 
         [ParentCombo(DRK_Shadowbringer)]
-        [CustomComboInfo("暗影使者爆发选项", "在偶数分钟窗口爆发期间汇集暗影使者。", DRK.JobID)]
+        [CustomComboInfo("暗影使者爆发选项", "在偶数分钟窗口爆发期间储备暗影使者。", DRK.JobID)]
         DRK_ShadowbringerBurst = 5021,
 
         [ParentCombo(DRK_MainComboCDs_Group)]
-        [CustomComboInfo("精雕怒斩特性", "当暗黑状态激活时，在主连击中添加精雕怒斩。", DRK.JobID)]
+        [CustomComboInfo("刻蚀斩特性", "在暗黑状态激活时，将刻蚀斩添加到主连击。", DRK.JobID)]
         DRK_CarveAndSpit = 5022,
 
         [ParentCombo(DRK_Plunge)]
-        [CustomComboInfo("近战跳斩选项", "在暗黑状态下且在目标环内（1码）时使用跳斩。\n将使用在上方滑块中选择的堆叠次数。", DRK.JobID)]
+        [CustomComboInfo("近战跳斩选项", "在暗黑状态下且在目标环（1码）内使用跳斩。\n将使用在上方滑块中选择的所有堆叠。", DRK.JobID)]
         DRK_MeleePlunge = 5023,
 
         [ParentCombo(DRK_MainComboCDs_Group)]
-        [CustomComboInfo("腐秽大地特性", "当暗黑状态激活时，在主连击中添加腐秽大地，如果解锁了腐秽黑暗将使用它。", DRK.JobID)]
+        [CustomComboInfo("腐秽大地特性", "在暗黑状态激活时，将腐秽大地添加到主连击，如果解锁了腐秽黑暗也会使用。", DRK.JobID)]
         DRK_SaltedEarth = 5024,
 
         [ParentCombo(DRK_MainComboBuffs_Group)]
-        [CustomComboInfo("狂乱在冷却中", "当狂乱在冷却时，在主连击中添加狂乱，同时如果狂乱几乎准备好时将消耗50血量谱以防止超量。", DRK.JobID)]
+        [CustomComboInfo("狂乱冷却", "在冷却时将狂乱添加到主连击，并且在暗黑状态激活时使用。将同时花费50暗血量值以防止超量。", DRK.JobID)]
         DRK_Delirium = 5025,
 
         [ParentCombo(DRK_MainComboBuffs_Group)]
-        [CustomComboInfo("嗜血在冷却中", "当嗜血在冷却时，在主连击中添加嗜血。", DRK.JobID)]
+        [CustomComboInfo("嗜血冷却", "在冷却时将嗜血添加到主连击，并且在暗黑状态激活时使用。", DRK.JobID)]
         DRK_BloodWeapon = 5026,
 
         [ParentCombo(DRK_StalwartSoulCombo)]
-        [CustomComboInfo("嗜血选项", "在冷却时，在范围连击中添加嗜血。", DRK.JobID)]
+        [CustomComboInfo("嗜血选项", "在冷却时将嗜血添加到AoE连击，并且在暗黑状态激活时使用。", DRK.JobID)]
         DRK_AoE_BloodWeapon = 5027,
 
         [ParentCombo(DRK_StalwartSoulCombo)]
-        [CustomComboInfo("狂乱选项", "在冷却时，在范围连击中添加狂乱。", DRK.JobID)]
+        [CustomComboInfo("狂乱选项", "在冷却时将狂乱添加到AoE连击，并且在暗黑状态激活时使用。", DRK.JobID)]
         DRK_AoE_Delirium = 5028,
 
         [ParentCombo(DRK_StalwartSoulCombo)]
-        [CustomComboInfo("腐秽大地选项", "在冷却时，并在暗黑状态激活时，在范围连击中添加腐秽大地和腐秽黑暗。", DRK.JobID)]
+        [CustomComboInfo("腐秽大地选项", "在冷却时将腐秽大地和腐秽黑暗添加到AoE，并且在暗黑状态激活时使用。", DRK.JobID)]
         DRK_AoE_SaltedEarth = 5029,
 
         [ParentCombo(DRK_StalwartSoulCombo)]
-        [CustomComboInfo("活体阴影选项", "在冷却时，并在暗黑状态激活时，在范围连击中添加活体阴影。", DRK.JobID)]
+        [CustomComboInfo("掠影示现选项", "在冷却时将掠影示现添加到AoE，并且在暗黑状态激活时使用。", DRK.JobID)]
         DRK_AoE_LivingShadow = 5030,
 
         [Variant]
@@ -1148,13 +1148,14 @@ namespace XIVSlothCombo.Combos
 
         [Variant]
         [VariantParent(DRK_SouleaterCombo, DRK_StalwartSoulCombo)]
-        [CustomComboInfo("治疗选项", "当生命值低于设定阈值时，使用变体治疗。", DRK.JobID)]
+        [CustomComboInfo("治疗选项", "当HP低于设定阈值时，使用变体治疗。", DRK.JobID)]
         DRK_Variant_Cure = 5032,
 
         [Variant]
         [VariantParent(DRK_SouleaterCombo, DRK_StalwartSoulCombo)]
-        [CustomComboInfo("终极挑战选项", "在冷却时使用变体终极挑战。", DRK.JobID)]
+        [CustomComboInfo("终极挑衅选项", "在冷却时使用变体终极挑衅。", DRK.JobID)]
         DRK_Variant_Ultimatum = 5033,
+
 
         // Last value = 5033
 
