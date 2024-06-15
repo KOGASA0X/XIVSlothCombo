@@ -1156,7 +1156,6 @@ namespace XIVSlothCombo.Combos
         [CustomComboInfo("终极挑衅选项", "在冷却时使用变体终极挑衅。", DRK.JobID)]
         DRK_Variant_Ultimatum = 5033,
 
-
         // Last value = 5033
 
         #endregion
