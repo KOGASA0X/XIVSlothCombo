@@ -454,6 +454,9 @@ namespace XIVSlothCombo.Combos.PvE
                                 //oGCDs
                                 if (CanSpellWeave(actionID))
                                 {
+                                    if (IsEnabled(CustomComboPreset.SAM_ST_GekkoCombo_CDs_Shoha) && Shoha.LevelChecked() && gauge.MeditationStacks == 3)
+                                        return Shoha;
+
                                     //Meikyo Features
                                     if (IsEnabled(CustomComboPreset.SAM_ST_GekkoCombo_CDs_MeikyoShisui) && MeikyoShisui.LevelChecked() && !meikyoBuff && GetRemainingCharges(MeikyoShisui) > 0)
                                     {
@@ -508,9 +511,6 @@ namespace XIVSlothCombo.Combos.PvE
                                         if (gauge.Kenki <= 50 && IsOffCooldown(Ikishoten))
                                             return Ikishoten;
                                     }
-
-                                    if (IsEnabled(CustomComboPreset.SAM_ST_GekkoCombo_CDs_Shoha) && Shoha.LevelChecked() && gauge.MeditationStacks == 3)
-                                        return Shoha;
                                 }
 
                                 // Iaijutsu Features
