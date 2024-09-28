@@ -2834,7 +2834,7 @@ namespace XIVSlothComboX.Window.Functions
 
             if (preset == CustomComboPreset.SAM_ST_CDs_Iaijutsu)
             {
-                UserConfig.DrawSliderInt(0, 100, SAM.Config.SAM_ST_Higanbana_Threshold, "Stop using Higanbana on targets below this HP % (0% = always use).", 150, SliderIncrements.Ones);
+                UserConfig.DrawSliderFloat(0, 100, SAM.Config.SAM_ST_Higanbana_Threshold, "Stop using Higanbana on targets below this HP % (0% = always use).", 150, SliderIncrements.Ones);
             }
             if (preset == CustomComboPreset.SAM_ST_ComboHeals)
             {
@@ -2851,7 +2851,7 @@ namespace XIVSlothComboX.Window.Functions
             if (preset == CustomComboPreset.SAM_ST_Shinten)
             {
                 UserConfig.DrawSliderInt(50, 85, SAM.Config.SAM_ST_KenkiOvercapAmount, "Set the Kenki overcap amount for ST combos.");
-                UserConfig.DrawSliderInt(0, 100, SAM.Config.SAM_ST_ExecuteThreshold, "HP percent threshold to not save Kenki", 150, SliderIncrements.Ones);
+                UserConfig.DrawSliderFloat(0, 100, SAM.Config.SAM_ST_ExecuteThreshold, "HP percent threshold to not save Kenki", 150, SliderIncrements.Ones);
             }
 
             if (preset == CustomComboPreset.SAM_AoE_Kyuten)
