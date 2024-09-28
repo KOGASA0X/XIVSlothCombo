@@ -246,7 +246,7 @@ namespace XIVSlothComboX.Combos.PvE
                         {
                             if (OptimalMeikyo())
                                 return MeikyoShisui;
-                            if (GetCooldownRemainingTime(MeikyoShisui) <= GCD * 3 && ComboTimer is 0 && !HasEffect(Buffs.MeikyoShisui)) //Overcap protection for scuffed runs
+                            if (GetCooldownRemainingTime(MeikyoShisui) <= GCD * 3 /* && ComboTimer is 0 */ && !HasEffect(Buffs.MeikyoShisui)) //Overcap protection for scuffed runs
                                 return MeikyoShisui;
                         }
 
@@ -415,8 +415,8 @@ namespace XIVSlothComboX.Combos.PvE
                     }
 
                     //Meikyo to start before combat
-                    if (IsEnabled(CustomComboPreset.SAM_ST_CDs) && IsEnabled(CustomComboPreset.SAM_ST_CDs_MeikyoShisui) && !HasEffect(Buffs.MeikyoShisui) && ActionReady(MeikyoShisui) && !InCombat())
-                        return MeikyoShisui;
+                    /* if (IsEnabled(CustomComboPreset.SAM_ST_CDs) && IsEnabled(CustomComboPreset.SAM_ST_CDs_MeikyoShisui) && !HasEffect(Buffs.MeikyoShisui) && ActionReady(MeikyoShisui) && !InCombat())
+                        return MeikyoShisui; */
 
                     //oGCDs
                     if (CanWeave(ActionWatching.LastWeaponskill))
@@ -428,7 +428,7 @@ namespace XIVSlothComboX.Combos.PvE
                             {
                                 if (OptimalMeikyo())
                                     return MeikyoShisui;
-                                if (GetCooldownRemainingTime(MeikyoShisui) <= GCD * 3 && ComboTimer is 0 && !HasEffect(Buffs.MeikyoShisui)) //Overcap protection for scuffed runs
+                                if (GetCooldownRemainingTime(MeikyoShisui) <= GCD * 3 /* && ComboTimer is 0 */ && !HasEffect(Buffs.MeikyoShisui)) //Overcap protection for scuffed runs
                                     return MeikyoShisui;
                             }
 
