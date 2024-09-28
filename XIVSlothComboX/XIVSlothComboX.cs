@@ -391,7 +391,7 @@ namespace XIVSlothComboX
                     break;
                 }
 
-                case "set_custom_int_value": // unset all features
+                case "set_custom_int_value": // set_custom_int_value
                 {
                     string? targetPreset = argumentsParts[1].ToString();
                     int.TryParse(argumentsParts[2].ToString(), out int oder);
@@ -630,47 +630,47 @@ namespace XIVSlothComboX
                         }
                         
                         
-                        file.WriteLine($"我操你妈1");
-                        if (string.IsNullOrEmpty(specificJob))
-                        {
-                            file.WriteLine($"我操你妈2");
-                            foreach (CustomComboPreset preset in Service.Configuration.EnabledActions.OrderBy(x => x))
-                            {
-                                if (int.TryParse(preset.ToString(), out _))
-                                {
-                                    i++;
+                        // file.WriteLine($"我操你妈1");
+                        // if (string.IsNullOrEmpty(specificJob))
+                        // {
+                        //     file.WriteLine($"我操你妈2");
+                        //     foreach (CustomComboPreset preset in Service.Configuration.EnabledActions.OrderBy(x => x))
+                        //     {
+                        //         if (int.TryParse(preset.ToString(), out _))
+                        //         {
+                        //             i++;
                                     
-                                    file.WriteLine($"_来了吗1_{(int)preset} - {preset}-{PresetExtensions.comboInfoCache[preset]}");
-                                    continue;
-                                }
+                        //             file.WriteLine($"_来了吗1_{(int)preset} - {preset}-{PresetExtensions.comboInfoCache[preset]}");
+                        //             continue;
+                        //         }
 
-                                file.WriteLine($"_来了吗2_{(int)preset} - {preset}-{PresetExtensions.comboInfoCache[preset]}");
-                            }
-                        }
-                        else
-                        {
-                            file.WriteLine($"我操你妈3");
-                            foreach (CustomComboPreset preset in Service.Configuration.EnabledActions.OrderBy(x => x))
-                            {
-                                if (int.TryParse(preset.ToString(), out _))
-                                {
-                                    i++;
+                        //         file.WriteLine($"_来了吗2_{(int)preset} - {preset}-{PresetExtensions.comboInfoCache[preset]}");
+                        //     }
+                        // }
+                        // else
+                        // {
+                        //     file.WriteLine($"我操你妈3");
+                        //     foreach (CustomComboPreset preset in Service.Configuration.EnabledActions.OrderBy(x => x))
+                        //     {
+                        //         if (int.TryParse(preset.ToString(), out _))
+                        //         {
+                        //             i++;
                                     
-                                    file.WriteLine($"_来了吗3_{(int)preset} - {preset}-{PresetExtensions.comboInfoCache[preset]}");
+                        //             file.WriteLine($"_来了吗3_{(int)preset} - {preset}-{PresetExtensions.comboInfoCache[preset]}");
                                     
-                                    continue;
-                                }
+                        //             continue;
+                        //         }
 
-                                if (preset.ToString()[..3].ToLower() == specificJob
-                                    || // Job identifier
-                                    preset.ToString()[..3].ToLower() == "all"
-                                    || // Adds in Globals
-                                    preset.ToString()[..3].ToLower() == "pvp") 
-                                    // Adds in PvP Globals
-                                    file.WriteLine($"_来了吗5 {(int)preset} - {preset}");
-                                file.WriteLine($"_来了吗4_{(int)preset} - {preset}-{PresetExtensions.comboInfoCache[preset]}");
-                            }
-                        }
+                        //         if (preset.ToString()[..3].ToLower() == specificJob
+                        //             || // Job identifier
+                        //             preset.ToString()[..3].ToLower() == "all"
+                        //             || // Adds in Globals
+                        //             preset.ToString()[..3].ToLower() == "pvp") 
+                        //             // Adds in PvP Globals
+                        //             file.WriteLine($"_来了吗5 {(int)preset} - {preset}");
+                        //         file.WriteLine($"_来了吗4_{(int)preset} - {preset}-{PresetExtensions.comboInfoCache[preset]}");
+                        //     }
+                        // }
 
                         file.WriteLine($"END ENABLED FEATURES");
                         file.WriteLine("");

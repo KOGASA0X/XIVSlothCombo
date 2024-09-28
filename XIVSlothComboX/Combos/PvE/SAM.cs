@@ -465,7 +465,33 @@ namespace XIVSlothComboX.Combos.PvE
                     if (IsEnabled(CustomComboPreset.SAM_ST_CDs) && HasEffect(Buffs.Fugetsu) && HasEffect(Buffs.Fuka))
                     {
                         //Ogi Namikiri Features
-                        if (IsEnabled(CustomComboPreset.SAM_ST_CDs_OgiNamikiri) && (!IsEnabled(CustomComboPreset.SAM_ST_CDs_OgiNamikiri_Movement) || (IsEnabled(CustomComboPreset.SAM_ST_CDs_OgiNamikiri_Movement) && !IsMoving)) && ActionReady(OgiNamikiri) && (JustUsed(Higanbana, 5f) || GetBuffRemainingTime(Buffs.OgiNamikiriReady) <= GCD) && (gauge.Kaeshi == Kaeshi.NAMIKIRI || HasEffect(Buffs.OgiNamikiriReady)))
+                        /*
+                            IsEnabled(CustomComboPreset.SAM_ST_CDs_OgiNamikiri):
+
+                            检查 CustomComboPreset.SAM_ST_CDs_OgiNamikiri 是否启用。如果这个预设未启用，整个条件语句将返回 false
+                            (!IsEnabled(CustomComboPreset.SAM_ST_CDs_OgiNamikiri_Movement) || (IsEnabled(CustomComboPreset.SAM_ST_CDs_OgiNamikiri_Movement) && !IsMoving)):
+
+                            检查 CustomComboPreset.SAM_ST_CDs_OgiNamikiri_Movement 是否未启用，或者如果启用了，则检查玩家是否未移动
+                            具体来说：
+                            如果 CustomComboPreset.SAM_ST_CDs_OgiNamikiri_Movement 未启用，条件为 true
+                            如果 CustomComboPreset.SAM_ST_CDs_OgiNamikiri_Movement 启用，且玩家未移动 (!IsMoving)，条件为 true
+                            ActionReady(OgiNamikiri):
+
+                            检查 OgiNamikiri 动作是否准备就绪。如果动作未准备好，整个条件语句将返回 false
+                            (JustUsed(Higanbana, 5f) || GetBuffRemainingTime(Buffs.OgiNamikiriReady) <= GCD):
+
+                            检查以下两个条件之一是否为真：
+                            Higanbana 动作是否在过去的 5 秒内使用过 (JustUsed(Higanbana, 5f))
+                            Buffs.OgiNamikiriReady 的剩余时间是否小于或等于全局冷却时间 (GCD)
+                            (gauge.Kaeshi == Kaeshi.NAMIKIRI || HasEffect(Buffs.OgiNamikiriReady)):
+
+                            检查以下两个条件之一是否为真：
+                            gauge.Kaeshi 是否等于 Kaeshi.NAMIKIRI。
+                            玩家是否拥有 Buffs.OgiNamikiriReady 效果 (HasEffect(Buffs.OgiNamikiriReady))
+                            如果上述所有条件都满足，则执行 return OriginalHook(OgiNamikiri);
+                        
+                        */
+                        if (IsEnabled(CustomComboPreset.SAM_ST_CDs_OgiNamikiri) && (!IsEnabled(CustomComboPreset.SAM_ST_CDs_OgiNamikiri_Movement) || (IsEnabled(CustomComboPreset.SAM_ST_CDs_OgiNamikiri_Movement) && !IsMoving)) && ActionReady(OgiNamikiri) /* && (JustUsed(Higanbana, 5f) || GetBuffRemainingTime(Buffs.OgiNamikiriReady) <= GCD) */ && (gauge.Kaeshi == Kaeshi.NAMIKIRI || HasEffect(Buffs.OgiNamikiriReady)))
                             return OriginalHook(OgiNamikiri);
 
                         // Iaijutsu Features
@@ -480,7 +506,7 @@ namespace XIVSlothComboX.Combos.PvE
                                     return OriginalHook(TsubameGaeshi);
                             }
 
-                            if ((!IsEnabled(CustomComboPreset.SAM_ST_CDs_Iaijutsu_Movement) || (IsEnabled(CustomComboPreset.SAM_ST_CDs_Iaijutsu_Movement) && !IsMoving)) && ((oneSen && enemyHP > HiganbanaThreshold && GetDebuffRemainingTime(Debuffs.Higanbana) <= 19 && JustUsed(Gekko, 3f) && JustUsed(MeikyoShisui, 15f)) || (twoSen && !LevelChecked(MidareSetsugekka)) || (threeSen && (LevelChecked(MidareSetsugekka) && !HasEffect(Buffs.TsubameReady)))))
+                            if ((!IsEnabled(CustomComboPreset.SAM_ST_CDs_Iaijutsu_Movement) || (IsEnabled(CustomComboPreset.SAM_ST_CDs_Iaijutsu_Movement) && !IsMoving)) && ((oneSen && enemyHP > HiganbanaThreshold && GetDebuffRemainingTime(Debuffs.Higanbana) <= 10 /* && JustUsed(Gekko, 3f) && JustUsed(MeikyoShisui, 15f) */) || (twoSen && !LevelChecked(MidareSetsugekka)) || (threeSen && (LevelChecked(MidareSetsugekka) && !HasEffect(Buffs.TsubameReady)))))
                                 return OriginalHook(Iaijutsu);
                         }
                     }

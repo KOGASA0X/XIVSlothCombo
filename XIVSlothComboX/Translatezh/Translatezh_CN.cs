@@ -557,7 +557,7 @@ public class Translatezh_CN
         {"Replaces Gekko with a one-button full single target rotation.\nThis is ideal for newcomers to the job." , "将月光替换为一键全单体循环。\n这对新手来说是理想的选择。"  },
         #endregion
         #region Advanced ST
-        {"Replaces Gekko with a full one-button single target rotation.\nThese features are ideal if you want to customize the rotation." , "将月光替换为一键全单体循环。\n如果你想自定义循环，这些功能是理想的选择。"  },
+        {"Replaces Gekko with a full one-button single target rotation.\nThese features are ideal if you want to customize the rotation." , "将刃风替换为一键全单体循环。\n如果你想自定义循环，这些功能是理想的选择。"  },
         {"Adds Yukikaze combo to the rotation." , "将雪风连击添加到循环中。"  },
         {"Adds Kasha combo to the rotation." , "将花车连击添加到循环中。"  },
         {"Shinten Option" , "震天选项"  },
@@ -590,8 +590,8 @@ public class Translatezh_CN
         #endregion
         #region AoE Oka Combo
         {"Oka Combo" , "冈连击"  },
-        {"Replace Oka with its combo chain." , "将冈替换为其连击链。"  },
-        {"Oka Two Target Rotation Feature" , "冈双目标循环功能"  },
+        {"Replace Oka with its combo chain." , "将樱花替换为其连击链。"  },
+        {"Oka Two Target Rotation Feature" , "樱花双目标循环功能"  },
         {"Adds the Yukikaze combo, Mangetsu combo, Senei, Shinten, and Shoha to Oka combo.\nUsed for two targets only and when Lv86 and above." , "将雪风连击、满月连击、千影、侍天和照破加入冈连击中。\n仅适用于两个目标且等级在86级及以上。"  },
         {"Mangetsu Combo" , "满月连击"  },
         {"Replace Mangetsu with its combo chain." , "将满月替换为其连击链。"  },
@@ -601,7 +601,7 @@ public class Translatezh_CN
         #endregion
         #region AoE Combos
         {"Replaces Fuga/Fuko with a full one-button AoE rotation.\nThese features are ideal if you want to customize the rotation." , "将风雅替换为一键全AoE循环。\n如果你想自定义循环，这些功能是理想的选择。"  },
-        {"Adds Oka combo to the rotation." , "将冈连击添加到循环中。"  },
+        {"Adds Oka combo to the rotation." , "将樱花连击添加到循环中。"  },
         {"Kyuten" , "九天"  },
         {"Adds Kyuten to the rotation." , "将九天添加到循环中。"  },
         {"Iaijutsu" , "居合术"  },
