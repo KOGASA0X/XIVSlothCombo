@@ -506,7 +506,7 @@ namespace XIVSlothComboX.Combos.PvE
                                     return OriginalHook(TsubameGaeshi);
                             }
 
-                            if ((!IsEnabled(CustomComboPreset.SAM_ST_CDs_Iaijutsu_Movement) || (IsEnabled(CustomComboPreset.SAM_ST_CDs_Iaijutsu_Movement) && !IsMoving)) && ((oneSen && enemyHP > HiganbanaThreshold && GetDebuffRemainingTime(Debuffs.Higanbana) <= 10 /* && JustUsed(Gekko, 3f) && JustUsed(MeikyoShisui, 15f) */) || (twoSen && !LevelChecked(MidareSetsugekka)) || (threeSen && (LevelChecked(MidareSetsugekka) && !HasEffect(Buffs.TsubameReady)))))
+                            if ((!IsEnabled(CustomComboPreset.SAM_ST_CDs_Iaijutsu_Movement) || (IsEnabled(CustomComboPreset.SAM_ST_CDs_Iaijutsu_Movement) && !IsMoving)) && ((oneSen && HiganbanaThreshold != 100 && enemyHP > HiganbanaThreshold && GetDebuffRemainingTime(Debuffs.Higanbana) <= 10 /* && JustUsed(Gekko, 3f) && JustUsed(MeikyoShisui, 15f) */) || (twoSen && !LevelChecked(MidareSetsugekka)) || (threeSen && (LevelChecked(MidareSetsugekka) && !HasEffect(Buffs.TsubameReady)))))
                                 return OriginalHook(Iaijutsu);
                         }
                     }
