@@ -391,11 +391,14 @@ namespace XIVSlothComboX
                     break;
                 }
 
-                case "set_custom_int_value": // set_custom_int_value
+                case "set_custom_value": // set_custom_int_value
                 {
                     string? targetPreset = argumentsParts[1].ToString();
-                    int.TryParse(argumentsParts[2].ToString(), out int oder);
-                    PluginConfiguration.SetCustomIntValue(targetPreset, oder);
+                    string? valueString = argumentsParts[2].ToString();
+                    if(int.TryParse(valueString, out int oder))
+                        PluginConfiguration.SetCustomIntValue(targetPreset, oder);
+                    else if (float.TryParse(valueString, out float floatValue))
+                        PluginConfiguration.SetCustomFloatValue(targetPreset, floatValue);
                     Service.Configuration.Save();
                     break;
                 }
