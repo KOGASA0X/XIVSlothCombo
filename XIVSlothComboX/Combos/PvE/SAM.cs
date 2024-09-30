@@ -413,6 +413,11 @@ namespace XIVSlothComboX.Combos.PvE
                         if (SAMOpener.DoFullOpener(ref actionID))
                             return actionID;
                     }
+                    
+                    if (IsEnabled(CustomComboPreset.SAM_ST_CDs_OgiNamikiri) && gauge.Kaeshi == Kaeshi.NAMIKIRI)
+                    {
+                        return OriginalHook(OgiNamikiri);
+                    }
 
                     //Meikyo to start before combat
                     /* if (IsEnabled(CustomComboPreset.SAM_ST_CDs) && IsEnabled(CustomComboPreset.SAM_ST_CDs_MeikyoShisui) && !HasEffect(Buffs.MeikyoShisui) && ActionReady(MeikyoShisui) && !InCombat())
