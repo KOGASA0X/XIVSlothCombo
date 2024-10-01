@@ -22,7 +22,7 @@ namespace XIVSlothComboX.Combos.PvE
             Tomahawk = 46,
             原初之魂InnerBeast = 49,
             SteelCyclone = 51,
-            Infuriate = 52,
+            战壕Infuriate = 52,
             裂石飞环FellCleave = 3549,
             Decimate = 3550,
             Upheaval = 7387,
@@ -36,14 +36,15 @@ namespace XIVSlothComboX.Combos.PvE
             PrimalRend = 25753,
             Onslaught = 7386,
             
-            原初激震 = 36923,
-            破坏斧 = 36925,
+            原初激震 = 36924,
+            尽毁 = 36925,
             
             留空 = 999999;
 
         public static class Buffs
         {
-            public const ushort 原初的解放InnerRelease = 1177,
+            public const ushort 
+                原初的解放InnerRelease = 1177,
                 SurgingTempest = 2677,
                 NascentChaos = 1897,
                 PrimalRendReady = 2624,
@@ -142,11 +143,24 @@ namespace XIVSlothComboX.Combos.PvE
 
                     if (IsEnabled(CustomComboPreset.WAR_ST_StormsPath_Infuriate)
                         && InCombat()
-                        && ActionReady(Infuriate)
+                        && ActionReady(战壕Infuriate)
                         && !HasEffect(Buffs.NascentChaos)
                         && gauge <= infuriateGauge
                         && CanWeave(actionID))
-                        return Infuriate;
+                    {
+                        if (GetCooldownRemainingTime(战壕Infuriate) == 0)
+                        {
+                            return 战壕Infuriate;
+                        }
+                        
+                        
+                        if (!HasEffect(Buffs.原初的解放InnerRelease))
+                        {
+                            return 战壕Infuriate;
+                        }
+
+                      
+                    }
 
                     //Sub Storm's Eye level check
                     if (IsEnabled(CustomComboPreset.WAR_ST_StormsPath_InnerRelease)
@@ -209,9 +223,9 @@ namespace XIVSlothComboX.Combos.PvE
                         }
 
                         //破坏斧 7.0新增
-                        if (IsEnabled(CustomComboPreset.WAR_ST_StormsPath_破坏斧) && HasEffect(Buffs.破坏斧Pre) && 破坏斧.LevelChecked())
+                        if (IsEnabled(CustomComboPreset.WAR_ST_StormsPath_破坏斧) && HasEffect(Buffs.破坏斧Pre) && 尽毁.LevelChecked())
                         {
-                            return 破坏斧;
+                            return 尽毁;
                         }
 
                         if (IsEnabled(CustomComboPreset.WAR_ST_StormsPath_FellCleave) && LevelChecked(原初之魂InnerBeast))
@@ -301,11 +315,11 @@ namespace XIVSlothComboX.Combos.PvE
 
                     if (IsEnabled(CustomComboPreset.WAR_AoE_Overpower_Infuriate)
                         && InCombat()
-                        && ActionReady(Infuriate)
+                        && ActionReady(战壕Infuriate)
                         && !HasEffect(Buffs.NascentChaos)
                         && gauge <= infuriateGauge
                         && CanWeave(actionID))
-                        return Infuriate;
+                        return 战壕Infuriate;
 
                     //Sub Mythril Tempest level check
                     if (IsEnabled(CustomComboPreset.WAR_AoE_Overpower_InnerRelease)
@@ -356,6 +370,17 @@ namespace XIVSlothComboX.Combos.PvE
                             && LevelChecked(SteelCyclone)
                             && (gauge >= decimateGaugeSpend || HasEffect(Buffs.原初的解放InnerRelease) || HasEffect(Buffs.NascentChaos)))
                             return OriginalHook(SteelCyclone);
+                    }
+                    
+                    
+                    if (HasEffect(Buffs.破坏斧Pre) && 尽毁.LevelChecked())
+                    {
+                        return 尽毁;
+                    }
+
+                    if (IsEnabled(CustomComboPreset.WAR_ST_StormsPath_原初激震) && HasEffect(Buffs.原初激震Pre) && LevelChecked(原初激震))
+                    {
+                        return 原初激震;
                     }
 
                     if (comboTime > 0)
@@ -425,10 +450,10 @@ namespace XIVSlothComboX.Combos.PvE
 
                     if (InCombat()
                         && rageGauge.BeastGauge <= rageThreshold
-                        && ActionReady(Infuriate)
+                        && ActionReady(战壕Infuriate)
                         && !hasNascent
                         && ((!hasInnerRelease) || IsNotEnabled(CustomComboPreset.WAR_InfuriateFellCleave_IRFirst)))
-                        return OriginalHook(Infuriate);
+                        return OriginalHook(战壕Infuriate);
                 }
 
                 return actionID;
