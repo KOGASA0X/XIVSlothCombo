@@ -837,7 +837,7 @@ namespace XIVSlothComboX.Combos.PvE
                     {
                         if (lastComboMove is Fuko or Fuga && LevelChecked(Mangetsu))
                         {
-                            if (IsNotEnabled(CustomComboPreset.SAM_AoE_Oka) || !gauge.Sen.HasFlag(Sen.GETSU) || GetBuffRemainingTime(Buffs.Fugetsu) < GetBuffRemainingTime(Buffs.Fuka) || !HasEffect(Buffs.Fugetsu))
+                            if (IsNotEnabled(CustomComboPreset.SAM_AoE_Oka) || !gauge.Sen.HasFlag(Sen.GETSU) || GetBuffRemainingTime(Buffs.Fugetsu) < GetBuffRemainingTime(Buffs.Fuka) || !HasEffect(Buffs.Fugetsu) || !LevelChecked(Oka))
                                 return Mangetsu;
 
                             if (IsEnabled(CustomComboPreset.SAM_AoE_Oka) && LevelChecked(Oka) && (!gauge.Sen.HasFlag(Sen.KA) || GetBuffRemainingTime(Buffs.Fuka) < GetBuffRemainingTime(Buffs.Fugetsu) || !HasEffect(Buffs.Fuka)))
