@@ -398,6 +398,7 @@ namespace XIVSlothComboX.Combos.PvE
                 float shintenTreshhold = Config.SAM_ST_ExecuteThreshold;
                 float HiganbanaThreshold = Config.SAM_ST_Higanbana_Threshold;
                 float GCD = GetCooldown(Hakaze).CooldownTotal;
+                int MeikyoUsed = ActionWatching.CombatActions.Count(x => x == MeikyoShisui);
 
                 if (actionID is Hakaze or Gyofu)
                 {
@@ -423,49 +424,6 @@ namespace XIVSlothComboX.Combos.PvE
                     {
                         return OriginalHook(OgiNamikiri);
                     }
-
-                    //oGCDs
-                    if (CanWeave(ActionWatching.LastWeaponskill))
-                    {
-                        if (IsEnabled(CustomComboPreset.SAM_ST_CDs))
-                        {
-                            //Meikyo Features
-                            if (IsEnabled(CustomComboPreset.SAM_ST_CDs_MeikyoShisui) && ActionReady(MeikyoShisui))
-                            {
-                                //Meikyo Features must have SETSU
-                                if (GetCooldownRemainingTime(MeikyoShisui) <= GCD * 3 /* && ComboTimer is 0 */ && !HasEffect(Buffs.MeikyoShisui) && gauge.Sen.HasFlag(Sen.SETSU)) //Overcap protection for scuffed runs
-                                    return MeikyoShisui;
-                            }
-
-                            //Ikishoten Features
-                            if (IsEnabled(CustomComboPreset.SAM_ST_CDs_Ikishoten) && LevelChecked(Ikishoten))
-                            {
-                                //Dumps Kenki in preparation for Ikishoten
-                                if (gauge.Kenki > 50 && GetCooldownRemainingTime(Ikishoten) < 10)
-                                    return Shinten;
-
-                                if (gauge.Kenki <= 50 && IsOffCooldown(Ikishoten))
-                                    return Ikishoten;
-                            }
-
-                            //Senei Features
-                            if (IsEnabled(CustomComboPreset.SAM_ST_CDs_Senei) && gauge.Kenki >= 25 && ActionReady(Senei) && HasEffect(Buffs.Fugetsu))
-                                return Senei;
-
-                            //Zanshin Usage
-                            if (IsEnabled(CustomComboPreset.SAM_ST_CDs_Zanshin) && LevelChecked(Zanshin) && gauge.Kenki >= 50 && CanWeave(actionID) && HasEffect(Buffs.ZanshinReady) /* && (JustUsed(Higanbana, 7f) || GetBuffRemainingTime(Buffs.ZanshinReady) <= 6) */)
-                                return Zanshin;
-
-                            if (IsEnabled(CustomComboPreset.SAM_ST_CDs_Shoha) && LevelChecked(Shoha) && gauge.MeditationStacks is 3)
-                                return Shoha;
-                        }
-
-                        if (IsEnabled(CustomComboPreset.SAM_ST_Shinten) && LevelChecked(Shinten) && gauge.Kenki > 50 && !HasEffect(Buffs.ZanshinReady) && ((gauge.Kenki >= kenkiOvercap) || (enemyHP <= shintenTreshhold)))
-                            return Shinten;
-                    }
-
-                    if (IsEnabled(CustomComboPreset.SAM_ST_RangedUptime) && LevelChecked(Enpi) && !InMeleeRange() && HasBattleTarget())
-                        return Enpi;
 
                     if (IsEnabled(CustomComboPreset.SAM_ST_CDs) && HasEffect(Buffs.Fugetsu) && HasEffect(Buffs.Fuka))
                     {
@@ -515,6 +473,49 @@ namespace XIVSlothComboX.Combos.PvE
                                 return OriginalHook(Iaijutsu);
                         }
                     }
+
+                    //oGCDs
+                    if (CanWeave(ActionWatching.LastWeaponskill))
+                    {
+                        if (IsEnabled(CustomComboPreset.SAM_ST_CDs))
+                        {
+                            //Meikyo Features
+                            if (IsEnabled(CustomComboPreset.SAM_ST_CDs_MeikyoShisui) && ActionReady(MeikyoShisui))
+                            {
+                                //Meikyo Features must have SETSU
+                                if (/* GetCooldownRemainingTime(MeikyoShisui) <= GCD * 3 && ComboTimer is 0 && */ !HasEffect(Buffs.MeikyoShisui) && (gauge.Sen.HasFlag(Sen.SETSU) || MeikyoUsed is 0)) //Overcap protection for scuffed runs
+                                    return MeikyoShisui;
+                            }
+
+                            //Ikishoten Features
+                            if (IsEnabled(CustomComboPreset.SAM_ST_CDs_Ikishoten) && LevelChecked(Ikishoten))
+                            {
+                                //Dumps Kenki in preparation for Ikishoten
+                                if (gauge.Kenki > 50 && GetCooldownRemainingTime(Ikishoten) < 10)
+                                    return Shinten;
+
+                                if (gauge.Kenki <= 50 && IsOffCooldown(Ikishoten))
+                                    return Ikishoten;
+                            }
+
+                            //Senei Features
+                            if (IsEnabled(CustomComboPreset.SAM_ST_CDs_Senei) && gauge.Kenki >= 25 && ActionReady(Senei) && HasEffect(Buffs.Fugetsu))
+                                return Senei;
+
+                            //Zanshin Usage
+                            if (IsEnabled(CustomComboPreset.SAM_ST_CDs_Zanshin) && LevelChecked(Zanshin) && gauge.Kenki >= 50 && CanWeave(actionID) && HasEffect(Buffs.ZanshinReady) /* && (JustUsed(Higanbana, 7f) || GetBuffRemainingTime(Buffs.ZanshinReady) <= 6) */)
+                                return Zanshin;
+
+                            if (IsEnabled(CustomComboPreset.SAM_ST_CDs_Shoha) && LevelChecked(Shoha) && gauge.MeditationStacks is 3)
+                                return Shoha;
+                        }
+
+                        if (IsEnabled(CustomComboPreset.SAM_ST_Shinten) && LevelChecked(Shinten) && gauge.Kenki > 50 && !HasEffect(Buffs.ZanshinReady) && ((gauge.Kenki >= kenkiOvercap) || (enemyHP <= shintenTreshhold)))
+                            return Shinten;
+                    }
+
+                    if (IsEnabled(CustomComboPreset.SAM_ST_RangedUptime) && LevelChecked(Enpi) && !InMeleeRange() && HasBattleTarget())
+                        return Enpi;
 
                     if (HasEffect(Buffs.MeikyoShisui))
                     {
