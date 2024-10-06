@@ -480,10 +480,10 @@ namespace XIVSlothComboX.Combos.PvE
                         if (IsEnabled(CustomComboPreset.SAM_ST_CDs))
                         {
                             //Meikyo Features
-                            if (IsEnabled(CustomComboPreset.SAM_ST_CDs_MeikyoShisui) && ActionReady(MeikyoShisui))
+                            if (IsEnabled(CustomComboPreset.SAM_ST_CDs_MeikyoShisui) && ActionReady(MeikyoShisui) && !HasEffect(Buffs.MeikyoShisui) && !HasEffect(Buffs.Tendo))
                             {
                                 //Meikyo Features must have SETSU
-                                if (/* GetCooldownRemainingTime(MeikyoShisui) <= GCD * 3 && ComboTimer is 0 && */ !HasEffect(Buffs.MeikyoShisui) && (gauge.Sen.HasFlag(Sen.SETSU) || MeikyoUsed is 0)) //Overcap protection for scuffed runs
+                                if (/* GetCooldownRemainingTime(MeikyoShisui) <= GCD * 3 && ComboTimer is 0 && */  (gauge.Sen.HasFlag(Sen.SETSU) || MeikyoUsed is 0)) //Overcap protection for scuffed runs
                                     return MeikyoShisui;
                             }
 
@@ -796,7 +796,7 @@ namespace XIVSlothComboX.Combos.PvE
                         if (IsEnabled(CustomComboPreset.SAM_AoE_Shoha) && ActionReady(Shoha) && gauge.MeditationStacks is 3)
                             return Shoha;
 
-                        if (IsEnabled(CustomComboPreset.SAM_AoE_MeikyoShisui) && ActionReady(MeikyoShisui) && !HasEffect(Buffs.MeikyoShisui))
+                        if (IsEnabled(CustomComboPreset.SAM_AoE_MeikyoShisui) && ActionReady(MeikyoShisui) && !HasEffect(Buffs.MeikyoShisui) && !HasEffect(Buffs.Tendo))
                             return MeikyoShisui;
                     }
 
@@ -808,7 +808,7 @@ namespace XIVSlothComboX.Combos.PvE
 
                     if (IsEnabled(CustomComboPreset.SAM_AoE_TenkaGoken) && LevelChecked(TenkaGoken))
                     {
-                        if (!IsMoving && (OriginalHook(Iaijutsu) is TenkaGoken))
+                        if (!IsMoving && (OriginalHook(Iaijutsu) is TenkaGoken or TendoGoken))
                             return OriginalHook(Iaijutsu);
 
                         if (LevelChecked(TsubameGaeshi) && (HasEffect(Buffs.KaeshiGokenReady) || HasEffect(Buffs.TendoKaeshiGokenReady)))
