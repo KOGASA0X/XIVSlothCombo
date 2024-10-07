@@ -179,6 +179,7 @@ namespace XIVSlothComboX
             }
 
             Service.Framework.Update += OnFrameworkUpdate;
+            Service.DutyState.DutyRecommenced += OnDutyRecommenced;
 
 
             autoToken = autoTokenSource.Token; // 开关绑
@@ -187,6 +188,12 @@ namespace XIVSlothComboX
             KillRedundantIDs();
             HandleConflictedCombos();
             Service.IconManager = new IconManager();
+            
+        }
+
+        private void OnDutyRecommenced(object? sender, ushort e)
+        {
+            CustomComboFunctions.InitCustomTimeline();
         }
 
 
@@ -195,7 +202,8 @@ namespace XIVSlothComboX
             var enabledCopy = Service.Configuration.EnabledActions.ToHashSet(); //Prevents issues later removing during enumeration
             foreach (var preset in enabledCopy)
             {
-                if (!PresetStorage.IsEnabled(preset)) continue;
+                if (!PresetStorage.IsEnabled(preset)) 
+                    continue;
 
                 var conflictingCombos = preset.GetAttribute<ConflictingCombosAttribute>();
                 if (conflictingCombos != null)
@@ -344,6 +352,7 @@ namespace XIVSlothComboX
 
             Service.CommandManager.RemoveHandler(Command);
             Service.Framework.Update -= OnFrameworkUpdate;
+            Service.DutyState.DutyRecommenced -= OnDutyRecommenced;
             Service.Interface.UiBuilder.OpenConfigUi -= OnOpenConfigUi;
             Service.Interface.UiBuilder.Draw -= DrawUI;
 

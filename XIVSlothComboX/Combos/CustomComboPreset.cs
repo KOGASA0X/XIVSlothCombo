@@ -382,55 +382,21 @@ namespace XIVSlothComboX.Combos
         #region BLACK MAGE
 
         [ReplaceSkill(All.Sleep)]
-        [CustomComboInfo("自定义循环", "自定义循环", BLM.JobID, -10)]
+        [CustomComboInfo("自定义循环", "自定义循环", BLM.JobID, -99)]
         BLM_Advanced_CustomMode = 20120,
 
 
-        [ReplaceSkill(BLM.Scathe)]
-        [ConflictingCombos(BLM_Scathe_Xeno, BLM_ST_AdvancedMode, BLM_ST_AdvancedMode)]
-        [CustomComboInfo("标准循环", "将崩溃整合为一键单体标准循环。", BLM.JobID, -3)]
-        BLM_ST_SimpleMode = 2012,
-
-        #region Advanced ST
-
         [ReplaceSkill(BLM.Fire)]
-        [ConflictingCombos(BLM_Scathe_Xeno, BLM_ST_SimpleMode)]
-        [CustomComboInfo("Advanced Mode - Single Target", "Replaces Fire with a full one-button single target rotation.\nThese features are ideal if you want to customize the rotation.", BLM.JobID, -9)]
-        BLM_ST_AdvancedMode = 2021,
-
-        [ParentCombo(BLM_ST_AdvancedMode)]
-        [CustomComboInfo("Thunder I/III Option", "Adds Thunder I/Thunder III when the debuff isn't present or is expiring.", BLM.JobID)]
-        BLM_ST_Adv_Thunder = 2029,
-
-        [ParentCombo(BLM_ST_AdvancedMode)]
-        [CustomComboInfo("Triplecast/Swiftcast Option", "Adds Triplecast/Swiftcast to the rotation.", BLM.JobID, -8)]
-        BLM_Adv_Casts = 2039,
-
-        [ParentCombo(BLM_ST_AdvancedMode)]
-        [CustomComboInfo("Opener Option", "Adds the Lv.90 opener." + "\nWill default to the Standard opener when nothing is selected.", BLM.JobID, -10)]
-        BLM_Adv_Opener = 2043,
-
-        #endregion
-
-
-        [ReplaceSkill(BLM.Flare)]
-        [CustomComboInfo("简易 AoE 功能", "将核爆整合为一键AoE循环。", BLM.JobID, -1)]
-        BLM_AoE_SimpleMode = 2008,
-
-        #region Advanced AoE
-
+        [ConflictingCombos(BLM_Scathe_Xeno, BLM_ST_AdvancedMode, BLM_ST_AdvancedMode)]
+        [CustomComboInfo("标准循环", "将崩溃整合为一键单体标准循环。", BLM.JobID,  -10)]
+        BLM_ST_SimpleMode = 2012,
+        
+        
         [ReplaceSkill(BLM.Blizzard2, BLM.HighBlizzard2)]
-        [ConflictingCombos(BLM_AoE_SimpleMode)]
-        [CustomComboInfo("Advanced Mode - AoE", "Replaces Blizzard II with a full one-button AoE rotation.\nThese features are ideal if you want to customize the rotation.", BLM.JobID, -8)]
-        BLM_AoE_AdvancedMode = 2054,
-
-        [ParentCombo(BLM_AoE_AdvancedMode)]
-        [CustomComboInfo("Thunder Uptime Option", "Adds Thunder II/Thunder IV during Umbral Ice.", BLM.JobID, 1)]
-        BLM_AoE_Adv_ThunderUptime = 2055,
-
-        #endregion
-
-
+        [CustomComboInfo("简易 AoE 功能", "将核爆整合为一键AoE循环。", BLM.JobID, -8)]
+        BLM_AoE_SimpleMode = 2008,
+        
+        
         #region Variant
 
         [Variant]
@@ -449,6 +415,22 @@ namespace XIVSlothComboX.Combos
 
         #endregion
 
+        #region Advanced ST
+
+        [ReplaceSkill(BLM.Fire)]
+        [ConflictingCombos(BLM_Scathe_Xeno, BLM_ST_SimpleMode)]
+        [CustomComboInfo("Advanced Mode - Single Target", "Replaces Fire with a full one-button single target rotation.\nThese features are ideal if you want to customize the rotation.", BLM.JobID, -9)]
+        BLM_ST_AdvancedMode = 2021,
+
+  
+        
+
+        [ParentCombo(BLM_ST_AdvancedMode)]
+        [CustomComboInfo("Opener Option", "Adds the Lv.90 opener." + "\nWill default to the Standard opener when nothing is selected.", BLM.JobID, -10)]
+        BLM_Adv_Opener = 2043,
+
+        #endregion
+        
         #region Miscellaneous
 
         [ReplaceSkill(BLM.Transpose)]
@@ -619,7 +601,13 @@ namespace XIVSlothComboX.Combos
         #endregion
 
         #region BARD
+        #region 自定义循环
 
+        [ReplaceSkill(BRD.StraightShot)]
+        [CustomComboInfo("自定义循环", "自定义循环", BRD.JobID, -999)]
+        BRD_ST_CustomMode = 30361,
+
+        #endregion
         [ReplaceSkill(BRD.HeavyShot, BRD.BurstShot)]
         [ConflictingCombos(BRD_ST_AdvMode)]
         [CustomComboInfo("Simple Mode - Single Target", "Adds every single target ability to one button,\nIf there are DoTs on target, will try to maintain their uptime.", BRD.JobID, 1)]
@@ -698,11 +686,11 @@ namespace XIVSlothComboX.Combos
         [CustomComboInfo("诗人唱歌", "这个选项将诗人的三首歌加入循环", BRD.JobID)]
         BRD_Adv_Song = 3011,
 
-        [ReplaceSkill(BRD.Barrage)]
+        [ReplaceSkill(BRD.纷乱箭Barrage)]
         [CustomComboInfo("Buff技能设置", "将猛者强击/战斗之声整合至纷乱箭。", BRD.JobID)]
         BRD_Buffs = 3013,
 
-        [ReplaceSkill(BRD.WanderersMinuet)]
+        [ReplaceSkill(BRD.放浪神的小步舞曲WanderersMinuet)]
         [CustomComboInfo("一键唱歌", "根据CD，将另外两首歌加入放浪神的小步舞曲.", BRD.JobID)]
         BRD_OneButtonSongs = 3014,
 
@@ -830,7 +818,7 @@ namespace XIVSlothComboX.Combos
         DNC_DT_Simple_TS = 4067,
 
         [ParentCombo(DNC_DT_SimpleMode)]
-        [CustomComboInfo("简易百花争艳", "Includes Flourish in the rotation.", DNC.JobID, 2)]
+        [CustomComboInfo("百花争艳", "Includes Flourish in the rotation.", DNC.JobID, 2)]
         DNC_DT_Simple_Flourish = 4068,
 
 
@@ -840,7 +828,7 @@ namespace XIVSlothComboX.Combos
 
 
         [ParentCombo(DNC_DT_SimpleMode)]
-        [CustomComboInfo("进攻之探戈", "Includes Flourish in the rotation.", DNC.JobID, 2)]
+        [CustomComboInfo("进攻之探戈", "将百花争艳加入循环", DNC.JobID, 2)]
         DNC_DT_Simple_Devilment = 4090,
 
 
@@ -1315,7 +1303,7 @@ namespace XIVSlothComboX.Combos
 
         [ReplaceSkill(GNB.残暴弹BrutalShell)]
         [CustomComboInfo
-            ("自定义循环", "自定义循环", BLM.JobID, -10)]
+            ("自定义循环", "自定义循环", GNB.JobID, -10)]
         GNB_Advanced_CustomMode = 69999,
 
 
@@ -1710,6 +1698,14 @@ namespace XIVSlothComboX.Combos
 
         #region MONK
 
+        #region 自定义循环
+
+        [ReplaceSkill(MNK.TrueStrike)]
+        [CustomComboInfo("自定义循环", "自定义循环", MNK.JobID)]
+        MNK_ST_CustomMode = 90041,
+
+        #endregion
+        
         [ReplaceSkill([MNK.Bootshine, MNK.LeapingOpo])]
         [ConflictingCombos(MNK_ST_BeastChakras, MNK_ST_AdvancedMode)]
         [CustomComboInfo("Simple Mode - Single Target", "Replaces Bootshine with a one - button full single target rotation.\nThis is ideal for newcomers to the job.", MNK.JobID)]
@@ -2218,9 +2214,18 @@ namespace XIVSlothComboX.Combos
         [CustomComboInfo("战逃反应", "添加 战逃反应 到循环.", PLD.JobID)]
         PLD_ST_AdvancedMode_FoF = 11003,
 
+        
         [ParentCombo(PLD_ST_AdvancedMode)]
+        [CustomComboInfo("远离选项", "下面子选项在远离的时候且没有[安魂祈祷buff]生效", PLD.JobID)]
+        PLD_ST_AdvancedMode_NoMeleeRange = 11004,
+        
+        [ParentCombo(PLD_ST_AdvancedMode_NoMeleeRange)]
         [CustomComboInfo("投盾", "添加 投盾 到循环 在远离近战距离生效", PLD.JobID)]
-        PLD_ST_AdvancedMode_ShieldLob = 11004,
+        PLD_ST_AdvancedMode_NoMeleeRange_ShieldLob = 110041,
+        
+        [ParentCombo(PLD_ST_AdvancedMode_NoMeleeRange)]
+        [CustomComboInfo("圣灵", "添加 圣灵 到循环 在远离近战距离生效", PLD.JobID)]
+        PLD_ST_AdvancedMode_NoMeleeRange_HolySpirit = 110042,
 
         [ParentCombo(PLD_ST_AdvancedMode)]
         [CustomComboInfo("厄运流转选项", "添加 厄运流转 到自定义循环.", PLD.JobID)]
@@ -2333,6 +2338,13 @@ namespace XIVSlothComboX.Combos
 
         #region REAPER
 
+        #region 自定义循环
+
+        [ReplaceSkill(RPR.WaxingSlice)]
+        [CustomComboInfo("自定义循环", "自定义循环", RPR.JobID)]
+        RPR_ST_CustomMode = 1200001,
+
+        #endregion
         #region Simple ST
 
         [ReplaceSkill(RPR.Slice)]
@@ -3333,7 +3345,7 @@ namespace XIVSlothComboX.Combos
 
         #endregion
 
-        #region variant
+        #region variant 
 
         [Variant]
         [VariantParent(SAM_ST_AdvancedMode, SAM_AoE_AdvancedMode)]
@@ -3350,7 +3362,6 @@ namespace XIVSlothComboX.Combos
         // Last value = 15050
 
         #endregion
-
         #region SCHOLAR
 
         /* SCH Feature Numbering
@@ -3605,9 +3616,6 @@ namespace XIVSlothComboX.Combos
         [CustomComboInfo("循环加入灼热之光", "在循环和AOE循环中加入灼热之光\n冷却完毕立刻使用", SMN.JobID, 9)]
         SMN_SearingLight = 17018,
 
-        [ParentCombo(SMN_SearingLight)]
-        [CustomComboInfo("灼热之光爆发设置", "只在亚神召唤中使用灼热之光\n进阶选项在 高级能力技选项下\n不适用咏速套装", SMN.JobID, 0, "")]
-        SMN_SearingLight_Burst = 170181, // Genesis, why must you be like this -K
 
         [ParentCombo(SMN_Advanced_Combo)]
         [CustomComboInfo("循环中加入亚神召唤", "循环和AOE循环中加入 龙神召唤 不死鸟召唤", SMN.JobID, 10)]
@@ -3629,7 +3637,7 @@ namespace XIVSlothComboX.Combos
         SMN_Raise = 17027,
 
         [ParentCombo(SMN_Advanced_Combo)]
-        [CustomComboInfo("循环加入苏生之炎", "循环 AOE循环中 加入苏生之炎", SMN.JobID, 13)]
+        [CustomComboInfo("循环加入苏生之炎", "循环 循环中 加入苏生之炎", SMN.JobID, 13)]
         SMN_Advanced_Combo_DemiSummons_Rekindle = 17028,
 
         [ReplaceSkill(SMN.毁绝Ruin4)]
@@ -3728,6 +3736,10 @@ namespace XIVSlothComboX.Combos
         [ParentCombo(VPR_ST_CDs)]
         [CustomComboInfo("Vicewinder Combo", "Adds Swiftskin's Coil and Hunter's Coil to the rotation.\nWill automatically swap depending on your position.", VPR.JobID)]
         VPR_ST_VicewinderCombo = 30007,
+        
+        [ParentCombo(VPR_ST_VicewinderCombo)]
+        [CustomComboInfo("BUFF优先", "会先补BUFF", VPR.JobID)]
+        VPR_ST_VicewinderCombo1 = 300071,
 
         #endregion
 
@@ -3959,7 +3971,7 @@ namespace XIVSlothComboX.Combos
         WAR_ST_StormsPath_RangedUptime = 18016,
 
 
-        [ReplaceSkill(WAR.裂石飞环FellCleave, WAR.Decimate)]
+        [ReplaceSkill(WAR.裂石飞环FellCleave, WAR.地毁人亡Decimate)]
         [CustomComboInfo("战壕与裂石飞环/地毁人亡整合", "小于等于设置距离时，将裂石飞环/地毁人亡整合到战壕", WAR.JobID)]
         WAR_InfuriateFellCleave = 18018,
 
@@ -4227,6 +4239,13 @@ namespace XIVSlothComboX.Combos
 
         #region PICTOMANCER
 
+        #region 自定义循环
+
+        [ReplaceSkill(All.Sleep)]
+        [CustomComboInfo("自定义循环", "自定义循环", PCT.JobID)]
+        PCT_ST_CustomMode = 2000001,
+
+        #endregion
         [ReplaceSkill(PCT.FireInRed)]
         [ConflictingCombos(CombinedAetherhues, PCT_ST_AdvancedMode)]
         [CustomComboInfo("Simple Mode - Single Target", "Consolidates the single target rotation into one button, ideal for newcomers.", PCT.JobID)]

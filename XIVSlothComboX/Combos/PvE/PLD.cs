@@ -163,7 +163,7 @@ namespace XIVSlothComboX.Combos.PvE
                     {
                         if (CanSpellWeavePlus(actionID,  0.5f))
                         {
-                            if (战逃反映判断(lastComboActionID, comboTime) && LocalPlayer.CurrentMp >= 3000)
+                            if (战逃反映判断(lastComboActionID, comboTime) && LocalPlayer?.CurrentMp >= 3000)
                                 return OriginalHook(战逃反应FightOrFlight);
 
                             if (ActionReady(安魂祈祷Requiescat))
@@ -218,14 +218,14 @@ namespace XIVSlothComboX.Combos.PvE
                                 if (GetCooldownRemainingTime(战逃反应FightOrFlight) > 20 &&
                                     GetCooldownRemainingTime(战逃反应FightOrFlight) < 40)
                                 {
-                                    if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_CircleOfScorn) && ActionReady(厄运流转CircleOfScorn))
+                                    if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_CircleOfScorn) && ActionReady(厄运流转CircleOfScorn)&& InMeleeRange5())
                                     {
                                         return 厄运流转CircleOfScorn;
                                     }
 
 
                                     if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_SpiritsWithin) &&
-                                        ActionReady(OriginalHook(深奥之灵SpiritsWithin)))
+                                        ActionReady(OriginalHook(深奥之灵SpiritsWithin))&& InMeleeRange3())
                                     {
                                         return OriginalHook(深奥之灵SpiritsWithin);
                                     }
@@ -239,21 +239,29 @@ namespace XIVSlothComboX.Combos.PvE
                             && GetBuffRemainingTime(Buffs.DivineMight) > 0f
                             && GetBuffRemainingTime(Buffs.DivineMight) <= 2.5f
                             && HasEffect(Buffs.Requiescat)
-                            && GetResourceCost(圣灵HolySpirit) <= LocalPlayer.CurrentMp)
+                            && GetResourceCost(圣灵HolySpirit) <= LocalPlayer?.CurrentMp)
                         {
                             return 圣灵HolySpirit;
                         }
 
-                        if (!InMeleeRange() && !HasEffect(Buffs.Requiescat))
+                        if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_NoMeleeRange)&&!InMeleeRange() && !HasEffect(Buffs.Requiescat))
                         {
-                            if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_ShieldLob)
-                                && 投盾ShieldLob.LevelChecked()
-                                && ((圣灵HolySpirit.LevelChecked() && GetResourceCost(圣灵HolySpirit) > LocalPlayer.CurrentMp)
-                                    || (!圣灵HolySpirit.LevelChecked())
-                                    || IsMoving))
+                            if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_NoMeleeRange_HolySpirit))
                             {
-                                return 投盾ShieldLob;
+                                if ((圣灵HolySpirit.LevelChecked() && LocalPlayer?.CurrentMp>=GetResourceCost(圣灵HolySpirit)&& !IsMoving))
+                                {
+                                    return 圣灵HolySpirit;
+                                }
                             }
+                            
+                            if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_NoMeleeRange_ShieldLob))
+                            {
+                                if (投盾ShieldLob.LevelChecked())
+                                {
+                                    return 投盾ShieldLob;
+                                }
+                            }
+                            
                         }
 
 
@@ -264,14 +272,13 @@ namespace XIVSlothComboX.Combos.PvE
                                 //晚一点放 等安魂祈祷放了先
                                 if (GetCooldownRemainingTime(安魂祈祷Requiescat) > 40)
                                 {
-                                    if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_CircleOfScorn) && ActionReady(厄运流转CircleOfScorn))
+                                    if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_CircleOfScorn) && ActionReady(厄运流转CircleOfScorn) && InMeleeRange5())
                                     {
                                         return 厄运流转CircleOfScorn;
                                     }
 
 
-                                    if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_SpiritsWithin) &&
-                                        ActionReady(OriginalHook(深奥之灵SpiritsWithin)))
+                                    if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_SpiritsWithin) && ActionReady(OriginalHook(深奥之灵SpiritsWithin)) && InMeleeRange3())
                                     {
                                         return OriginalHook(深奥之灵SpiritsWithin);
                                     }
@@ -290,7 +297,7 @@ namespace XIVSlothComboX.Combos.PvE
                             }
 
                             if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_GoringBlade) && ActionReady(沥血剑GoringBlade) &&
-                                HasEffect(Buffs.沥血剑BUFFGoringBladeReady) && InMeleeRange())
+                                HasEffect(Buffs.沥血剑BUFFGoringBladeReady) && InMeleeRange3())
                             {
                                 return 沥血剑GoringBlade;
                             }
@@ -303,12 +310,12 @@ namespace XIVSlothComboX.Combos.PvE
                                     || (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_Blades)
                                         && BladeOfFaith.LevelChecked()
                                         && OriginalHook(大保健连击Confiteor) != 大保健连击Confiteor
-                                        && GetResourceCost(大保健连击Confiteor) <= LocalPlayer.CurrentMp))
+                                        && GetResourceCost(大保健连击Confiteor) <= LocalPlayer?.CurrentMp))
                                     return OriginalHook(大保健连击Confiteor);
 
                                 // HS when Confiteor not unlocked or Confiteor used
                                 if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_HolySpirit)
-                                    && GetResourceCost(圣灵HolySpirit) <= LocalPlayer.CurrentMp)
+                                    && GetResourceCost(圣灵HolySpirit) <= LocalPlayer?.CurrentMp)
                                 {
                                     return 圣灵HolySpirit;
                                 }
@@ -318,7 +325,7 @@ namespace XIVSlothComboX.Combos.PvE
                             if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_HolySpirit)
                                 && GetBuffRemainingTime(Buffs.DivineMight) >= 27
                                 && GetBuffRemainingTime(Buffs.FightOrFlight) >= 0.1f
-                                && GetResourceCost(圣灵HolySpirit) <= LocalPlayer.CurrentMp)
+                                && GetResourceCost(圣灵HolySpirit) <= LocalPlayer?.CurrentMp)
                             {
                                 return 圣灵HolySpirit;
                             }
@@ -346,7 +353,7 @@ namespace XIVSlothComboX.Combos.PvE
 
                             if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_HolySpirit)
                                 && HasEffect(Buffs.DivineMight)
-                                && GetResourceCost(圣灵HolySpirit) <= LocalPlayer.CurrentMp)
+                                && GetResourceCost(圣灵HolySpirit) <= LocalPlayer?.CurrentMp)
                             {
                                 return 圣灵HolySpirit;
                             }
@@ -368,7 +375,7 @@ namespace XIVSlothComboX.Combos.PvE
 
                             if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_HolySpirit)
                                 && HasEffect(Buffs.DivineMight)
-                                && GetResourceCost(圣灵HolySpirit) <= LocalPlayer.CurrentMp)
+                                && GetResourceCost(圣灵HolySpirit) <= LocalPlayer?.CurrentMp)
                             {
                                 // Service.ChatGui.PrintError("圣灵3");
                                 return 圣灵HolySpirit;
@@ -391,10 +398,10 @@ namespace XIVSlothComboX.Combos.PvE
                         // 没用启动战逃反应
                         if (CanSpellWeavePlus(actionID, 0.3f) && IsNotEnabled(CustomComboPreset.PLD_ST_AdvancedMode_FoF) && InMeleeRange())
                         {
-                            if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_CircleOfScorn) && ActionReady(厄运流转CircleOfScorn))
+                            if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_CircleOfScorn) && ActionReady(厄运流转CircleOfScorn) && InMeleeRange5())
                                 return 厄运流转CircleOfScorn;
 
-                            if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_SpiritsWithin) && ActionReady(OriginalHook(深奥之灵SpiritsWithin)))
+                            if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_SpiritsWithin) && ActionReady(OriginalHook(深奥之灵SpiritsWithin)) && InMeleeRange3())
                                 return OriginalHook(深奥之灵SpiritsWithin);
                         }
 
@@ -412,16 +419,20 @@ namespace XIVSlothComboX.Combos.PvE
                                  && BladeOfFaith.LevelChecked()
                                  && HasEffect(Buffs.Requiescat)
                                  && OriginalHook(大保健连击Confiteor) != 大保健连击Confiteor
-                                 && GetResourceCost(大保健连击Confiteor) <= LocalPlayer.CurrentMp)))
+                                 && GetResourceCost(大保健连击Confiteor) <= LocalPlayer?.CurrentMp)))
                             return OriginalHook(大保健连击Confiteor);
 
                         //Req HS 安魂祈祷下面直接使用圣灵
                         if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_HolySpirit)
                             && HasEffect(Buffs.Requiescat)
-                            && GetResourceCost(圣灵HolySpirit) <= LocalPlayer.CurrentMp)
+                            && GetResourceCost(圣灵HolySpirit) <= LocalPlayer?.CurrentMp)
                         {
                             // Service.ChatGui.PrintError("圣灵4");
                             return 圣灵HolySpirit;
+                        }
+                        if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_Atonement) && (HasEffect(Buffs.赎罪剑Atonement1BUFF)))
+                        {
+                            return 赎罪剑Atonement.OriginalHook();
                         }
 
 
@@ -433,15 +444,14 @@ namespace XIVSlothComboX.Combos.PvE
 
                             if (lastComboActionID is 暴乱剑RiotBlade && 战女神之怒RageOfHalone.LevelChecked())
                             {
-                                if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_Atonement) &&
-                                    (HasEffect(Buffs.赎罪剑Atonement1BUFF) ||
-                                     HasEffect(Buffs.赎罪剑Atonement2BUFF)
-                                    ))
+                                if (IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_Atonement) && (HasEffect(Buffs.赎罪剑Atonement2BUFF)))
+                                {
                                     return 赎罪剑Atonement.OriginalHook();
+                                }
 
                                 if ((IsEnabled(CustomComboPreset.PLD_ST_AdvancedMode_HolySpirit)
                                      && HasEffect(Buffs.DivineMight)
-                                     && GetResourceCost(圣灵HolySpirit) <= LocalPlayer.CurrentMp))
+                                     && GetResourceCost(圣灵HolySpirit) <= LocalPlayer?.CurrentMp))
                                 {
                                     return 圣灵HolySpirit;
                                 }
@@ -614,12 +624,12 @@ namespace XIVSlothComboX.Combos.PvE
                                 || (IsEnabled(CustomComboPreset.PLD_AoE_AdvancedMode_Blades)
                                     && BladeOfFaith.LevelChecked()
                                     && OriginalHook(大保健连击Confiteor) != 大保健连击Confiteor
-                                    && GetResourceCost(OriginalHook(大保健连击Confiteor)) <= LocalPlayer.CurrentMp))
+                                    && GetResourceCost(OriginalHook(大保健连击Confiteor)) <= LocalPlayer?.CurrentMp))
                                 return OriginalHook(大保健连击Confiteor);
 
                             // HC when Confiteor not unlocked
                             if (IsEnabled(CustomComboPreset.PLD_AoE_AdvancedMode_HolyCircle)
-                                && GetResourceCost(圣环HolyCircle) <= LocalPlayer.CurrentMp
+                                && GetResourceCost(圣环HolyCircle) <= LocalPlayer?.CurrentMp
                                 && LevelChecked(圣环HolyCircle))
                                 return 圣环HolyCircle;
                         }
@@ -627,7 +637,7 @@ namespace XIVSlothComboX.Combos.PvE
                         // HC under DM/Req
                         if (IsEnabled(CustomComboPreset.PLD_AoE_AdvancedMode_HolyCircle)
                             && (HasEffect(Buffs.DivineMight) || HasEffect(Buffs.Requiescat))
-                            && GetResourceCost(圣环HolyCircle) <= LocalPlayer.CurrentMp
+                            && GetResourceCost(圣环HolyCircle) <= LocalPlayer?.CurrentMp
                             && 圣环HolyCircle.LevelChecked())
                             return 圣环HolyCircle;
                     }
@@ -665,14 +675,14 @@ namespace XIVSlothComboX.Combos.PvE
                              && BladeOfFaith.LevelChecked()
                              && HasEffect(Buffs.Requiescat)
                              && OriginalHook(大保健连击Confiteor) != 大保健连击Confiteor
-                             && GetResourceCost(OriginalHook(大保健连击Confiteor)) <= LocalPlayer.CurrentMp))
+                             && GetResourceCost(OriginalHook(大保健连击Confiteor)) <= LocalPlayer?.CurrentMp))
                         && IsNotEnabled(CustomComboPreset.PLD_AoE_AdvancedMode_FoF))
                         return OriginalHook(大保健连击Confiteor);
 
                     // HS under DM (outside of burst)
                     if (IsEnabled(CustomComboPreset.PLD_AoE_AdvancedMode_HolyCircle)
                         && HasEffect(Buffs.DivineMight)
-                        && GetResourceCost(圣环HolyCircle) <= LocalPlayer.CurrentMp
+                        && GetResourceCost(圣环HolyCircle) <= LocalPlayer?.CurrentMp
                         && LevelChecked(圣环HolyCircle))
                         return 圣环HolyCircle;
 
@@ -696,7 +706,7 @@ namespace XIVSlothComboX.Combos.PvE
                     if ((choice is 1 || choice is 3)
                         && HasEffect(Buffs.ConfiteorReady)
                         && 大保健连击Confiteor.LevelChecked()
-                        && GetResourceCost(大保健连击Confiteor) <= LocalPlayer.CurrentMp)
+                        && GetResourceCost(大保健连击Confiteor) <= LocalPlayer?.CurrentMp)
                         return OriginalHook(大保健连击Confiteor);
 
                     if (HasEffect(Buffs.Requiescat))
@@ -704,13 +714,13 @@ namespace XIVSlothComboX.Combos.PvE
                         if ((choice is 2 || choice is 3)
                             && OriginalHook(大保健连击Confiteor) != 大保健连击Confiteor
                             && BladeOfFaith.LevelChecked()
-                            && GetResourceCost(大保健连击Confiteor) <= LocalPlayer.CurrentMp)
+                            && GetResourceCost(大保健连击Confiteor) <= LocalPlayer?.CurrentMp)
                             return OriginalHook(大保健连击Confiteor);
 
-                        if (choice is 4 && 圣灵HolySpirit.LevelChecked() && GetResourceCost(圣灵HolySpirit) <= LocalPlayer.CurrentMp)
+                        if (choice is 4 && 圣灵HolySpirit.LevelChecked() && GetResourceCost(圣灵HolySpirit) <= LocalPlayer?.CurrentMp)
                             return 圣灵HolySpirit;
 
-                        if (choice is 5 && 圣环HolyCircle.LevelChecked() && GetResourceCost(圣环HolyCircle) <= LocalPlayer.CurrentMp)
+                        if (choice is 5 && 圣环HolyCircle.LevelChecked() && GetResourceCost(圣环HolyCircle) <= LocalPlayer?.CurrentMp)
                             return 圣环HolyCircle;
                     }
                 }

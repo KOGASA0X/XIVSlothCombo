@@ -56,6 +56,39 @@ namespace XIVSlothComboX.CustomComboNS.Functions
 
             return true;
         }
+        
+        public static bool InMeleeRange3()
+        {
+            if (LocalPlayer.TargetObject == null)
+                return false;
+
+            float distance = GetTargetDistance();
+
+            if (distance == 0)
+                return true;
+
+            if (distance > 3 )
+                return false;
+
+            return true;
+        }
+        
+        
+        public static bool InMeleeRange5()
+        {
+            if (LocalPlayer.TargetObject == null)
+                return false;
+
+            float distance = GetTargetDistance();
+
+            if (distance == 0)
+                return true;
+
+            if (distance > 3 )
+                return false;
+
+            return true;
+        }
 
         /// <summary> Gets a value indicating target's HP Percent. CurrentTarget is default unless specified </summary>
         /// <returns> Double indicating percentage. </returns>
@@ -105,7 +138,7 @@ namespace XIVSlothComboX.CustomComboNS.Functions
             return chara.CurrentHp;
         }
 
-        public static float PlayerHealthPercentageHp() => (float)LocalPlayer.CurrentHp / LocalPlayer.MaxHp * 100;
+        public static float PlayerHealthPercentageHp() => (float)LocalPlayer?.CurrentHp / LocalPlayer.MaxHp * 100;
 
         public static bool HasBattleTarget() => (CurrentTarget as IBattleNpc)?.BattleNpcKind is BattleNpcSubKind.Enemy or (BattleNpcSubKind)1;
 
