@@ -43,6 +43,7 @@ namespace XIVSlothComboX
 
 
         private readonly ConfigWindow _ConfigWindow;
+        private readonly TargetHelper _TargetHelper;
         internal static XIVSlothComboX P = null!;
         internal WindowSystem _WindowSystem;
         private static uint? jobID;
@@ -153,9 +154,11 @@ namespace XIVSlothComboX
             AST.Init();
 
             _ConfigWindow = new();
+            _TargetHelper = new();
+            
             _WindowSystem = new();
             _WindowSystem.AddWindow(_ConfigWindow);
-
+            _WindowSystem.AddWindow(_TargetHelper);
 
             // Service.Interface.UiBuilder.OpenMainUi += OnOpenConfigUi;
             Service.Interface.UiBuilder.OpenConfigUi += OnOpenConfigUi;
@@ -180,6 +183,7 @@ namespace XIVSlothComboX
 
             Service.Framework.Update += OnFrameworkUpdate;
             Service.DutyState.DutyRecommenced += OnDutyRecommenced;
+            Service.ClientState.TerritoryChanged += OnTerritoryChanged;
 
 
             autoToken = autoTokenSource.Token; // 开关绑
@@ -189,6 +193,11 @@ namespace XIVSlothComboX
             HandleConflictedCombos();
             Service.IconManager = new IconManager();
             
+        }
+
+        private void OnTerritoryChanged(ushort obj)
+        {
+            CustomComboFunctions.InitCustomTimeline();
         }
 
         private void OnDutyRecommenced(object? sender, ushort e)
@@ -221,12 +230,13 @@ namespace XIVSlothComboX
         }
 
 
-        private static unsafe void OnFrameworkUpdate(IFramework framework)
+        private  unsafe void OnFrameworkUpdate(IFramework framework)
         {
             if (Service.ClientState.LocalPlayer is not null)
             {
                 JobID = Service.ClientState.LocalPlayer?.ClassJob?.Id;
                 BlueMageService.PopulateBLUSpells();
+                _TargetHelper.Draw();
 
                 if (Service.Configuration.自动食物)
                 {
@@ -353,6 +363,8 @@ namespace XIVSlothComboX
             Service.CommandManager.RemoveHandler(Command);
             Service.Framework.Update -= OnFrameworkUpdate;
             Service.DutyState.DutyRecommenced -= OnDutyRecommenced;
+            Service.ClientState.TerritoryChanged -= OnTerritoryChanged;
+            
             Service.Interface.UiBuilder.OpenConfigUi -= OnOpenConfigUi;
             Service.Interface.UiBuilder.Draw -= DrawUI;
 
@@ -642,47 +654,47 @@ namespace XIVSlothComboX
                         }
                         
                         
-                        // file.WriteLine($"我操你妈1");
-                        // if (string.IsNullOrEmpty(specificJob))
-                        // {
-                        //     file.WriteLine($"我操你妈2");
-                        //     foreach (CustomComboPreset preset in Service.Configuration.EnabledActions.OrderBy(x => x))
-                        //     {
-                        //         if (int.TryParse(preset.ToString(), out _))
-                        //         {
-                        //             i++;
+                        file.WriteLine($"测试1");
+                        if (string.IsNullOrEmpty(specificJob))
+                        {
+                            file.WriteLine($"测试2");
+                            foreach (CustomComboPreset preset in Service.Configuration.EnabledActions.OrderBy(x => x))
+                            {
+                                if (int.TryParse(preset.ToString(), out _))
+                                {
+                                    i++;
                                     
-                        //             file.WriteLine($"_来了吗1_{(int)preset} - {preset}-{PresetExtensions.comboInfoCache[preset]}");
-                        //             continue;
-                        //         }
+                                    file.WriteLine($"_来了吗1_{(int)preset} - {preset}-{PresetExtensions.comboInfoCache[preset]}");
+                                    continue;
+                                }
 
-                        //         file.WriteLine($"_来了吗2_{(int)preset} - {preset}-{PresetExtensions.comboInfoCache[preset]}");
-                        //     }
-                        // }
-                        // else
-                        // {
-                        //     file.WriteLine($"我操你妈3");
-                        //     foreach (CustomComboPreset preset in Service.Configuration.EnabledActions.OrderBy(x => x))
-                        //     {
-                        //         if (int.TryParse(preset.ToString(), out _))
-                        //         {
-                        //             i++;
+                                file.WriteLine($"_来了吗2_{(int)preset} - {preset}-{PresetExtensions.comboInfoCache[preset]}");
+                            }
+                        }
+                        else
+                        {
+                            file.WriteLine($"测试3");
+                            foreach (CustomComboPreset preset in Service.Configuration.EnabledActions.OrderBy(x => x))
+                            {
+                                if (int.TryParse(preset.ToString(), out _))
+                                {
+                                    i++;
                                     
-                        //             file.WriteLine($"_来了吗3_{(int)preset} - {preset}-{PresetExtensions.comboInfoCache[preset]}");
+                                    file.WriteLine($"_来了吗3_{(int)preset} - {preset}-{PresetExtensions.comboInfoCache[preset]}");
                                     
-                        //             continue;
-                        //         }
+                                    continue;
+                                }
 
-                        //         if (preset.ToString()[..3].ToLower() == specificJob
-                        //             || // Job identifier
-                        //             preset.ToString()[..3].ToLower() == "all"
-                        //             || // Adds in Globals
-                        //             preset.ToString()[..3].ToLower() == "pvp") 
-                        //             // Adds in PvP Globals
-                        //             file.WriteLine($"_来了吗5 {(int)preset} - {preset}");
-                        //         file.WriteLine($"_来了吗4_{(int)preset} - {preset}-{PresetExtensions.comboInfoCache[preset]}");
-                        //     }
-                        // }
+                                if (preset.ToString()[..3].ToLower() == specificJob
+                                    || // Job identifier
+                                    preset.ToString()[..3].ToLower() == "all"
+                                    || // Adds in Globals
+                                    preset.ToString()[..3].ToLower() == "pvp") 
+                                    // Adds in PvP Globals
+                                    file.WriteLine($"_来了吗5 {(int)preset} - {preset}");
+                                file.WriteLine($"_来了吗4_{(int)preset} - {preset}-{PresetExtensions.comboInfoCache[preset]}");
+                            }
+                        }
 
                         file.WriteLine($"END ENABLED FEATURES");
                         file.WriteLine("");
@@ -777,6 +789,13 @@ namespace XIVSlothComboX
                             autoActionId = WAR.StormsPath;
                             break;
                         }
+                        
+                        
+                        case SGE.JobID:
+                        {
+                            autoActionId = SGE.Dosis2;
+                            break;
+                        }
 
                         case DNC.JobID:
                         {
@@ -787,6 +806,12 @@ namespace XIVSlothComboX
                         case MCH.JobID:
                         {
                             autoActionId = MCH.SplitShot;
+                            break;
+                        }
+                        
+                        case RPR.JobID:
+                        {
+                            autoActionId = RPR.切割Slice;
                             break;
                         }
                     }

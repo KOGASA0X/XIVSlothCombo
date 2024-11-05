@@ -228,8 +228,8 @@ namespace XIVSlothComboX.CustomComboNS.Functions
                 && // Prevent GCD delay
                 castTimeRemaining <= 0.5
                 && // Show in last 0.5sec of cast so game can queue ability
-                GetCooldown(actionID).CooldownRemaining - castTimeRemaining - weaveTime
-                >= 0) // Don't show if spell is still casting in weave window
+                GetCooldown(actionID).CooldownRemaining - castTimeRemaining - weaveTime >= 0) 
+                // Don't show if spell is still casting in weave window
                 return true;
 
             return false;
@@ -294,6 +294,11 @@ namespace XIVSlothComboX.CustomComboNS.Functions
 
         private static bool checkUseAbility()
         {
+
+            if (ActionWatching.LastAction == DRG.坠星冲Stardiver)
+            {
+                return false;
+            }
 
             if (ActionWatching.CombatActions.Count >= 2)
             {

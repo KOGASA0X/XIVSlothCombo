@@ -9,6 +9,7 @@ using ECommons.GameFunctions;
 using FFXIVClientStructs.FFXIV.Client.Game;
 using FFXIVClientStructs.FFXIV.Client.Game.Object;
 using Lumina.Excel.GeneratedSheets;
+using XIVSlothComboX.Combos.PvE;
 using XIVSlothComboX.Core;
 using XIVSlothComboX.CustomComboNS.Functions;
 using XIVSlothComboX.Services;
@@ -62,14 +63,40 @@ namespace XIVSlothComboX.Data
         internal static readonly List<uint> CustomList = new();
 
 
-        private delegate byte UseActionLocationDelegate(IntPtr actionManager, uint actionType, uint actionID, long targetedActorID,
-            IntPtr vectorLocation, uint param);
+        private delegate byte UseActionLocationDelegate(IntPtr actionManager,  uint actionType, uint actionID, ulong targetedActorID,
+            IntPtr                                             vectorLocation, uint param);
 
         private static readonly Hook<UseActionLocationDelegate>? UseActionLocationHook;
 
-        private static byte UseActionLocationDetour(IntPtr actionManager, uint actionType, uint actionId, long targetedActorID, IntPtr vectorLocation,
-            uint param)
+        private static byte UseActionLocationDetour(IntPtr actionManager, uint actionType, uint actionId, ulong targetedActorID, IntPtr vectorLocation,
+            uint                                           param)
         {
+            
+            if (CustomComboFunctions.CustomTimelineIsEnable())
+            {
+                if (actionType == (byte)FFXIVClientStructs.FFXIV.Client.Game.ActionType.Action)
+                {
+                    CustomAction? customAction = CustomComboFunctions.CustomTimelineFindBy时间轴(actionId);
+
+                    if (customAction != null)
+                    {
+                        int targetType = customAction.TargetType;
+                        if (targetType != -1)
+                        {
+                            var gameObject = CustomComboFunctions.GetPartySlot(targetType);
+                            if (gameObject != null)
+                            {
+                                targetedActorID = gameObject.GameObjectId;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        CustomList.Add(actionId);
+                    }
+                }
+            }
+            
             // Service.ChatGui.PrintError($"UseActionLocationDetour{GetActionName(actionId)} - {actionType}");
 
             Vector3Struct vector3 = Marshal.PtrToStructure<Vector3Struct>(vectorLocation);
@@ -203,6 +230,8 @@ namespace XIVSlothComboX.Data
         private static unsafe void SendActionDetour(ulong targetObjectId, byte actionType, uint actionId, ushort sequence, long a5, long a6, long a7,
             long a8, long a9)
         {
+            // Service.ChatGui.PrintError($"1 {actionType} - {actionId}");
+            if (actionType == (byte)FFXIVClientStructs.FFXIV.Client.Game.ActionType.Action)
             {
                 var customAction = new CustomAction();
                 customAction.ActionId = actionId;
@@ -238,7 +267,7 @@ namespace XIVSlothComboX.Data
                     }
                 }
 
-                // Service.ChatGui.PrintError($"{targetObjectId} - {actionType} - {actionId}");
+                // Service.ChatGui.PrintError($"2 {actionType} - {actionId}");
                 //为啥不换UseAction？？？
                 TimelineList.Add(customAction);
             }
@@ -255,10 +284,13 @@ namespace XIVSlothComboX.Data
                 {
                     ActionTimestamps[actionId] = Environment.TickCount64;
                 }
-                CheckForChangedTarget(actionId, ref targetObjectId);
+                CheckForChangedTarget(actionId, ref targetObjectId, actionType);
                 SendActionHook!.Original(targetObjectId, actionType, actionId, sequence, a5, a6, a7, a8, a9);
                 TimeLastActionUsed = DateTime.Now;
                 ActionType = actionType;
+                
+                UpdateHelpers(actionId);
+
             }
             catch (Exception ex)
             {
@@ -267,33 +299,41 @@ namespace XIVSlothComboX.Data
             }
         }
 
-        private static unsafe void CheckForChangedTarget(uint actionId, ref ulong targetObjectId)
+        private static void UpdateHelpers(uint actionId)
         {
-            // Service.ChatGui.PrintError($"[CheckForChangedTarget]");
+            if (actionId is NIN.Ten or NIN.Chi or NIN.Jin or NIN.TenCombo or NIN.ChiCombo or NIN.JinCombo)
+                Combos.JobHelpers.NIN.NINHelper.InMudra = true;
+            else
+                Combos.JobHelpers.NIN.NINHelper.InMudra = false;
+        }
 
-
-            if (CustomComboFunctions.CustomTimelineIsEnable())
-            {
-                CustomAction? customAction = CustomComboFunctions.CustomTimelineFindBy时间轴(actionId);
-
-                if (customAction != null)
-                {
-                    int targetType = customAction.TargetType;
-                    if (targetType != -1)
-                    {
-                        var gameObject = CustomComboFunctions.GetPartySlot(targetType);
-                        if (gameObject != null)
-                        {
-                            // targetObjectId = gameObject.ObjectId;
-                            targetObjectId = gameObject.GameObjectId;
-                        }
-                    }
-                }
-                else
-                {
-                    CustomList.Add(actionId);
-                }
-            }
+        private static unsafe void CheckForChangedTarget(uint actionId, ref ulong targetObjectId, byte actionType)
+        {
+            // Service.ChatGui.PrintError($"{targetObjectId} -> {actionId} ->{actionType}");
+            // if (CustomComboFunctions.CustomTimelineIsEnable())
+            // {
+            //     if (actionType == (byte)FFXIVClientStructs.FFXIV.Client.Game.ActionType.Action)
+            //     {
+            //         CustomAction? customAction = CustomComboFunctions.CustomTimelineFindBy时间轴(actionId);
+            //
+            //         if (customAction != null)
+            //         {
+            //             int targetType = customAction.TargetType;
+            //             if (targetType != -1)
+            //             {
+            //                 var gameObject = CustomComboFunctions.GetPartySlot(targetType);
+            //                 if (gameObject != null)
+            //                 {
+            //                     targetObjectId = gameObject.GameObjectId;
+            //                 }
+            //             }
+            //         }
+            //         else
+            //         {
+            //             CustomList.Add(actionId);
+            //         }
+            //     }
+            // }
 
 
             if (actionId is AST.Balance or AST.Bole or AST.Ewer or AST.Arrow or AST.Spire or AST.Spear &&

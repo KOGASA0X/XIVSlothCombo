@@ -8,6 +8,7 @@ using Dalamud.Interface.Colors;
 using Dalamud.Interface.Utility.Raii;
 using ECommons.DalamudServices;
 using ECommons.ImGuiMethods;
+using ECommons.Logging;
 using FFXIVClientStructs.FFXIV.Client.Game;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using ImGuiNET;
@@ -22,6 +23,8 @@ using XIVSlothComboX.Services;
 using Status = Dalamud.Game.ClientState.Statuses.Status;
 using Action = Lumina.Excel.GeneratedSheets.Action;
 using static XIVSlothComboX.CustomComboNS.Functions.CustomComboFunctions;
+using InstanceContent = Lumina.Excel.GeneratedSheets.InstanceContent;
+
 #if DEBUG
 namespace XIVSlothComboX.Window.Tabs
 {
@@ -36,9 +39,10 @@ namespace XIVSlothComboX.Window.Tabs
         }
 
         internal static Action? debugSpell;
+
         internal unsafe static new void Draw()
         {
-            DebugCombo? comboClass = new();
+            // DebugCombo? comboClass = new();
             IPlayerCharacter? LocalPlayer = Svc.ClientState.LocalPlayer;
             uint[] statusBlacklist = { 360, 361, 362, 363, 364, 365, 366, 367, 368 }; // Duration will not be displayed for these status effects
 
@@ -168,11 +172,11 @@ namespace XIVSlothComboX.Window.Tabs
                         CustomStyleText($"Action Status:", $"{actionStatus} ({Svc.Data.GetExcelSheet<LogMessage>().GetRow(actionStatus).Text})");
                         CustomStyleText($"Action Type:", debugSpell.ActionCategory.Value.Name);
                         if (debugSpell.UnlockLink != 0)
-                        CustomStyleText($"Quest:", $"{Svc.Data.GetExcelSheet<Quest>().GetRow(debugSpell.UnlockLink).Name} ({(UIState.Instance()->IsUnlockLinkUnlockedOrQuestCompleted(debugSpell.UnlockLink) ? "Completed" : "Not Completed")})");
+                            CustomStyleText($"Quest:", $"{Svc.Data.GetExcelSheet<Quest>().GetRow(debugSpell.UnlockLink).Name} ({(UIState.Instance()->IsUnlockLinkUnlockedOrQuestCompleted(debugSpell.UnlockLink) ? "Completed" : "Not Completed")})");
                         CustomStyleText($"Base Recast:", $"{debugSpell.Recast100ms / 10f}s");
                         CustomStyleText($"Max Charges:", $"{debugSpell.MaxCharges}");
                         if (ActionWatching.ActionTimestamps.ContainsKey(debugSpell.RowId))
-                            CustomStyleText($"Time Since Last Use:", $"{(Environment.TickCount64 - ActionWatching.ActionTimestamps[debugSpell.RowId])/1000f:F2}");
+                            CustomStyleText($"Time Since Last Use:", $"{(Environment.TickCount64 - ActionWatching.ActionTimestamps[debugSpell.RowId]) / 1000f:F2}");
                     }
                 }
 
@@ -193,6 +197,7 @@ namespace XIVSlothComboX.Window.Tabs
                 ImGui.Separator();
                 CustomStyleText("ObjectId:", LocalPlayer.TargetObject?.GameObjectId);
                 CustomStyleText("ObjectKind:", LocalPlayer.TargetObject?.ObjectKind);
+                CustomStyleText("DataId:", LocalPlayer.TargetObject?.DataId);
                 CustomStyleText("Is BattleChara:", LocalPlayer.TargetObject is IBattleChara);
                 CustomStyleText("Is PlayerCharacter:", LocalPlayer.TargetObject is IPlayerCharacter);
                 CustomStyleText("Distance:", $"{Math.Round(CustomComboFunctions.GetTargetDistance(), 2)}y");
@@ -229,6 +234,7 @@ namespace XIVSlothComboX.Window.Tabs
                     for (int i = 1; i <= 8; i++)
                     {
                         if (CustomComboFunctions.GetPartySlot(i) is not IBattleChara member || member is null) continue;
+
                         ImGui.TextUnformatted($"Slot {i} ->");
                         ImGui.SameLine(0, 4f);
                         CustomStyleText($"{CustomComboFunctions.GetPartySlot(i).Name}", $"({member.ClassJob.GameData.Abbreviation})");
@@ -244,21 +250,45 @@ namespace XIVSlothComboX.Window.Tabs
                 {
                     ImGui.TextUnformatted($"{string.Join("\n", Service.Configuration.ActiveBLUSpells.Select(x => ActionWatching.GetActionName(x)).OrderBy(x => x))}");
                 }
-                
+
                 if (ImGui.CollapsingHeader("自定义"))
                 {
-                    // ImGui.TextUnformatted($"信息呢");
-                    ImGui.TextUnformatted($"{GetResourceCost(PLD.圣灵HolySpirit)}");
+                    
+                    float GCD = GetCooldown(RPR.切割Slice).CooldownTotal * 3;
+                    var JobHelpers = ActionManager.Instance()->Combo.Timer != 0 && ActionManager.Instance()->Combo.Timer < GCD;
+                      
+                    
+                    // ImGui.TextUnformatted($"JobHelpers-{JobHelpers}");
+                    // ImGui.TextUnformatted($"Timer-{ActionManager.Instance()->Combo.Timer}");
+                    // ImGui.TextUnformatted($"GCD-{GCD}");
+                    var healTarget = GetHealTarget(WHM.Config.WHM_AoEHeals_MedicaMO);
+                    ImGui.TextUnformatted($"healTarget-{healTarget?.Name}");
+                    ImGui.TextUnformatted($"GCD-{FindEffect(WHM.Buffs.Medica3, healTarget, LocalPlayer?.GameObjectId)?.RemainingTime}");
+                    
+                    // ImGui.TextUnformatted($"GetActionStatus-{ActionManager.Instance()->GetActionStatus(ActionType.Item, 29492+ 1000000)}");
+
+                    // ImGui.TextUnformatted($"CooldownRemaining-{GetCooldown(DNC.喷泉Fountain).CooldownRemaining }");
+                    // ImGui.TextUnformatted($"TotalCastTime-{LocalPlayer.TotalCastTime}");
+                    // ImGui.TextUnformatted($"CurrentCastTime-{LocalPlayer.CurrentCastTime}");
+                    // ImGui.TextUnformatted($"aGetPartySlot2-{CustomComboFunctions.GetPartySlot(2)?.Name}");
+                    // ImGui.TextUnformatted($"GetPartySlot2-{CustomComboFunctions.GetPartySlot(3)?.Name}");
+
+                    // ImGui.TextUnformatted($"厄运流转CircleOfScorn-{ActionReady(PLD.厄运流转CircleOfScorn)}");
+                    // ImGui.TextUnformatted($"深奥之灵SpiritsWithin-{ActionReady(PLD.深奥之灵SpiritsWithin.OriginalHook())}");
+                    // ImGui.TextUnformatted($"GetPartySlot1-{CustomComboFunctions.GetPartySlot(1)?.Name}");
+                    // ImGui.TextUnformatted($"GetPartySlot2-{CustomComboFunctions.GetPartySlot(2)?.Name}");
+                    // ImGui.TextUnformatted($"GetPartySlot2-{CustomComboFunctions.GetPartySlot(3)?.Name}");
+                    // ImGui.TextUnformatted($"{GetResourceCost(PLD.圣灵HolySpirit)}");
                     // ImGui.TextUnformatted($"{LocalPlayer?.CurrentMount}");
                     // ImGui.TextUnformatted($"{LocalPlayer?.CurrentMount==null}");
-                    
+
                     // ImGui.TextUnformatted($"{DRK.血溅Bloodspiller.OriginalHook()}");
                     // ImGui.TextUnformatted($"{DRK.血乱层数()}");
                     // ImGui.TextUnformatted($"{GetCooldownRemainingTime(DRK.血乱Delirium) + GetCooldownRemainingTime(DRK.血溅Bloodspiller)}");
                     // ImGui.TextUnformatted($"{HasEffect(GNB.Buffs.ReadyToRaze命运之印预备)}");
                     // ImGui.TextUnformatted($"安魂祈祷Requiescat:{PLD.安魂祈祷Requiescat.OriginalHook().ActionReady()}");
-                    VPRGauge? gauge = GetJobGauge<VPRGauge>();
-                    ImGui.TextUnformatted($"VPRGauge:{gauge.DreadCombo}");
+                    // VPRGauge? gauge = GetJobGauge<VPRGauge>();
+                    // ImGui.TextUnformatted($"VPRGauge:{gauge.DreadCombo}");
                 }
             }
 

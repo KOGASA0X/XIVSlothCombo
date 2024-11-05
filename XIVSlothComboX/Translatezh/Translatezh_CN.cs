@@ -29,7 +29,7 @@ public class Translatezh_CN
         #region ASTROLOGIAN
         #region DPS
         {"Adds Combust to the DPS feature if it's not present on current target, or is about to expire." , "将烧灼（续DoT）加入输出循环。"  },
-        {"Weaves your card (best used with Quick Target Cards)" , "[AI]自动发卡（最好与快速定位目标发卡一起使用）"  },
+        {"Weaves your card (best used with Quick Target Cards)" , "自动发卡（最好与快速定位目标发卡一起使用）"  },
         {"Oracle Option" , "神谕选项"  },
         {"Adds Oracle after Divination" , "在占卜之后添加神谕。"  },
         {"Use the Balance opener." , "使用平衡开场。"  },
@@ -76,25 +76,67 @@ public class Translatezh_CN
         #endregion
         #endregion
         #region BLACK MAGE
-        #region Advanced ST
+        {"Simple Mode - Single Target" , "简单模式 - 单目标"  },
+        {"Replaces Fire with a full one-button single target rotation.\nThis is the ideal option for newcomers to the job." , "等待翻译"  },
+        {"Simple Mode - AoE" , "简单模式 - AoE"  },
+        {"Replaces Blizzard II with a full one-button AoE rotation.\nThis is the ideal option for newcomers to the job." , "等待翻译"  },
+        #region Single Target - Advanced
         {"Advanced Mode - Single Target" , "高级模式 - 单目标"  },
         {"Replaces Fire with a full one-button single target rotation.\nThese features are ideal if you want to customize the rotation." , "用一个完整的单目标循环替代火焰。\n如果您想自定义循环，这些功能非常理想。"  },
-        {"Thunder I/III Option" , "雷霆I/III选项"  },
-        {"Adds Thunder I/Thunder III when the debuff isn't present or is expiring." , "当无法触发雷霆debuff或debuff即将结束时，添加雷霆I/III。"  },
-        {"Triplecast/Swiftcast Option" , "三连咏唱/迅连咏唱选项"  },
-        {"Adds Triplecast/Swiftcast to the rotation." , "将三连咏唱/迅连咏唱添加到循环中。"  },
-        {"Opener Option" , "开场选项"  },
-        {"Adds the Lv.90 opener.\nWill default to the Standard opener when nothing is selected." , "添加90级开场技能。\n如果没有选择任何内容，将默认使用标准开场技能。"  },
+        {"Level 100 Opener" , "100级开场"  },
+        {"Adds the Balance opener to the rotation." , "将the Balance起手加入循环。"  },
+        {"Use Amplifier" , "等待翻译"  },
+        {"Add Amplifier to the rotation." , "等待翻译"  },
+        {"Use Leylines" , "黑魔纹"  },
+        {"Add Leylines to the rotation." , "等待翻译"  },
+        {"Use Foul / Xenoglossy" , "等待翻译"  },
+        {"Add Foul / Xenoglossy to the rotation." , "等待翻译"  },
+        {"Use Foul / Xenoglossy for movement" , "等待翻译"  },
+        {"Add Foul / Xenoglossy to the rotation as movement option." , "等待翻译"  },
+        {"Use Swiftcast" , "等待翻译"  },
+        {"Add Swiftcast to the rotation." , "等待翻译"  },
+        {"Use Triplecast" , "等待翻译"  },
+        {"Add Triplecast to the rotation." , "等待翻译"  },
+        {"Use Manafont" , "等待翻译"  },
+        {"Add Manafont to the rotation." , "等待翻译"  },
+        {"Use Transpose" , "等待翻译"  },
+        {"Add Transpose to the rotation." , "等待翻译"  },
+        {"Use Thunder" , "等待翻译"  },
+        {"Add Thunder to the rotation." , "等待翻译"  },
+        {"Use Despair" , "等待翻译"  },
+        {"Add Despair to the rotation." , "等待翻译"  },
+        {"Use Flarestar" , "耀星"  },
+        {"Add Flarestar to the rotation." , "等待翻译"  },
         #endregion
-        #region Advanced AoE
+        #region AoE - Advanced
         {"Advanced Mode - AoE" , "高级模式 - AoE"  },
-        {"Replaces Blizzard II with a full one-button AoE rotation.\nThese features are ideal if you want to customize the rotation." , "[AI]用一个完整的单键AoE循环替代暴风雪II。\n如果您想自定义循环，这些功能非常理想。"  },
-        {"Thunder Uptime Option" , "[AI]雷霆持续时间选项"  },
-        {"Adds Thunder II/Thunder IV during Umbral Ice." , "[AI]在幽暗冰期间添加雷霆II/雷霆IV。"  },
+        {"Replaces Blizzard II with a full one-button AoE rotation.\nThese features are ideal if you want to customize the rotation." , "等待翻译"  },
+        {"Use Foul" , "等待翻译"  },
+        {"Add Foul to the rotation." , "等待翻译"  },
+        {"Use Foul for movement" , "等待翻译"  },
+        {"Add Foul to the rotation as movement option." , "等待翻译"  },
+        {"Use Flare" , "等待翻译"  },
+        {"Add Flare to the rotation." , "等待翻译"  },
         #endregion
         #region Variant
+        {"Rampart Option" , "多变铁壁选项"  },
+        {"Use Variant Rampart on cooldown." , "多变铁壁冷却好使用"  },
+        {"Raise Option" , "等待翻译"  },
+        {"Turn Swiftcast into Variant Raise whenever you have the Swiftcast buff." , "等待翻译"  },
+        {"Cure Option" , "治疗选项"  },
+        {"Use Variant Cure when HP is below set threshold." , "当HP低于设定值时使用多变治疗"  },
         #endregion
         #region Miscellaneous
+        {"Umbral Soul/Transpose Feature" , "等待翻译"  },
+        {"Replaces Transpose with Umbral Soul when Umbral Soul is available." , "等待翻译"  },
+        {"Between the Ley Lines Feature" , "等待翻译"  },
+        {"Replaces Ley Lines with Between the Lines when Ley Lines is active." , "等待翻译"  },
+        {"Blizzard I/III Feature" , "等待翻译"  },
+        {"Replaces Blizzard I with Blizzard III when out of Umbral Ice." , "等待翻译"  },
+        {"Xenoglossy Feature" , "等待翻译"  },
+        {"Replaces Scathe with Xenoglossy when available." , "等待翻译"  },
+        {"Fire I/III Feature" , "等待翻译"  },
+        {"Replaces Fire I with Fire III outside of Astral Fire or when Firestarter is up." , "等待翻译"  },
         {"Aetherial Manipulation Feature" , "以太步功能"  },
         {"Replaces Aetherial Manipulation with Between the Lines when you are out of active Ley Lines and standing still." , "[AI]当你没有激活的灵脉并且静止不动时，用Between the Lines替代以太步。"  },
         #endregion
@@ -102,23 +144,23 @@ public class Translatezh_CN
         #region BLUE MAGE
         #endregion
         #region BARD
-        {"Simple Mode - Single Target" , "简单模式 - 单目标"  },
+        #region 自定义循环
+        #endregion
         {"Adds every single target ability to one button,\nIf there are DoTs on target, will try to maintain their uptime." , "将所有单目标技能添加到一个按钮中，\n如果目标身上有DoT效果，将尝试保持它们的持续时间。"  },
-        {"Simple Mode - AoE" , "简单模式 - AoE"  },
         {"Weaves oGCDs onto Quick Nock/Ladonsbite." , "将非GCD技能编织到连珠箭/百首龙牙箭中。"  },
-        {"Adds every single target ability to one button,\nIf there are DoTs on target, Simple Bard will try to maintain their uptime." , "将所有单目标技能添加到一个按钮中，\n如果目标身上有DoT效果，Simple Bard将尝试保持它们的持续时间。"  },
+        {"Adds every single target ability to one button,\nIf there are DoTs on target, Simple Bard will try to maintain their uptime." , "如果目标身上有DoT效果，Simple Bard将尝试保持它们的持续时间。"  },
+        {"Resonant Option" , "共鸣箭选项"  },
+        {"Adds Resonant Arrow to the Rotation after Barrage." , "在纷乱箭之后将共鸣箭添加到循环中。"  },
+        {"Encore Option" , "光明神的返场余音选项"  },
+        {"Adds Radiant Encore to the Rotation after Finale." , "在光明神的最终乐章之后将光明神的返场余音添加到循环中。"  },
         {"Apex Arrow Option" , "绝峰箭选项"  },
         {"Replaces Burst Shot with Apex Arrow when gauge is full and Blast Arrow when you are Blast Arrow ready." , "当能量槽满时，用绝峰箭替换爆裂爆发射击，当你准备好爆破箭时，用爆破箭替换。"  },
         {"oGcd Option" , "非GCD选项"  },
         {"Weave Sidewinder, Empyreal arrow, Rain of death, and Pitch perfect when available." , "在可用时编织侧风诱导箭、九天连箭、死亡箭雨和完美音调。"  },
         {"Buffs Option" , "增益选项"  },
         {"Adds buffs onto the Advanced Bard feature." , "将增益效果添加到高级吟游诗人功能中。"  },
-        {"Resonant Option" , "共鸣箭选项"  },
-        {"Adds Resonant Arrow to the Rotation after Barrage." , "在纷乱箭之后将共鸣箭添加到循环中。"  },
         {"Buffs - Radiant Option" , "增益 - 光明神选项"  },
         {"Adds Radiant Finale to theBuffs feature." , "将光明神的最终乐章添加到增益效果中"  },
-        {"Encore Option" , "光明神的返场余音选项"  },
-        {"Adds Radiant Encore to the Rotation after Finale." , "在光明神的最终乐章之后将光明神的返场余音添加到循环中。"  },
         {"No Waste Option" , "无浪费选项"  },
         {"Adds enemy health checking on mobs for buffs, DoTs and Songs.\nThey will not be reapplied if less than specified." , "对敌方生命值进行检查，为增益效果、DoT效果和歌曲效果。\n如果生命值低于指定值，则不会重新应用。"  },
         {"Adds Apex Arrow and Blast shot" , "添加绝峰箭和爆发射击。"  },
@@ -126,7 +168,6 @@ public class Translatezh_CN
         {"84+ Pools Rain of death charges to allow for optimum burst phases." , "积累84+死亡箭雨充能以允许最佳爆发阶段。"  },
         {"Enable the snapshotting of DoTs, within the remaining time of Raging Strikes below:" , "在猛者强击剩余时间内启用DoT快照："  },
         {"Simple AoE Buffs Option" , "简单AoE增益选项"  },
-        {"Adds buffs onto the Simple AoE Bard feature." , "将增益效果添加到简单AoE吟游诗人功能中。"  },
         {"AoE No Waste Option" , "AoE无浪费选项"  },
         {"Adds enemy health checking on targetted mob for songs.\nThey will not be reapplied if less than specified." , "等待翻译"  },
         #endregion
@@ -171,8 +212,6 @@ public class Translatezh_CN
         {"Replaces True Thrust with a full one-button single target rotation.\nThis is the ideal option for newcomers to the job." , "将精准刺替换为一键全单体循环。\n这是新手的理想选择。"  },
         #region Advanced ST Dragoon
         {"Replaces True Thrust with a full one-button single target rotation.\nThese features are ideal if you want to customize the rotation." , "将精准刺替换为一键全单体循环。\n如果你想自定义循环，这些功能是理想的选择。"  },
-        {"Level 100 Opener" , "100级开场"  },
-        {"Adds the Balance opener to the rotation." , "将the Balance起手加入循环。"  },
         #region Buffs ST
         {"Adds various buffs to the rotation." , "将各种增益加入循环。"  },
         {"Battle Litany Option" , "战斗连祷选项"  },
@@ -236,10 +275,6 @@ public class Translatezh_CN
         #endregion
         {"Lance Charge to Battle Litany Feature" , "猛枪整合到战斗连祷"  },
         {"Turns Lance Charge into Battle Litany when the former is on cooldown." , "猛枪冷却完毕后整合至战斗连祷"  },
-        {"Cure Option" , "治疗选项"  },
-        {"Use Variant Cure when HP is below set threshold." , "当HP低于设定值时使用多变治疗"  },
-        {"Rampart Option" , "多变铁壁选项"  },
-        {"Use Variant Rampart on cooldown." , "多变铁壁冷却好使用"  },
         #endregion
         #region GUNBREAKER
         #region ST
@@ -326,10 +361,13 @@ public class Translatezh_CN
         {"Swap dismantle with tactician when dismantle is on cooldown." , "[AI]当武装解除冷却时，用策动替换拆卸。"  },
         #endregion
         #region MONK
+        #region 自定义循环
+        #endregion
         {"Replaces Bootshine with a one - button full single target rotation.\nThis is ideal for newcomers to the job." , "将正拳替换为一键式全单体循环。\n这是新手最理想的选项。"  },
         {"Replaces Arm of the Destroyer with a one-button full single target rotation.\nThis is ideal for newcomers to the job." , "将灭绝替换为一键式全单体循环。\n这是新手最理想的选项。"  },
         #region Monk Advanced ST
         {"Replaces Bootshine with a one-button full single target rotation.\nThese features are ideal if you want to customize the rotation." , "将正拳替换为一键式全单体循环。\n这些功能适合你自定义技能循环。"  },
+        {"Opener Option" , "开场选项"  },
         {"Uses selected opener" , "使用选定的开场技能"  },
         {"Meditation Option" , "冥想选项"  },
         {"Adds Meditation to the rotation" , "将冥想添加到技能循环中"  },
@@ -387,6 +425,8 @@ public class Translatezh_CN
         #region PALADIN
         #endregion
         #region REAPER
+        #region 自定义循环
+        #endregion
         #region Simple ST
         {"Replaces Slice with a one-button full single target rotation.\nThis is ideal for newcomers to the job." , "将切割替换为一键式全单体循环。\n这是新手最理想的选项。"  },
         #endregion
@@ -492,14 +532,14 @@ public class Translatezh_CN
         #region AoE DPS
         #endregion
         #region QoL
-        {"Vercure Option" , "等待翻译"  },
-        {"If Swiftcast is on cooldown, change to Vercure to proc Dualcast." , "等待翻译"  },
+        {"Vercure Option" , "赤治疗 选项"  },
+        {"If Swiftcast is on cooldown, change to Vercure to proc Dualcast." , "如果即刻咏唱在冷却中，切换到赤治疗以触发连续咏唱。"  },
         #endregion
         #region Sections 8 to 9 - Miscellaneous
         {"Use Variant Rampart on cooldown. Replaces Jolts." , "在冷却时使用Variant Rampart。替代Jolts技能。"  },
         {"Turn Swiftcast into Variant Raise whenever you have the Swiftcast or Dualcast buffs." , "当你拥有Swiftcast或Dualcast增益时，将其转化为Variant Raise。"  },
         {"Use Variant Cure when HP is below set threshold. Replaces Jolts." , "当HP低于设定阈值时使用Variant Cure。替代Jolts技能。"  },
-        {"Cure on Vercure Option" , "在Vercure选项上使用Cure技能。"  },
+        {"Cure on Vercure Option" , "在赤治疗选项上使用Cure技能。"  },
         {"Replaces Vercure with Variant Cure." , "用Variant Cure替代Vercure技能。"  },
         {"Embolden Overlap Protection" , "等待翻译"  },
         {"Disables Embolden when buffed by another Red Mage's Embolden." , "等待翻译"  },
@@ -509,12 +549,11 @@ public class Translatezh_CN
         #endregion
         #region SAGE
         #region Single Target DPS Feature
-        {"Use the Balance opener from level 56+." , "从56级开始使用平衡开场。"  },
-        {"Weaves(?) Psych when available." , "等待翻译"  },
-        {"Addersgall Overflow Protection" , "等待翻译"  },
-        {"Weaves Druochole when Addersgall gauge is greater than or equal to the specified value." , "等待翻译"  },
+        {"Use the Balance opener from level 56+." , "从56级开始使用The Balance开场。"  },
         #endregion
         #region AoE DPS Feature
+        {"Addersgall Overflow Protection" , "等待翻译"  },
+        {"Weaves Druochole when Addersgall gauge is greater than or equal to the specified value." , "等待翻译"  },
         {"Psyche Option" , "等待翻译"  },
         {"Weaves Psyche if available." , "等待翻译"  },
         #endregion
@@ -651,7 +690,7 @@ public class Translatezh_CN
         {"Ikishoten Namikiri Feature" , "意气冲天-斩浪"  },
         {"Replace Ikishoten with Ogi Namikiri and then Kaeshi Namikiri when available.\nIf you have full Meditation stacks, Ikishoten becomes Shoha while you have Ogi Namikiri ready." , "当技能可用时，先后用奥义斩浪、回返斩浪替换意气冲天。\n当你在奥义斩浪预备状态时，如果有3档剑压，意气冲天变为照破。"  },
         #endregion
-        #region variant 
+        #region variant
         #endregion
         #endregion
         #region SCHOLAR
@@ -767,28 +806,28 @@ public class Translatezh_CN
         {"Adds Afflatus Misery to the AoE combo when it is ready to be used." , "当苦难之心可用时将其插入AoE循环中."  },
         {"Adds Afflatus Rapture to the AoE combo when at three Lilies." , "当有三档治疗百合时在AoE循环中插入苦难之心."  },
         {"Adds Presence of Mind to the AoE combo if you are moving or it can be weaved without GCD delay." , "等待翻译"  },
-        {"Adds Lucid Dreaming to the AoE combo when below the set MP value if you are moving or it can be weaved without GCD delay." , "等待翻译"  },
+        {"Adds Lucid Dreaming to the AoE combo when below the set MP value if you are moving or it can be weaved without GCD delay." , "当MP低于设定值时将醒梦插入输出循环中."  },
         #endregion
         {"Solace into Misery Feature" , "安慰之心与苦难之心整合 设置"  },
         {"Replaces Afflatus Solace with Afflatus Misery when it is ready to be used." , "当苦难之心可用时，替换安慰之心为苦难之心."  },
         {"Rapture into Misery Feature" , "狂喜之心与苦难之心整合 设置"  },
         {"Replaces Afflatus Rapture with Afflatus Misery when it is ready to be used." , "当苦难之心可用时，替换狂喜之心为苦难之心."  },
         #region AoE Heals Feature
-        {"Simple Heals (AoE)" , "简单治疗（范围）"  },
+        {"Simple Heals (AoE)" , "简单治疗（AOE）"  },
         {"Replaces Medica with a one button AoE healing setup." , "将医治替换为单键范围治疗设置。"  },
         {"Afflatus Rapture Option" , "狂喜咏叹选项"  },
         {"Uses Afflatus Rapture when available." , "可用时使用狂喜咏叹。"  },
         {"Uses Afflatus Misery when available." , "可用时使用苦难咏叹。"  },
-        {"Thin Air Option" , "虚空选项"  },
-        {"Uses Thin Air when available." , "可用时使用虚空。"  },
+        {"Thin Air Option" , "无中生有选项"  },
+        {"Uses Thin Air when available." , "可用时使用无中生有。"  },
         {"Cure III Option" , "治疗III选项"  },
         {"Replaces Medica with Cure III when available." , "可用时将医治替换为治疗III。"  },
         {"Uses Assize when available." , "可用时使用法令。"  },
         {"Plenary Indulgence Option" , "全大赦选项"  },
         {"Uses Plenary Indulgence when available." , "可用时使用全大赦。"  },
         {"Uses Lucid Dreaming when available." , "可用时使用清醒梦。"  },
-        {"Medica II Option" , "医治II选项"  },
-        {"Uses Medica II when current target doesn't have Medica II buff.\nUpgrades to Medica III when level allows." , "当当前目标没有医治II增益时使用医治II。\n达到相应等级时升级为医治III。"  },
+        {"Medica II Option" , "医技选项"  },
+        {"Uses Medica II when current target doesn't have Medica II buff.\nUpgrades to Medica III when level allows." , "当前目标没有医技BUFF时使用医技。\n达到相应等级时升级为医养。"  },
         {"Divine Caress" , "神圣抚慰"  },
         {"Uses Divine Caress when Divine Grace from Temperance is active." , "当节制的神圣恩典激活时使用神圣抚慰。"  },
         #endregion
@@ -820,6 +859,8 @@ public class Translatezh_CN
         {"Use Variant Spirit Dart whenever the debuff is not present or less than 3s." , "在多变精神镖Debuff时间少于 3 秒时使用"  },
         #endregion
         #region PICTOMANCER
+        #region 自定义循环
+        #endregion
         {"Consolidates the single target rotation into one button, ideal for newcomers." , "将单体目标的循环整合到一个按键，非常适合新手。"  },
         {"Consolidates the AoE rotation into one button, ideal for newcomers." , "将范围伤害循环整合到一个按键，非常适合新手。"  },
         #region ST

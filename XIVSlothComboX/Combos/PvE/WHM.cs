@@ -8,7 +8,6 @@ using XIVSlothComboX.CustomComboNS;
 using XIVSlothComboX.CustomComboNS.Functions;
 using XIVSlothComboX.Data;
 using XIVSlothComboX.Extensions;
-using Status = Dalamud.Game.ClientState.Statuses.Status;
 
 namespace XIVSlothComboX.Combos.PvE
 {
@@ -437,7 +436,7 @@ namespace XIVSlothComboX.Combos.PvE
                     if (IsEnabled(CustomComboPreset.WHM_AoEHeals_Rapture) && LevelChecked(AfflatusRapture) && gauge.Lily > 0)
                         return AfflatusRapture;
 
-                    if (IsEnabled(CustomComboPreset.WHM_AoeHeals_ThinAir) && thinAirReady)
+                    if (IsEnabled(CustomComboPreset.WHM_AoEHeals_ThinAir) && thinAirReady)
                         return ThinAir;
 
                     if (IsEnabled(CustomComboPreset.WHM_AoEHeals_Medica2)

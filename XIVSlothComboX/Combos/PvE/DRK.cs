@@ -250,7 +250,7 @@ namespace XIVSlothComboX.Combos.PvE
                                                 return 暗黑波动FloodOfDarkness;
                                         }
 
-                                        if (comboTime > 0 && lastComboMove == Unleash && LocalPlayer.CurrentMp >= 9200)
+                                        if (comboTime > 0 && lastComboMove == HardSlash && LocalPlayer.CurrentMp >= 9200)
                                         {
                                             if (LevelChecked(暗黑锋EdgeOfDarkness))
                                                 return OriginalHook(暗黑锋EdgeOfDarkness);
@@ -259,7 +259,7 @@ namespace XIVSlothComboX.Combos.PvE
                                                 return 暗黑波动FloodOfDarkness;
                                         }
 
-                                        if (comboTime > 0 && lastComboMove == Unleash && GetBuffStacks(Buffs.嗜血BloodWeapon) > 0 && LocalPlayer.CurrentMp > 8600)
+                                        if (comboTime > 0 && lastComboMove == HardSlash && GetBuffStacks(Buffs.嗜血BloodWeapon) > 0 && LocalPlayer.CurrentMp > 8600)
                                         {
                                             if (LevelChecked(暗黑锋EdgeOfDarkness))
                                                 return OriginalHook(暗黑锋EdgeOfDarkness);
@@ -372,6 +372,18 @@ namespace XIVSlothComboX.Combos.PvE
                                             return 血溅Bloodspiller.OriginalHook();
                                         }
                                     }
+                                }
+                                
+                                if (gauge.Blood >= 70 && 血乱层数() >= 3)
+                                {
+                                    //再不打要溢出了
+                                    return 血溅Bloodspiller.OriginalHook();
+                                }
+                                
+                                if (gauge.Blood >= 80 && 血乱层数() >= 2)
+                                {
+                                    //再不打要溢出了
+                                    return 血溅Bloodspiller.OriginalHook();
                                 }
 
                                 //对团辅

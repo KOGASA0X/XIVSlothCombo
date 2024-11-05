@@ -89,6 +89,22 @@ namespace XIVSlothComboX.CustomComboNS.Functions
 
             return true;
         }
+        
+        public static bool InMeleeRange(float distance)
+        {
+            if (LocalPlayer?.TargetObject == null)
+                return false;
+
+            float targetDistance = GetTargetDistance();
+
+            if (targetDistance == 0)
+                return true;
+
+            if (targetDistance > distance )
+                return false;
+
+            return true;
+        }
 
         /// <summary> Gets a value indicating target's HP Percent. CurrentTarget is default unless specified </summary>
         /// <returns> Double indicating percentage. </returns>
@@ -225,8 +241,10 @@ namespace XIVSlothComboX.CustomComboNS.Functions
 
         public static bool TargetNeedsPositionals()
         {
-            if (!HasBattleTarget()) return false;
-            if (TargetHasEffectAny(3808)) return false; // Directional Disregard Effect (Patch 7.01)
+            if (!HasBattleTarget()) 
+                return false;
+            if (TargetHasEffectAny(3808)) 
+                return false; // Directional Disregard Effect (Patch 7.01)
             if (ActionWatching.BNpcSheet.TryGetValue(CurrentTarget.DataId, out var bnpc) && !bnpc.Unknown10)
                 return true;
             return false;

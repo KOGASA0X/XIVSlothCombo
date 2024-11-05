@@ -139,14 +139,14 @@ namespace XIVSlothComboX.Combos.JobHelpers
                 if (CustomComboFunctions.WasLastAction(RaidenThrust) && OpenerStep == 12) OpenerStep++;
                 else if (OpenerStep == 12) actionID = RaidenThrust;
 
-                if (CustomComboFunctions.WasLastAction(Stardiver) && OpenerStep == 13) OpenerStep++;
-                else if (OpenerStep == 13) actionID = Stardiver;
+                if (CustomComboFunctions.WasLastAction(坠星冲Stardiver) && OpenerStep == 13) OpenerStep++;
+                else if (OpenerStep == 13) actionID = 坠星冲Stardiver;
 
                 if (CustomComboFunctions.WasLastAction(LanceBarrage) && OpenerStep == 14) OpenerStep++;
                 else if (OpenerStep == 14) actionID = LanceBarrage;
 
-                if (CustomComboFunctions.WasLastAction(Starcross) && OpenerStep == 15) OpenerStep++;
-                else if (OpenerStep == 15) actionID = Starcross;
+                if (CustomComboFunctions.WasLastAction(渡星冲Starcross) && OpenerStep == 15) OpenerStep++;
+                else if (OpenerStep == 15) actionID = 渡星冲Starcross;
 
                 if (CustomComboFunctions.WasLastAction(LifeSurge) && OpenerStep == 16) OpenerStep++;
                 else if (OpenerStep == 16) actionID = LifeSurge;
@@ -238,7 +238,7 @@ namespace XIVSlothComboX.Combos.JobHelpers
             PvE.DRG.MirageDive,
             PvE.DRG.WyrmwindThrust,
             PvE.DRG.RiseOfTheDragon,
-            PvE.DRG.Starcross,
+            PvE.DRG.渡星冲Starcross,
             PvE.Content.Variant.VariantRampart,
             PvE.All.TrueNorth
         ];
@@ -250,13 +250,24 @@ namespace XIVSlothComboX.Combos.JobHelpers
             PvE.DRG.DragonfireDive,
         ];
 
-        internal static uint SlowLock => PvE.DRG.Stardiver;
+        internal static uint SlowLock => PvE.DRG.坠星冲Stardiver;
 
         internal static bool CanDRGWeave(uint oGCD)
         {
             //GCD Ready - No Weave
             if (CustomComboFunctions.IsOffCooldown(PvE.DRG.TrueThrust))
                 return false;
+
+            if (CustomComboFunctions.WasLastAction(DRG.坠星冲Stardiver))
+            {
+                return false;
+            }
+            //
+            // if (CustomComboFunctions.WasLastAction(DRG.渡星冲Starcross))
+            // {
+            //     return false;
+            // }
+
 
             var gcdTimer = CustomComboFunctions.GetCooldownRemainingTime(PvE.DRG.TrueThrust);
 

@@ -1,10 +1,7 @@
-﻿using Dalamud.Game.ClientState.JobGauge.Types;
+﻿using Dalamud.Game.ClientState.JobGauge.Enums;
 using ECommons.DalamudServices;
-using System.Linq;
-using Dalamud.Game.ClientState.JobGauge.Enums;
 using XIVSlothComboX.Combos.JobHelpers.Enums;
 using XIVSlothComboX.Combos.PvE;
-using XIVSlothComboX.CustomComboNS.Functions;
 using XIVSlothComboX.Data;
 using static XIVSlothComboX.CustomComboNS.Functions.CustomComboFunctions;
 
@@ -28,7 +25,11 @@ namespace XIVSlothComboX.Combos.JobHelpers
             {
                 if (Gauge.CoeurlFury == 0 && LevelChecked(Demolish))
                 {
-                    if (!OnTargetsRear() && TargetNeedsPositionals() && !HasEffect(Buffs.TrueNorth) && ActionReady(TrueNorth) && useTrueNorthIfEnabled)
+                    if (!OnTargetsRear() &&
+                        TargetNeedsPositionals() &&
+                        !HasEffect(Buffs.TrueNorth) &&
+                        ActionReady(TrueNorth) &&
+                        useTrueNorthIfEnabled)
                         return TrueNorth;
 
                     return Demolish;
@@ -36,7 +37,11 @@ namespace XIVSlothComboX.Combos.JobHelpers
 
                 if (LevelChecked(SnapPunch))
                 {
-                    if (!OnTargetsFlank() && TargetNeedsPositionals() && !HasEffect(Buffs.TrueNorth) && ActionReady(TrueNorth) && useTrueNorthIfEnabled)
+                    if (!OnTargetsFlank() &&
+                        TargetNeedsPositionals() &&
+                        !HasEffect(Buffs.TrueNorth) &&
+                        ActionReady(TrueNorth) &&
+                        useTrueNorthIfEnabled)
                         return TrueNorth;
 
                     return OriginalHook(SnapPunch);
@@ -46,7 +51,6 @@ namespace XIVSlothComboX.Combos.JobHelpers
             return actionId;
         }
     }
-
     internal class MNKOpenerLogic : MNK
     {
         private OpenerState currentState = OpenerState.PrePull;
@@ -105,7 +109,10 @@ namespace XIVSlothComboX.Combos.JobHelpers
             if (Gauge.Nadi != Nadi.NONE)
                 return false;
 
-            if (Gauge.RaptorFury != 0 || Gauge.CoeurlFury != 0)
+            if (Gauge.RaptorFury != 0)
+                return false;
+
+            if (Gauge.CoeurlFury != 0)
                 return false;
 
             return true;
@@ -113,8 +120,7 @@ namespace XIVSlothComboX.Combos.JobHelpers
 
         private bool DoPrePullSteps(ref uint actionID)
         {
-            if (!LevelChecked)
-                return false;
+            if (!LevelChecked) return false;
 
             if (CanOpener && PrePullStep == 0) PrePullStep = 1;
 
@@ -122,17 +128,22 @@ namespace XIVSlothComboX.Combos.JobHelpers
 
             if (CurrentState == OpenerState.PrePull && PrePullStep > 0)
             {
-                if (Gauge.Chakra == 5 && PrePullStep == 1) PrePullStep++;
-                else if (PrePullStep == 1) actionID = OriginalHook(Meditation);
+                if (Gauge.Chakra < 5 && PrePullStep == 1)
+                {
+                    actionID = ForbiddenMeditation;
 
-                if (HasEffect(Buffs.FormlessFist) && Gauge.Chakra == 5 && PrePullStep == 2) PrePullStep++;
-                else if (PrePullStep == 2) actionID = FormShift;
+                    return true;
+                }
 
-                if (WasLastAction(DragonKick) && PrePullStep == 3) CurrentState = OpenerState.InOpener;
-                else if (PrePullStep == 3) actionID = DragonKick;
+                if (!HasEffect(Buffs.FormlessFist) && !HasEffect(Buffs.RaptorForm) && PrePullStep == 1)
+                {
+                    actionID = FormShift;
 
-                if (!HasEffect(Buffs.FormlessFist) && Gauge.Chakra == 5 && PrePullStep == 3)
-                    currentState = OpenerState.FailedOpener;
+                    return true;
+                }
+
+                if (WasLastAction(DragonKick) && PrePullStep == 1) CurrentState = OpenerState.InOpener;
+                else if (PrePullStep == 1) actionID = DragonKick;
 
                 if (ActionWatching.CombatActions.Count > 2 && InCombat())
                     CurrentState = OpenerState.FailedOpener;
@@ -342,22 +353,13 @@ namespace XIVSlothComboX.Combos.JobHelpers
                     return true;
 
             if (CurrentState == OpenerState.InOpener)
-            {
                 switch (selectedOpener)
                 {
-                    case 0:
-                    {
-                        DoLlOpener(ref actionID);
+                    case 0 when DoLlOpener(ref actionID):
+
+                    case 1 when DoSlOpener(ref actionID):
                         return true;
-                    }
-                    case 1:
-                    {
-                        DoSlOpener(ref actionID);
-                        return true;
-                    }
                 }
-            }
-         
 
             if (!InCombat())
             {
